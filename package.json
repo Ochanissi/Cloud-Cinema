@@ -1,6 +1,7 @@
 {
   "name": "cloud-cinema",
   "version": "0.1.0",
+  "description": "Cloud Cinema Project",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -16,6 +17,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ochanissi/Cloud-Cinema.git"
+  },
+  "author": "Mirel Bitoi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ochanissi/Cloud-Cinema/issues"
+  },
+  "homepage": "",
   "eslintConfig": {
     "extends": "react-app"
   },
