@@ -1,0 +1,21 @@
+@import '../../index.scss';
+
+.featured {
+  grid-row: 3 / 4;
+  grid-column: center-start / center-end;
+
+  padding-bottom: 10rem;
+
+  &__container {
+    margin-bottom: 10rem;
+
+    &--title {
+      padding-bottom: 3rem;
+    }
+
+    &--content {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

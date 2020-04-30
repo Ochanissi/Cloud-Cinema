@@ -1,0 +1,22 @@
+@import '../../index.scss';
+
+.controller {
+  grid-row: 2 / 3;
+  grid-column: center-start / center-end;
+
+  display: flex;
+  justify-content: space-around;
+
+  padding: 10rem 0;
+
+  &__movies {
+    // margin-right: 10rem;
+    border: 2px solid $color-primary-dark;
+    padding: 1rem 10rem;
+  }
+
+  &__shows {
+    border: 2px solid $color-primary-dark;
+    padding: 1rem 10rem;
+  }
+}
