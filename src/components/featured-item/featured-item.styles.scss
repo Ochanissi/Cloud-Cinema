@@ -1,0 +1,32 @@
+@import '../../index.scss';
+
+.featured-item {
+  border: 2px solid $color-grey-dark-6;
+  height: 24rem;
+  width: 15rem;
+
+  // background-color: $color-grey-dark-6;
+  background-color: red;
+
+  &--image {
+    width: 100%;
+    height: 20rem;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &--content {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+
+    margin-top: -0.5rem;
+
+    padding: 0 0.5rem;
+
+    ion-icon {
+      font-weight: 700;
+      font-size: 2rem;
+    }
+  }
+}
