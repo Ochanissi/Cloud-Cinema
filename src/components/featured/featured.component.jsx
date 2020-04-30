@@ -1,5 +1,7 @@
 import React from 'react';
 
+import FeaturedItem from '../featured-item/featured-item.component';
+
 import './featured.styles.scss';
 
 const Featured = () => (
@@ -7,33 +9,33 @@ const Featured = () => (
     <div className='featured__container'>
       <h2 className='featured__container--title'>Airing Today</h2>
       <div className='featured__container--content'>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
       </div>
     </div>
 
     <div className='featured__container'>
       <h2 className='featured__container--title'>Popular</h2>
       <div className='featured__container--content'>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
       </div>
     </div>
 
     <div className='featured__container'>
       <h2 className='featured__container--title'>On the air</h2>
       <div className='featured__container--content'>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
       </div>
     </div>
 
