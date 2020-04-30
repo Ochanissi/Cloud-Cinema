@@ -1,0 +1,41 @@
+@import '../../index.scss';
+
+.header {
+  grid-row: 1 / 2;
+  grid-column: full-start / full-end;
+
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-grey-dark-4, 0.8),
+      rgba($color-grey-dark-5, 0.8)
+    ),
+    url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: top;
+  position: relative;
+
+  display: flex;
+  align-items: flex-end;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 2rem;
+
+    padding: 5rem;
+
+    &--type {
+      text-transform: uppercase;
+    }
+
+    &--title {
+      font-weight: 500;
+
+      font-size: 3rem;
+    }
+
+    &--subtitle {
+    }
+  }
+}

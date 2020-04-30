@@ -1,0 +1,80 @@
+// COLOR VARIABLES
+$color-primary: #ed1c24;
+$color-primary-dark: #de1219;
+// $color-primary-darker: #22a6b3;
+
+// $color-secondary: #a919c8;
+// $color-secondary-dark: #9313b3;
+
+$color-tertiary-light: #251431;
+$color-tertiary-dark: #161130;
+
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #eee;
+$color-grey-light-3: #ddd;
+
+$color-grey-dark-1: #999;
+$color-grey-dark-2: #777;
+$color-grey-dark-3: #333;
+$color-grey-dark-4: #252934;
+$color-grey-dark-5: #1b242f;
+
+$color-white: #fff;
+$color-black: #000;
+
+// FONT VARIABLES
+$font-primary: 'Maven Pro', sans-serif;
+$font-display: 'Maven Pro', sans-serif;
+
+// RESPONSIVE BREAKPOINTS
+// $bp-largest: 75em; // 1200px
+// $bp-large: 62.5em; // 1000px
+// $bp-medium: 50em; // 800px
+// $bp-small: 37.5em; // 600px
+// $bp-smallest: 31.25em; // 500px
+// $bp-phone: 25em; // 400px
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 10px / 16px = 62.5% => 1rem = 10px
+
+  overflow-x: hidden;
+
+  // @media only screen and (max-width: $bp-largest) {
+  //   font-size: 50%;
+  // }
+
+  // @media only screen and (max-width: $bp-phone) {
+  //   font-size: 40%;
+  // }
+}
+
+body {
+  font-family: $font-primary;
+  color: $color-white;
+  font-weight: 400;
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow-x: hidden;
+
+  background: linear-gradient(
+    165deg,
+    $color-tertiary-light 0%,
+    $color-tertiary-dark 22%
+  );
+
+  & > * {
+    font-size: 1.75rem;
+  }
+}
