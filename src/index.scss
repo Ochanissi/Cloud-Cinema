@@ -74,11 +74,11 @@ body {
 
   overflow-x: hidden;
 
-  // background: linear-gradient(
-  //   165deg,
-  //   $color-tertiary-light 0%,
-  //   $color-tertiary-dark 25%
-  // );
+  background: linear-gradient(
+    165deg,
+    $color-tertiary-light 0%,
+    $color-tertiary-dark 25%
+  );
 
   & > * {
     font-size: 1.75rem;
