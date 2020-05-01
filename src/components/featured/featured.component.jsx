@@ -42,11 +42,11 @@ const Featured = () => (
     <div className='featured__container'>
       <h2 className='featured__container--title'>Top rated</h2>
       <div className='featured__container--content'>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
-        <div>Movie</div>
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
+        <FeaturedItem />
       </div>
     </div>
   </div>

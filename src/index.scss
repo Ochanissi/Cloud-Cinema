@@ -23,6 +23,11 @@ $color-grey-dark-6: #1d1d1d;
 $color-white: #fff;
 $color-black: #000;
 
+$color-button-1: #8e44ad;
+$color-button-2: #16a085;
+$color-button-3: #2b678f;
+$color-button-4: #9e2424;
+
 // FONT VARIABLES
 $font-primary: 'Maven Pro', sans-serif;
 $font-display: 'Maven Pro', sans-serif;
@@ -69,11 +74,11 @@ body {
 
   overflow-x: hidden;
 
-  background: linear-gradient(
-    165deg,
-    $color-tertiary-light 0%,
-    $color-tertiary-dark 22%
-  );
+  // background: linear-gradient(
+  //   165deg,
+  //   $color-tertiary-light 0%,
+  //   $color-tertiary-dark 25%
+  // );
 
   & > * {
     font-size: 1.75rem;
