@@ -8,6 +8,14 @@
   background-color: $color-grey-dark-6;
   // background-color: red;
 
+  &--image-container {
+    &:hover {
+      & .featured-item--image {
+        opacity: 0.8;
+      }
+    }
+  }
+
   &--image {
     width: 100%;
     height: 20rem;
@@ -20,9 +28,9 @@
     align-items: center;
     // justify-content: space-between;
 
-    margin-top: -0.75rem;
+    margin-top: -0.6rem;
 
-    padding: 0 0.5rem;
+    // padding: 0 0.5rem;
 
     ion-icon {
       font-size: 2rem;
@@ -30,6 +38,8 @@
 
       display: flex;
       align-items: center;
+
+      transition: all 0.25s;
 
       &:hover {
         color: $color-white;
@@ -43,26 +53,86 @@
         color: $color-button-1;
       }
 
+      &--button {
+        &:hover ~ .featured-item--content--history--text {
+          // display: initial;
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
       &--text {
         position: absolute;
         top: 3rem;
-        left: -5rem;
+        left: -5.5rem;
         font-size: 1.25rem;
         background-color: $color-grey-dark-6;
         padding: 0.25rem 0.5rem;
         width: max-content;
+        // display: none;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.25s, opacity 0.25s linear;
       }
     }
 
     &--collection {
+      position: relative;
+
       ion-icon {
         color: $color-button-2;
+      }
+
+      &--button {
+        &:hover ~ .featured-item--content--collection--text {
+          // display: initial;
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      &--text {
+        position: absolute;
+        top: 3rem;
+        left: -3.5rem;
+        font-size: 1.25rem;
+        background-color: $color-grey-dark-6;
+        padding: 0.25rem 0.5rem;
+        width: max-content;
+        // display: none;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.25s, opacity 0.25s linear;
       }
     }
 
     &--watchlist {
+      position: relative;
+
       ion-icon {
         color: $color-button-3;
+      }
+
+      &--button {
+        &:hover ~ .featured-item--content--watchlist--text {
+          // display: initial;
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      &--text {
+        position: absolute;
+        top: 3rem;
+        left: -3.5rem;
+        font-size: 1.25rem;
+        background-color: $color-grey-dark-6;
+        padding: 0.25rem 0.5rem;
+        width: max-content;
+        // display: none;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.25s, opacity 0.25s linear;
       }
     }
 
@@ -73,10 +143,33 @@
     }
 
     &--rate {
+      position: relative;
+
       ion-icon {
+        color: $color-button-4;
       }
 
-      color: $color-button-4;
+      &--button {
+        &:hover ~ .featured-item--content--rate--text {
+          // display: initial;
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      &--text {
+        position: absolute;
+        top: 3rem;
+        left: -1.5rem;
+        font-size: 1.25rem;
+        background-color: $color-grey-dark-6;
+        padding: 0.25rem 0.5rem;
+        width: max-content;
+        // display: none;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.25s, opacity 0.25s linear;
+      }
     }
 
     &--rating {
