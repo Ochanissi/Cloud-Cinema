@@ -15,7 +15,17 @@ const Navbar = () => (
       <div class='menu-button'></div>
     </label>
 
-    <div class='navbar__main'>KEK</div>
+    <div class='navbar__main'>
+      <input
+        id='searchBar'
+        className='navbar__main--searchbar'
+        type='text'
+        placeholder='Search...'
+      />
+      <a href=' #' id='btnSearch' class='navbar__main--btn-search'>
+        <ion-icon name='search'></ion-icon>
+      </a>
+    </div>
 
     <ul class='navbar__secondary'>
       <li>
