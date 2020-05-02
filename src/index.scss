@@ -74,10 +74,13 @@ body {
 
   overflow-x: hidden;
 
-  background: linear-gradient(
-    165deg,
-    $color-tertiary-light 0%,
-    $color-tertiary-dark 25%
+  background-image: linear-gradient(
+    to right bottom,
+    #303030,
+    #252525,
+    #1b1b1b,
+    #111111,
+    #000000
   );
 
   & > * {

@@ -4,8 +4,12 @@ import './controller.styles.scss';
 
 const Controller = () => (
   <div className='controller'>
-    <span className='controller__movies'>Movies</span>
-    <span className='controller__shows'>TV Shows</span>
+    <a href='# ' className='controller__btn controller__movies'>
+      Movies
+    </a>
+    <a href='# ' className='controller__btn controller__shows'>
+      TV Shows
+    </a>
   </div>
 );
 
