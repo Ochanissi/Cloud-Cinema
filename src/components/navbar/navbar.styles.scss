@@ -39,7 +39,43 @@
     display: flex;
     justify-content: center;
 
-    position: relative;
+    &--searchbar {
+      float: right;
+      // background-color: #d03237;
+      background-color: rgba($color-grey-dark-3, 0.75);
+      color: $color-white;
+      padding: 6px 10px;
+      width: 20rem;
+      border: none;
+      margin-top: 1px;
+      margin-right: 8px;
+
+      font-size: 1.75rem;
+      border-bottom: $color-white solid 2px;
+      transition: 0.3s;
+    }
+
+    &--searchbar::placeholder {
+      color: $color-white;
+      /* transition: 0.2s; */
+    }
+
+    &--searchbar:focus {
+      width: 40rem;
+      transition: 0.3s;
+      /* Stops the input box from inheriting the styling from the inputs on the request form */
+      border-bottom: $color-white solid 2px;
+      outline: none;
+    }
+
+    &--btn-search {
+      cursor: pointer;
+      color: $color-white;
+      text-decoration: none !important;
+      font-size: 2.25rem;
+      padding-top: 5px;
+      margin-right: 40px;
+    }
   }
 
   &__secondary {
