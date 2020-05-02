@@ -7,10 +7,35 @@
   padding-bottom: 10rem;
 
   &__container {
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
+
+    &:not(:last-child) {
+      padding-bottom: 5rem;
+      border-bottom: 2px $color-grey-dark-5 solid;
+    }
 
     &--title {
-      padding-bottom: 3rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+
+      text-transform: uppercase;
+      letter-spacing: 0.25rem;
+
+      font-weight: 500;
+      font-size: 2.5rem;
+
+      position: relative;
+
+      &::after {
+        display: block;
+        content: '';
+        width: 25rem;
+        height: 1px;
+        background: white;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
     }
 
     &--content {

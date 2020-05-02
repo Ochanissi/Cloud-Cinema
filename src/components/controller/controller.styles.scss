@@ -9,14 +9,32 @@
 
   padding: 10rem 0;
 
-  &__movies {
-    // margin-right: 10rem;
-    border: 2px solid $color-primary-dark;
+  font-weight: 500;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+
+  &__btn {
     padding: 1rem 10rem;
+
+    border: 2px solid $color-grey-dark-1;
+    background-color: $color-grey-dark-5;
+
+    color: $color-grey-light-3;
+
+    text-decoration: none;
+
+    &:hover {
+      border: 2px solid $color-grey-light-3;
+      background-color: $color-grey-dark-4;
+
+      color: $color-white;
+    }
+  }
+
+  &__movies {
   }
 
   &__shows {
-    border: 2px solid $color-primary-dark;
-    padding: 1rem 10rem;
   }
 }
