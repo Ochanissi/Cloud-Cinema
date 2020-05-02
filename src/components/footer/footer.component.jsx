@@ -34,7 +34,9 @@ const Footer = () => (
     </div>
 
     <div className='footer__col-2'>
-      <img src={mainLogo} alt='App Logo' className='footer__col-2--logo' />
+      <a href=' #' alt='Logo'>
+        <img src={mainLogo} alt='App Logo' className='footer__col-2--logo' />
+      </a>
       <TMDBLogo />
     </div>
 
