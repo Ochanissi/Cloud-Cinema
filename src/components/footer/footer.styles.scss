@@ -61,6 +61,10 @@
       &--link:visited {
         color: inherit;
         text-decoration: none;
+
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
@@ -73,6 +77,10 @@
 
     &--logo {
       width: 15rem;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 
@@ -91,7 +99,7 @@
       color: $color-white;
       text-decoration: none;
       font-size: 3rem;
-      transition: all 0.5s ease-in-out;
+      transition: all 0.25s ease-in-out;
 
       &:not(:last-child) {
         margin-right: 2.5rem;
