@@ -41,14 +41,14 @@
 
     &--searchbar {
       float: right;
-      // background-color: #d03237;
       background-color: rgba($color-grey-dark-3, 0.75);
+      // background-color: #d03237;
       color: $color-white;
-      padding: 6px 10px;
+      padding: 0.25rem 1rem;
       width: 20rem;
       border: none;
-      margin-top: 1px;
-      margin-right: 8px;
+      margin-top: 1rem;
+      margin-right: 0.8rem;
 
       font-size: 1.75rem;
       border-bottom: $color-white solid 2px;
@@ -73,8 +73,8 @@
       color: $color-white;
       text-decoration: none !important;
       font-size: 2.25rem;
-      padding-top: 5px;
-      margin-right: 40px;
+      margin-top: 0.8rem;
+      margin-right: 4rem;
     }
   }
 

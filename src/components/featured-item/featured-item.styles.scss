@@ -39,7 +39,7 @@
       display: flex;
       align-items: center;
 
-      transition: all 0.25s;
+      transition: all 0.25s ease-in-out;
 
       &:hover {
         color: $color-white;

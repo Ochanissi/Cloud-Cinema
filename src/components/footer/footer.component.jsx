@@ -14,20 +14,20 @@ const Footer = () => (
         <span>Discover</span>
         <span>Profile</span>
       </div>
-      <div class='footer__col-1--copyright'>
+      <div className='footer__col-1--copyright'>
         Copyright &copy; 2020{' '}
-        <span class='footer__col-1--copyright--name'>
+        <span className='footer__col-1--copyright--name'>
           <a
             href='https://github.com/Ochanissi/'
             target='_blank'
             rel='noopener noreferrer'
-            class='footer__col-1--copyright--link'
+            className='footer__col-1--copyright--link'
           >
             Mirel Bițoi
           </a>
         </span>
         .{' '}
-        <span class='footer__col-1--copyright--rights'>
+        <span className='footer__col-1--copyright--rights'>
           All rights reserved.
         </span>
       </div>
@@ -41,14 +41,14 @@ const Footer = () => (
     </div>
 
     <div className='footer__links'>
-      <a href='mailto:mirelalex2094@gmail.com' class='btn btn__contact'>
+      <a href='mailto:mirelalex2094@gmail.com' className='btn btn__contact'>
         <ion-icon name='mail'></ion-icon>
       </a>
       <a
         href='https://github.com/Ochanissi/'
         target='_blank'
         rel='noopener noreferrer'
-        class='btn btn__contact'
+        className='btn btn__contact'
       >
         <ion-icon name='logo-github'></ion-icon>
       </a>
@@ -56,7 +56,7 @@ const Footer = () => (
         href=' #'
         target='_blank'
         rel='noopener noreferrer'
-        class='btn btn__contact'
+        className='btn btn__contact'
       >
         <ion-icon name='logo-codepen'></ion-icon>
       </a>
@@ -64,7 +64,7 @@ const Footer = () => (
         href=' #'
         target='_blank'
         rel='noopener noreferrer'
-        class='btn btn__contact'
+        className='btn btn__contact'
       >
         <ion-icon name='logo-linkedin'></ion-icon>
       </a>
