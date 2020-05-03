@@ -14,27 +14,46 @@
       border-bottom: 2px $color-grey-dark-5 solid;
     }
 
-    &--title {
-      margin-bottom: 3rem;
-      padding-bottom: 1rem;
+    &--header {
+      display: flex;
+      justify-content: space-between;
 
-      text-transform: uppercase;
-      letter-spacing: 0.25rem;
+      &--title {
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
 
-      font-weight: 500;
-      font-size: 2.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.25rem;
 
-      position: relative;
+        font-weight: 500;
+        font-size: 2.5rem;
 
-      &::after {
-        display: block;
-        content: '';
-        width: 25rem;
-        height: 1px;
-        background: white;
-        position: absolute;
-        bottom: 0;
-        left: 0;
+        position: relative;
+
+        &::after {
+          display: block;
+          content: '';
+          width: 25rem;
+          height: 1px;
+          background: white;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+      }
+
+      &--arrows {
+        font-size: 2.5rem;
+
+        span {
+          margin-right: 1rem;
+          cursor: pointer;
+          transition: all 0.25s ease-in-out;
+
+          &:hover {
+            color: $color-primary;
+          }
+        }
       }
     }
 
