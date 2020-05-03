@@ -1,15 +1,30 @@
 import { MovieActionTypes } from './movie.types';
 
-const saveMoviesUpcoming = (moviesUpcoming) => ({
-  type: MovieActionTypes.GET_MOVIES_UPCOMING,
+require('dotenv').config();
+
+export const fetchMoviesUpcomingStart = () => ({
+  type: MovieActionTypes.FETCH_MOVIES_UPCOMING_START,
+});
+
+export const fetchMoviesUpcomingSuccess = (moviesUpcoming) => ({
+  type: MovieActionTypes.FETCH_MOVIES_UPCOMING_SUCCESS,
   payload: moviesUpcoming,
 });
 
-export const getMoviesUpcoming = (url) => {
+export const fetchMoviesUpcomingFailure = (errorMessage) => ({
+  type: MovieActionTypes.FETCH_MOVIES_UPCOMING_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchMoviesUpcomingStartAsync = () => {
   return (dispatch) => {
-    fetch(url)
+    dispatch(fetchMoviesUpcomingStart());
+
+    fetch(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+    )
       .then((res) => res.json())
-      .then((data) => dispatch(saveMoviesUpcoming(data)))
-      .catch((error) => console.log(error));
+      .then((data) => dispatch(fetchMoviesUpcomingSuccess(data)))
+      .catch((error) => dispatch(fetchMoviesUpcomingFailure(error.message)));
   };
 };
