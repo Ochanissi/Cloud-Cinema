@@ -4,26 +4,45 @@
   grid-row: 1 / 2;
   grid-column: full-start / full-end;
 
-  background-image: linear-gradient(
-      to right bottom,
-      rgba($color-grey-dark-4, 0.8),
-      rgba($color-grey-dark-5, 0.8)
-    ),
-    url('https://www.gstatic.com/tv/thumb/tvbanners/9181462/p9181462_b_v8_aa.jpg');
-  background-size: cover;
-  background-position: center;
+  // background-image: linear-gradient(
+  //     to right bottom,
+  //     rgba($color-grey-dark-4, 0.8),
+  //     rgba($color-grey-dark-5, 0.8)
+  //   ),
+  //   url('https://www.gstatic.com/tv/thumb/tvbanners/9181462/p9181462_b_v8_aa.jpg');
+
+  // background-size: cover;
+  // background-position: center;
+  // display: flex;
+  // align-items: flex-end;
+
   position: relative;
 
-  display: flex;
-  align-items: flex-end;
+  &__image-container {
+    &--image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      opacity: 0.5;
+    }
+  }
 
   &__text {
     display: flex;
     flex-direction: column;
+    // align-items: flex-end;
+
+    position: absolute;
+
+    bottom: 0;
+
+    z-index: 999;
 
     font-size: 2rem;
 
-    padding: 5rem;
+    padding: 10rem;
 
     &--type {
       text-transform: uppercase;
