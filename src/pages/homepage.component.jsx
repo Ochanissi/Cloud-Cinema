@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getMoviesUpcoming } from '../redux/movie/movie.actions';
+// import { fetchMoviesUpcomingStartAsync } from '../redux/movie/movie.actions';
 
 import Navbar from '../components/navbar/navbar.component';
 import Header from '../components/header/header.component';
@@ -11,27 +11,12 @@ import Footer from '../components/footer/footer.component';
 
 import './homepage.styles.scss';
 
-require('dotenv').config();
-
 class HomePage extends React.Component {
   componentDidMount() {
-    this.handleMovieFetch();
+    // const { fetchMoviesUpcomingStartAsync } = this.props;
+    // fetchMoviesUpcomingStartAsync();
+    // console.log(this.props);
   }
-
-  // Fetches Movie Data
-  handleMovieFetch = () => {
-    console.log(process.env.REACT_APP_TMDB_API_KEY);
-    // this.props.getMoviesUpcoming(
-    //   `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
-    // );
-    // console.log(this.props.moviesUpcoming);
-
-    fetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
-    )
-      .then((res) => res.json())
-      .then((x) => console.log(x));
-  };
 
   render() {
     return (
@@ -47,11 +32,13 @@ class HomePage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  // currentUser: state.user.currentUser,
+  // isMoviesUpcomingFetching:
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getMoviesUpcoming: (url) => dispatch(getMoviesUpcoming(url)),
+  // fetchMoviesUpcomingStartAsync: () =>
+  //   dispatch(fetchMoviesUpcomingStartAsync()),
+  // getMoviesUpcoming: (url) => dispatch(getMoviesUpcoming(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
