@@ -1,0 +1,58 @@
+@import '../../index.scss';
+
+.featured__container {
+  margin-bottom: 5rem;
+
+  &:not(:last-child) {
+    padding-bottom: 5rem;
+    border-bottom: 2px $color-grey-dark-5 solid;
+  }
+
+  &--header {
+    display: flex;
+    justify-content: space-between;
+
+    &--title {
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+
+      text-transform: uppercase;
+      letter-spacing: 0.25rem;
+
+      font-weight: 500;
+      font-size: 2.5rem;
+
+      position: relative;
+
+      &::after {
+        display: block;
+        content: '';
+        width: 25rem;
+        height: 1px;
+        background: white;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+
+    &--arrows {
+      font-size: 2.5rem;
+
+      span {
+        margin-right: 1rem;
+        cursor: pointer;
+        transition: all 0.25s ease-in-out;
+
+        &:hover {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+
+  &--content {
+    display: flex;
+    justify-content: space-between;
+  }
+}

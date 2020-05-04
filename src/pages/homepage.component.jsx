@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchMoviesUpcomingStartAsync } from '../redux/movie/movie.actions';
+// import { fetchMoviesUpcomingStartAsync } from '../redux/movie/movie.actions';
 
 import Navbar from '../components/navbar/navbar.component';
 import Header from '../components/header/header.component';
@@ -13,9 +13,9 @@ import './homepage.styles.scss';
 
 class HomePage extends React.Component {
   componentDidMount() {
-    const { fetchMoviesUpcomingStartAsync } = this.props;
-    fetchMoviesUpcomingStartAsync();
-    console.log(this.props);
+    // const { fetchMoviesUpcomingStartAsync } = this.props;
+    // fetchMoviesUpcomingStartAsync();
+    // console.log(this.props);
   }
 
   render() {
@@ -36,8 +36,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchMoviesUpcomingStartAsync: () =>
-    dispatch(fetchMoviesUpcomingStartAsync()),
+  // fetchMoviesUpcomingStartAsync: () =>
+  //   dispatch(fetchMoviesUpcomingStartAsync()),
   // getMoviesUpcoming: (url) => dispatch(getMoviesUpcoming(url)),
 });
 

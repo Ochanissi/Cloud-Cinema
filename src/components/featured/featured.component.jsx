@@ -1,79 +1,76 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import FeaturedItem from '../featured-item/featured-item.component';
+import FeaturedContainer from '../featured-container/featured-container.component';
+
+import {
+  fetchMoviesUpcomingStartAsync,
+  fetchMoviesPopularStartAsync,
+  fetchMoviesNowPlayingStartAsync,
+  fetchMoviesTopRatedStartAsync,
+} from '../../redux/movie/movie.actions';
 
 import './featured.styles.scss';
 
-const Featured = () => (
-  <div className='featured'>
-    <div className='featured__container'>
-      <div className='featured__container--header'>
-        <h2 className='featured__container--header--title'>Airing today</h2>
-        <div className='featured__container--header--arrows'>
-          <span>&#10094;</span>
-          <span>&#10095;</span>
-        </div>
-      </div>
-      <div className='featured__container--content'>
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-      </div>
-    </div>
+class Featured extends React.Component {
+  componentDidMount() {
+    const {
+      fetchMoviesUpcomingStartAsync,
+      fetchMoviesPopularStartAsync,
+      fetchMoviesNowPlayingStartAsync,
+      fetchMoviesTopRatedStartAsync,
+    } = this.props;
+    fetchMoviesUpcomingStartAsync();
+    fetchMoviesPopularStartAsync();
+    fetchMoviesNowPlayingStartAsync();
+    fetchMoviesTopRatedStartAsync();
 
-    <div className='featured__container'>
-      <div className='featured__container--header'>
-        <h2 className='featured__container--header--title'>Popular</h2>
-        <div className='featured__container--header--arrows'>
-          <span>&#10094;</span>
-          <span>&#10095;</span>
-        </div>
-      </div>
-      <div className='featured__container--content'>
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-      </div>
-    </div>
+    // console.log(this.props);
+  }
 
-    <div className='featured__container'>
-      <div className='featured__container--header'>
-        <h2 className='featured__container--header--title'>On the air</h2>
-        <div className='featured__container--header--arrows'>
-          <span>&#10094;</span>
-          <span>&#10095;</span>
-        </div>
+  render() {
+    const {
+      moviesUpcoming,
+      moviesPopular,
+      moviesNowPlaying,
+      moviesTopRated,
+    } = this.props;
+    // console.log(
+    //   moviesUpcoming,
+    //   moviesPopular,
+    //   moviesNowPlaying,
+    //   moviesTopRated
+    // );
+    return (
+      <div className='featured'>
+        <FeaturedContainer title='Upcoming' movieType={moviesUpcoming} />
+        <FeaturedContainer title='Popular' movieType={moviesPopular} />
+        <FeaturedContainer title='Now Playing' movieType={moviesNowPlaying} />
+        <FeaturedContainer title='Top Rated' movieType={moviesTopRated} />
       </div>
-      <div className='featured__container--content'>
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-      </div>
-    </div>
+    );
+  }
+}
 
-    <div className='featured__container'>
-      <div className='featured__container--header'>
-        <h2 className='featured__container--header--title'>Top rated</h2>
-        <div className='featured__container--header--arrows'>
-          <span>&#10094;</span>
-          <span>&#10095;</span>
-        </div>
-      </div>
-      <div className='featured__container--content'>
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-        <FeaturedItem />
-      </div>
-    </div>
-  </div>
-);
+const mapStateToProps = (state) => ({
+  ismoviesUpcomingFetching: state.movie.ismoviesUpcomingFetching,
+  moviesUpcoming: state.movie.moviesUpcoming,
+  ismoviesPopularFetching: state.movie.ismoviesPopularFetching,
+  moviesPopular: state.movie.moviesPopular,
+  ismoviesNowPlayingFetching: state.movie.ismoviesNowPlayingFetching,
+  moviesNowPlaying: state.movie.moviesNowPlaying,
+  ismoviesTopRatedFetching: state.movie.ismoviesTopRatedFetching,
+  moviesTopRated: state.movie.moviesTopRated,
+});
 
-export default Featured;
+const mapDispatchToProps = (dispatch) => ({
+  fetchMoviesUpcomingStartAsync: () =>
+    dispatch(fetchMoviesUpcomingStartAsync()),
+  fetchMoviesPopularStartAsync: () => dispatch(fetchMoviesPopularStartAsync()),
+  fetchMoviesNowPlayingStartAsync: () =>
+    dispatch(fetchMoviesNowPlayingStartAsync()),
+  fetchMoviesTopRatedStartAsync: () =>
+    dispatch(fetchMoviesTopRatedStartAsync()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Featured);
