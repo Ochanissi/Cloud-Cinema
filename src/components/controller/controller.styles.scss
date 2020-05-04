@@ -9,13 +9,13 @@
 
   padding: 10rem 0;
 
-  font-weight: 500;
-  font-size: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.25rem;
-
   &__btn {
     padding: 1rem 10rem;
+    font-weight: 500;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem;
+    cursor: pointer;
 
     border: 2px solid $color-grey-dark-1;
     background-color: $color-grey-dark-5;
@@ -24,11 +24,23 @@
 
     text-decoration: none;
 
+    &:focus {
+      outline: 0;
+    }
+
     &:hover {
       border: 2px solid $color-grey-light-3;
       background-color: $color-grey-dark-4;
 
       color: $color-white;
+    }
+
+    &--selected {
+      border: 2px solid $color-primary-dark;
+
+      &:hover {
+        border: 2px solid $color-primary;
+      }
     }
   }
 

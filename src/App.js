@@ -5,7 +5,7 @@ import './App.scss';
 
 import HomePage from './pages/homepage.component';
 
-import { setCurrentUser } from './redux/user/user.actions';
+// import { setCurrentUser } from './redux/user/user.actions';
 
 class App extends React.Component {
   render() {
@@ -20,11 +20,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
+  // currentUser: user.currentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser * user),
+  // setCurrentUser: (user) => dispatch(setCurrentUser * user),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
