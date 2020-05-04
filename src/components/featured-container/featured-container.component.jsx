@@ -4,8 +4,8 @@ import FeaturedItem from '../featured-item/featured-item.component';
 
 import './featured-container.styles.scss';
 
-const FeaturedContainer = ({ title, movieType }) => {
-  console.log(movieType);
+const FeaturedContainer = ({ title, contentType }) => {
+  // console.log(contentType);
 
   return (
     <div className='featured__container'>
@@ -17,7 +17,7 @@ const FeaturedContainer = ({ title, movieType }) => {
         </div>
       </div>
       <div className='featured__container--content'>
-        {movieType.slice(0, 5).map(({ id, ...otherProps }) => (
+        {contentType.slice(0, 5).map(({ id, ...otherProps }) => (
           <FeaturedItem key={id} {...otherProps} />
         ))}
       </div>

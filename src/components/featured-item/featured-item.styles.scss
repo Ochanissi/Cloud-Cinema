@@ -11,7 +11,7 @@
   &--image-container {
     &:hover {
       & .featured-item--image {
-        opacity: 0.8;
+        opacity: 1;
       }
     }
   }
@@ -21,6 +21,7 @@
     height: 20rem;
     background-size: cover;
     background-position: center;
+    opacity: 0.8;
   }
 
   &--content {
