@@ -13,6 +13,9 @@ const INITIAL_STATE = {
   isTVTopRatedFetching: false,
   TVTopRated: [],
 
+  isTVGenreFetching: false,
+  TVGenre: [],
+
   errorMessage: undefined,
 };
 
@@ -91,6 +94,25 @@ const movieReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isTVTopRatedFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // TV Genres
+    case TVActionTypes.FETCH_TV_GENRE_START:
+      return {
+        ...state,
+        isTVGenreFetching: true,
+      };
+    case TVActionTypes.FETCH_TV_GENRE_SUCCESS:
+      return {
+        ...state,
+        isTVGenreFetching: false,
+        TVGenre: action.payload,
+      };
+    case TVActionTypes.FETCH_TV_GENRE_FAILURE:
+      return {
+        ...state,
+        isTVGenreFetching: false,
         errorMessage: action.payload,
       };
 

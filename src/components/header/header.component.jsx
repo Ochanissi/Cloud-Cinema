@@ -1,10 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { fetchMoviesGenreStartAsync } from '../../redux/movie/movie.actions';
+import { fetchTVGenreStartAsync } from '../../redux/tv/tv.actions';
+
 import './header.styles.scss';
 
 class Header extends React.Component {
-  render() {
+  componentDidMount() {
+    const { fetchMoviesGenreStartAsync, fetchTVGenreStartAsync } = this.props;
+    fetchMoviesGenreStartAsync();
+    fetchTVGenreStartAsync();
+  }
+
+  handleGenres = () => {};
+
+  handleBackgroundItem = () => {
     const { itemType, moviesNowPlaying, TVAiringToday } = this.props;
 
     let backgroundItem;
@@ -18,7 +29,16 @@ class Header extends React.Component {
       backgroundItem =
         TVAiringToday[Math.floor(Math.random() * TVAiringToday.length)] || {};
 
-    // console.log(backgroundItem.title);
+    return backgroundItem;
+  };
+
+  render() {
+    const backgroundItem = this.handleBackgroundItem();
+
+    const { moviesGenre, moviesNowPlaying, ismoviesGenreFetching } = this.props;
+
+    console.log(ismoviesGenreFetching);
+
     return (
       <div className='header'>
         <a href='# ' className='header__image-container'>
@@ -48,9 +68,16 @@ const mapStateToProps = (state) => ({
 
   ismoviesNowPlayingFetching: state.movie.ismoviesNowPlayingFetching,
   moviesNowPlaying: state.movie.moviesNowPlaying,
+  moviesGenre: state.movie.moviesGenre,
+  ismoviesGenreFetching: state.movie.ismoviesGenreFetching,
 
   isTVOnTheAirFetching: state.tv.isTVOnTheAirFetching,
   TVAiringToday: state.tv.TVAiringToday,
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => ({
+  fetchMoviesGenreStartAsync: () => dispatch(fetchMoviesGenreStartAsync()),
+  fetchTVGenreStartAsync: () => dispatch(fetchTVGenreStartAsync()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
