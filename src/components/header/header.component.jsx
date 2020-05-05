@@ -13,21 +13,39 @@ class Header extends React.Component {
     fetchTVGenreStartAsync();
   }
 
-  handleGenres = () => {};
-
   handleBackgroundItem = () => {
-    const { itemType, moviesNowPlaying, TVAiringToday } = this.props;
+    const {
+      itemType,
+      moviesNowPlaying,
+      moviesGenre,
+      TVAiringToday,
+      TVGenre,
+    } = this.props;
 
     let backgroundItem;
 
-    if (itemType === 'MOVIE')
+    if (itemType === 'MOVIE') {
       backgroundItem =
         moviesNowPlaying[Math.floor(Math.random() * moviesNowPlaying.length)] ||
         {};
 
-    if (itemType === 'TV')
+      if (backgroundItem.genre_ids && moviesGenre) {
+        backgroundItem.genre_ids = backgroundItem.genre_ids.map((genre) =>
+          moviesGenre.filter((x) => x.id === genre).map((x) => x.name)
+        )[0];
+      }
+    }
+
+    if (itemType === 'TV') {
       backgroundItem =
         TVAiringToday[Math.floor(Math.random() * TVAiringToday.length)] || {};
+
+      if (backgroundItem.genre_ids && TVGenre) {
+        backgroundItem.genre_ids = backgroundItem.genre_ids.map((genre) =>
+          TVGenre.filter((x) => x.id === genre).map((x) => x.name)
+        )[0];
+      }
+    }
 
     return backgroundItem;
   };
@@ -35,26 +53,24 @@ class Header extends React.Component {
   render() {
     const backgroundItem = this.handleBackgroundItem();
 
-    const { moviesGenre, moviesNowPlaying, ismoviesGenreFetching } = this.props;
-
-    console.log(ismoviesGenreFetching);
-
     return (
       <div className='header'>
         <a href='# ' className='header__image-container'>
           <img
             className='header__image-container--image'
             alt='Header Background'
-            src={`https://image.tmdb.org/t/p/original${backgroundItem.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original${
+              backgroundItem.backdrop_path || backgroundItem.poster_path
+            }`}
           />
         </a>
         <div className='header__text'>
-          <span className='header__text--type'>Latest</span>
+          <span className='header__text--type'>Playing now</span>
           <span className='header__text--title'>
             {backgroundItem.title || backgroundItem.name}
           </span>
           <span className='header__text--subtitle'>
-            {backgroundItem.release_date} | {backgroundItem.vote_average * 10}%
+            {backgroundItem.genre_ids} | {backgroundItem.vote_average * 10}%
             Rating
           </span>
         </div>
@@ -73,6 +89,8 @@ const mapStateToProps = (state) => ({
 
   isTVOnTheAirFetching: state.tv.isTVOnTheAirFetching,
   TVAiringToday: state.tv.TVAiringToday,
+  TVGenre: state.tv.TVGenre,
+  isTVGenreFetching: state.tv.isTVGenreFetching,
 });
 
 const mapDispatchToProps = (dispatch) => ({
