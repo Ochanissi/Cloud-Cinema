@@ -113,3 +113,31 @@ export const fetchTVTopRatedStartAsync = () => {
       .catch((error) => dispatch(fetchTVTopRatedFailure(error.message)));
   };
 };
+
+// TV Genre
+export const fetchTVGenreStart = () => ({
+  type: TVActionTypes.FETCH_TV_GENRE_START,
+});
+
+export const fetchTVGenreSuccess = (TVGenre) => ({
+  type: TVActionTypes.FETCH_TV_GENRE_SUCCESS,
+  payload: TVGenre,
+});
+
+export const fetchTVGenreFailure = (errorMessage) => ({
+  type: TVActionTypes.FETCH_TV_GENRE_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchTVGenreStartAsync = () => {
+  return (dispatch) => {
+    dispatch(fetchTVGenreStart());
+
+    fetch(
+      `https://api.themoviedb.org/3/genre/tv/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch(fetchTVGenreSuccess(data.genres)))
+      .catch((error) => dispatch(fetchTVGenreFailure(error.message)));
+  };
+};
