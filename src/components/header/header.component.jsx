@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Swiper from 'swiper';
+import 'swiper/css/swiper.css';
 
 import { fetchMoviesGenreStartAsync } from '../../redux/movie/movie.actions';
 import { fetchTVGenreStartAsync } from '../../redux/tv/tv.actions';
@@ -18,62 +20,93 @@ class Header extends React.Component {
       itemType,
       moviesNowPlaying,
       moviesGenre,
-      TVAiringToday,
+      TVOnTheAir,
       TVGenre,
     } = this.props;
 
     let backgroundItem;
 
     if (itemType === 'MOVIE') {
-      backgroundItem =
-        moviesNowPlaying[Math.floor(Math.random() * moviesNowPlaying.length)] ||
-        {};
+      backgroundItem = moviesNowPlaying.slice(0, 3) || [];
 
-      if (backgroundItem.genre_ids && moviesGenre) {
-        backgroundItem.genre_ids = backgroundItem.genre_ids.map((genre) =>
-          moviesGenre.filter((x) => x.id === genre).map((x) => x.name)
-        )[0];
+      if (backgroundItem && moviesGenre) {
+        backgroundItem.forEach((item) => {
+          item.genre_ids = moviesGenre
+            .filter((x) => x.id === item.genre_ids[0])
+            .map((x) => x.name);
+        });
       }
+      // console.log(backgroundItem);
     }
 
     if (itemType === 'TV') {
-      backgroundItem =
-        TVAiringToday[Math.floor(Math.random() * TVAiringToday.length)] || {};
+      backgroundItem = TVOnTheAir.slice(0, 3) || [];
 
-      if (backgroundItem.genre_ids && TVGenre) {
-        backgroundItem.genre_ids = backgroundItem.genre_ids.map((genre) =>
-          TVGenre.filter((x) => x.id === genre).map((x) => x.name)
-        )[0];
+      if (backgroundItem && TVGenre) {
+        backgroundItem.forEach((item) => {
+          item.genre_ids = TVGenre.filter(
+            (x) => x.id === item.genre_ids[0]
+          ).map((x) => x.name);
+        });
       }
+      // console.log(backgroundItem);
     }
 
     return backgroundItem;
   };
 
   render() {
+    // Initiates carousels
+    (() => {
+      // eslint-disable-next-line
+      const swiper = new Swiper('.header', {
+        slidesPerView: 1,
+        loop: true,
+        spaceBetween: 0,
+        observer: true,
+        autoplay: {
+          delay: 3000,
+        },
+        speed: 1000,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+    })();
+
     const backgroundItem = this.handleBackgroundItem();
 
     return (
       <div className='header'>
-        <a href='# ' className='header__image-container'>
-          <img
-            className='header__image-container--image'
-            alt='Header Background'
-            src={`https://image.tmdb.org/t/p/original${
-              backgroundItem.backdrop_path || backgroundItem.poster_path
-            }`}
-          />
-        </a>
-        <div className='header__text'>
-          <span className='header__text--type'>Playing now</span>
-          <span className='header__text--title'>
-            {backgroundItem.title || backgroundItem.name}
-          </span>
-          <span className='header__text--subtitle'>
-            {backgroundItem.genre_ids} | {backgroundItem.vote_average * 10}%
-            Rating
-          </span>
+        <div className='swiper-wrapper'>
+          {backgroundItem.map((x, i) => {
+            return (
+              <div className='swiper-slide' key={x.id}>
+                <a href='# ' className='header__image-container'>
+                  <img
+                    className='header__image-container--image'
+                    alt='Header Background'
+                    src={`https://image.tmdb.org/t/p/original${
+                      x.backdrop_path || x.poster_path
+                    }`}
+                  />
+                </a>
+                <div className='header__text'>
+                  <span className='header__text--type'>Playing now</span>
+                  <span className='header__text--title'>
+                    {x.title || x.name}
+                  </span>
+                  <span className='header__text--subtitle'>
+                    {x.genre_ids || 'General'} | {x.vote_average * 10}% Rating
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
+
+        <div className='swiper-pagination'></div>
       </div>
     );
   }
@@ -88,7 +121,7 @@ const mapStateToProps = (state) => ({
   ismoviesGenreFetching: state.movie.ismoviesGenreFetching,
 
   isTVOnTheAirFetching: state.tv.isTVOnTheAirFetching,
-  TVAiringToday: state.tv.TVAiringToday,
+  TVOnTheAir: state.tv.TVOnTheAir,
   TVGenre: state.tv.TVGenre,
   isTVGenreFetching: state.tv.isTVGenreFetching,
 });

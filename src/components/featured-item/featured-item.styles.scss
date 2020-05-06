@@ -8,6 +8,8 @@
   background-color: $color-grey-dark-6;
   // background-color: red;
 
+  z-index: 9999;
+
   &--image-container {
     &:hover {
       & .featured-item--image {

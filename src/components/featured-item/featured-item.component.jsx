@@ -2,7 +2,13 @@ import React from 'react';
 
 import './featured-item.styles.scss';
 
-const FeaturedItem = ({ title, vote_average, poster_path, ...props }) => {
+const FeaturedItem = ({
+  title,
+  vote_average,
+  poster_path,
+  backdrop_path,
+  ...props
+}) => {
   // console.log(props);
 
   return (
@@ -11,7 +17,7 @@ const FeaturedItem = ({ title, vote_average, poster_path, ...props }) => {
         <img
           className='featured-item--image'
           alt='Featured Item'
-          src={`https://image.tmdb.org/t/p/w200${poster_path}`}
+          src={`https://image.tmdb.org/t/p/w200${poster_path || backdrop_path}`}
         />
       </a>
 

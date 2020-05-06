@@ -39,10 +39,21 @@
     &--arrows {
       font-size: 2.5rem;
 
-      span {
+      &--prev,
+      &--next {
         margin-right: 1rem;
         cursor: pointer;
         transition: all 0.25s ease-in-out;
+
+        border: none;
+        background: none;
+
+        color: inherit;
+        font-size: inherit;
+
+        &:focus {
+          outline: 0;
+        }
 
         &:hover {
           color: $color-primary;
@@ -52,7 +63,11 @@
   }
 
   &--content {
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
+
+    &--slide {
+      list-style: none;
+    }
   }
 }
