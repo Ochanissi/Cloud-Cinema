@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Swiper from 'swiper';
-
 import 'swiper/css/swiper.css';
 
 import { fetchMoviesGenreStartAsync } from '../../redux/movie/movie.actions';
@@ -57,8 +56,6 @@ class Header extends React.Component {
   };
 
   render() {
-    const backgroundItem = this.handleBackgroundItem();
-
     // Initiates carousels
     (() => {
       // eslint-disable-next-line
@@ -77,6 +74,8 @@ class Header extends React.Component {
         },
       });
     })();
+
+    const backgroundItem = this.handleBackgroundItem();
 
     return (
       <div className='header'>

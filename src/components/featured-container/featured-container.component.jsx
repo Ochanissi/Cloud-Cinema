@@ -1,27 +1,44 @@
 import React from 'react';
-
 import FeaturedItem from '../featured-item/featured-item.component';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+} from 'pure-react-carousel';
 
 import './featured-container.styles.scss';
 
 const FeaturedContainer = ({ title, contentType }) => {
-  // console.log(contentType);
-
   return (
-    <div className='featured__container'>
+    <CarouselProvider
+      naturalSlideWidth={146}
+      naturalSlideHeight={231}
+      totalSlides={contentType.length}
+      visibleSlides={6}
+      className='featured__container'
+    >
       <div className='featured__container--header'>
         <h2 className='featured__container--header--title'>{title}</h2>
         <div className='featured__container--header--arrows'>
-          <span>&#10094;</span>
-          <span>&#10095;</span>
+          <ButtonBack className='featured__container--header--arrows--prev'>
+            &#10094;
+          </ButtonBack>
+          <ButtonNext className='featured__container--header--arrows--next'>
+            &#10095;
+          </ButtonNext>
         </div>
       </div>
-      <div className='featured__container--content'>
-        {contentType.slice(0, 5).map(({ id, ...otherProps }) => (
-          <FeaturedItem key={id} {...otherProps} />
+      <Slider className='featured__container--content'>
+        {contentType.map(({ id, ...otherProps }, i) => (
+          <Slide index={i} className='featured__container--content--slide'>
+            <FeaturedItem key={id} {...otherProps} />
+          </Slide>
         ))}
-      </div>
-    </div>
+      </Slider>
+    </CarouselProvider>
   );
 };
 
