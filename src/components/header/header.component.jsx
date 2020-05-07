@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Swiper from 'swiper';
-import 'swiper/css/swiper.css';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 
 import { fetchMoviesGenreStartAsync } from '../../redux/movie/movie.actions';
 import { fetchTVGenreStartAsync } from '../../redux/tv/tv.actions';
@@ -56,33 +56,22 @@ class Header extends React.Component {
   };
 
   render() {
-    // Initiates carousels
-    (() => {
-      // eslint-disable-next-line
-      const swiper = new Swiper('.header', {
-        slidesPerView: 1,
-        loop: true,
-        spaceBetween: 0,
-        observer: true,
-        autoplay: {
-          delay: 3000,
-        },
-        speed: 1000,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-      });
-    })();
-
     const backgroundItem = this.handleBackgroundItem();
 
     return (
-      <div className='header'>
-        <div className='swiper-wrapper'>
+      <CarouselProvider
+        className='header'
+        naturalSlideWidth={100}
+        naturalSlideHeight={50}
+        totalSlides={backgroundItem.length}
+        isPlaying={true}
+        infinite={true}
+        // isIntrinsicHeight={true}
+      >
+        <Slider>
           {backgroundItem.map((x, i) => {
             return (
-              <div className='swiper-slide' key={x.id}>
+              <Slide index={i} key={i}>
                 <a href='# ' className='header__image-container'>
                   <img
                     className='header__image-container--image'
@@ -98,16 +87,16 @@ class Header extends React.Component {
                     {x.title || x.name}
                   </span>
                   <span className='header__text--subtitle'>
-                    {x.genre_ids || 'General'} | {x.vote_average * 10}% Rating
+                    {x.genre_ids || 'Generic'} | {x.vote_average * 10}% Rating
                   </span>
                 </div>
-              </div>
+              </Slide>
             );
           })}
-        </div>
+        </Slider>
 
         <div className='swiper-pagination'></div>
-      </div>
+      </CarouselProvider>
     );
   }
 }
