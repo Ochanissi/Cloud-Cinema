@@ -1,0 +1,65 @@
+@import '../../index.scss';
+
+.id-header {
+  grid-row: 1 / 2;
+  grid-column: full-start / full-end;
+
+  &__image-container {
+    &--image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      opacity: 0.5;
+    }
+  }
+
+  &__content {
+    display: flex;
+    // flex-direction: column;
+    // align-items: flex-end;
+
+    position: absolute;
+
+    bottom: 0;
+
+    z-index: 999;
+
+    font-size: 2rem;
+
+    padding: 10rem;
+
+    &--col-1 {
+      &--image {
+        width: 15rem;
+        height: 20rem;
+        background-size: cover;
+        background-position: center;
+
+        border: 2px solid $color-grey-dark-3;
+
+        margin-right: 3rem;
+      }
+    }
+
+    &--col-2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      &--title {
+        font-weight: 500;
+
+        font-size: 3rem;
+      }
+
+      &--subtitle {
+      }
+
+      &--type {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
