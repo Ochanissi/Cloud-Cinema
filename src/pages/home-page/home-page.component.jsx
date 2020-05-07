@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 
 // import { fetchMoviesUpcomingStartAsync } from '../redux/movie/movie.actions';
 
-import Navbar from '../components/navbar/navbar.component';
-import Header from '../components/header/header.component';
-import Controller from '../components/controller/controller.component';
-import Featured from '../components/featured/featured.component';
-import Footer from '../components/footer/footer.component';
+import Header from '../../components/header/header.component';
+import Controller from '../../components/controller/controller.component';
+import Featured from '../../components/featured/featured.component';
 
-import './homepage.styles.scss';
+import './home-page.styles.scss';
 
 class HomePage extends React.Component {
   componentDidMount() {
@@ -21,11 +19,9 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className='homepage'>
-        <Navbar />
         <Header />
         <Controller />
         <Featured />
-        <Footer />
       </div>
     );
   }

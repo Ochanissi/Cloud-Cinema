@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 
@@ -57,6 +58,7 @@ class Header extends React.Component {
 
   render() {
     const backgroundItem = this.handleBackgroundItem();
+    const { itemType } = this.props;
 
     return (
       <CarouselProvider
@@ -69,33 +71,36 @@ class Header extends React.Component {
         // isIntrinsicHeight={true}
       >
         <Slider>
-          {backgroundItem.map((x, i) => {
+          {backgroundItem.map((item, i) => {
             return (
               <Slide index={i} key={i}>
-                <a href='# ' className='header__image-container'>
+                <Link
+                  key={item.id}
+                  to={`/details/${itemType.toLowerCase()}/${item.id}`}
+                  className='header__image-container'
+                >
                   <img
                     className='header__image-container--image'
                     alt='Header Background'
                     src={`https://image.tmdb.org/t/p/original${
-                      x.backdrop_path || x.poster_path
+                      item.backdrop_path || item.poster_path
                     }`}
                   />
-                </a>
+                </Link>
                 <div className='header__text'>
                   <span className='header__text--type'>Playing now</span>
                   <span className='header__text--title'>
-                    {x.title || x.name}
+                    {item.title || item.name}
                   </span>
                   <span className='header__text--subtitle'>
-                    {x.genre_ids || 'Generic'} | {x.vote_average * 10}% Rating
+                    {item.genre_ids || 'Generic'} | {item.vote_average * 10}%
+                    Rating
                   </span>
                 </div>
               </Slide>
             );
           })}
         </Slider>
-
-        <div className='swiper-pagination'></div>
       </CarouselProvider>
     );
   }

@@ -62,22 +62,4 @@
     &--subtitle {
     }
   }
-
-  .swiper-pagination {
-    padding-bottom: 5rem;
-
-    &-bullet {
-      transform: scale(1.5);
-
-      background-color: $color-white;
-
-      &:focus {
-        outline: 0;
-      }
-
-      &-active {
-        background-color: $color-primary;
-      }
-    }
-  }
 }
