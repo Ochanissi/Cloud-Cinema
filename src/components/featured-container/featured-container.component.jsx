@@ -33,7 +33,11 @@ const FeaturedContainer = ({ title, contentType }) => {
       </div>
       <Slider className='featured__container--content'>
         {contentType.map(({ id, ...otherProps }, i) => (
-          <Slide index={i} className='featured__container--content--slide'>
+          <Slide
+            index={i}
+            key={i}
+            className='featured__container--content--slide'
+          >
             <FeaturedItem key={id} {...otherProps} />
           </Slide>
         ))}
