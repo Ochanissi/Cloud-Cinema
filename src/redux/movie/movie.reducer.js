@@ -16,6 +16,18 @@ const INITIAL_STATE = {
   ismoviesGenreFetching: false,
   moviesGenre: [],
 
+  ismovieDetailsFetching: false,
+  movieDetails: {},
+
+  ismovieCreditsFetching: false,
+  movieCredits: [],
+
+  ismovieTrailersFetching: false,
+  movieTrailers: [],
+
+  ismovieReviewsFetching: false,
+  movieReviews: [],
+
   errorMessage: undefined,
 };
 
@@ -113,6 +125,82 @@ const movieReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         ismoviesGenreFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // Movie Details
+    case MovieActionTypes.FETCH_MOVIE_DETAILS_START:
+      return {
+        ...state,
+        ismovieDetailsFetching: true,
+      };
+    case MovieActionTypes.FETCH_MOVIE_DETAILS_SUCCESS:
+      return {
+        ...state,
+        ismovieDetailsFetching: false,
+        movieDetails: action.payload,
+      };
+    case MovieActionTypes.FETCH_MOVIE_DETAILS_FAILURE:
+      return {
+        ...state,
+        ismovieDetailsFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // Movie Credits
+    case MovieActionTypes.FETCH_MOVIE_CREDITS_START:
+      return {
+        ...state,
+        ismovieCreditsFetching: true,
+      };
+    case MovieActionTypes.FETCH_MOVIE_CREDITS_SUCCESS:
+      return {
+        ...state,
+        ismovieCreditsFetching: false,
+        movieCredits: action.payload,
+      };
+    case MovieActionTypes.FETCH_MOVIE_CREDITS_FAILURE:
+      return {
+        ...state,
+        ismovieCreditsFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // Movie Trailers
+    case MovieActionTypes.FETCH_MOVIE_TRAILERS_START:
+      return {
+        ...state,
+        ismovieTrailersFetching: true,
+      };
+    case MovieActionTypes.FETCH_MOVIE_TRAILERS_SUCCESS:
+      return {
+        ...state,
+        ismovieTrailersFetching: false,
+        movieTrailers: action.payload,
+      };
+    case MovieActionTypes.FETCH_MOVIE_TRAILERS_FAILURE:
+      return {
+        ...state,
+        ismovieTrailersFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // Movie Reviews
+    case MovieActionTypes.FETCH_MOVIE_REVIEWS_START:
+      return {
+        ...state,
+        ismovieReviewsFetching: true,
+      };
+    case MovieActionTypes.FETCH_MOVIE_REVIEWS_SUCCESS:
+      return {
+        ...state,
+        ismovieReviewsFetching: false,
+        movieReviews: action.payload,
+      };
+    case MovieActionTypes.FETCH_MOVIE_REVIEWS_FAILURE:
+      return {
+        ...state,
+        ismovieReviewsFetching: false,
         errorMessage: action.payload,
       };
 
