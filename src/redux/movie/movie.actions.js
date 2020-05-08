@@ -141,3 +141,115 @@ export const fetchMoviesGenreStartAsync = () => {
       .catch((error) => dispatch(fetchMoviesGenreFailure(error.message)));
   };
 };
+
+// Movies Details
+export const fetchMovieDetailsStart = () => ({
+  type: MovieActionTypes.FETCH_MOVIE_DETAILS_START,
+});
+
+export const fetchMovieDetailsSuccess = (movieDetails) => ({
+  type: MovieActionTypes.FETCH_MOVIE_DETAILS_SUCCESS,
+  payload: movieDetails,
+});
+
+export const fetchMovieDetailsFailure = (errorMessage) => ({
+  type: MovieActionTypes.FETCH_MOVIE_DETAILS_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchMovieDetailsStartAsync = (movieId) => {
+  return (dispatch) => {
+    dispatch(fetchMovieDetailsStart());
+
+    fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch(fetchMovieDetailsSuccess(data)))
+      .catch((error) => dispatch(fetchMovieDetailsFailure(error.message)));
+  };
+};
+
+// Movies Credits
+export const fetchMovieCreditsStart = () => ({
+  type: MovieActionTypes.FETCH_MOVIE_CREDITS_START,
+});
+
+export const fetchMovieCreditsSuccess = (movieCredits) => ({
+  type: MovieActionTypes.FETCH_MOVIE_CREDITS_SUCCESS,
+  payload: movieCredits,
+});
+
+export const fetchMovieCreditsFailure = (errorMessage) => ({
+  type: MovieActionTypes.FETCH_MOVIE_CREDITS_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchMovieCreditsStartAsync = (movieId) => {
+  return (dispatch) => {
+    dispatch(fetchMovieCreditsStart());
+
+    fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch(fetchMovieCreditsSuccess(data.cast)))
+      .catch((error) => dispatch(fetchMovieCreditsFailure(error.message)));
+  };
+};
+
+// Movies Trailers
+export const fetchMovieTrailersStart = () => ({
+  type: MovieActionTypes.FETCH_MOVIE_TRAILERS_START,
+});
+
+export const fetchMovieTrailersSuccess = (movieTrailers) => ({
+  type: MovieActionTypes.FETCH_MOVIE_TRAILERS_SUCCESS,
+  payload: movieTrailers,
+});
+
+export const fetchMovieTrailersFailure = (errorMessage) => ({
+  type: MovieActionTypes.FETCH_MOVIE_TRAILERS_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchMovieTrailersStartAsync = (movieId) => {
+  return (dispatch) => {
+    dispatch(fetchMovieTrailersStart());
+
+    fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch(fetchMovieTrailersSuccess(data.results)))
+      .catch((error) => dispatch(fetchMovieTrailersFailure(error.message)));
+  };
+};
+
+// Movies Reviews
+export const fetchMovieReviewsStart = () => ({
+  type: MovieActionTypes.FETCH_MOVIE_REVIEWS_START,
+});
+
+export const fetchMovieReviewsSuccess = (movieReviews) => ({
+  type: MovieActionTypes.FETCH_MOVIE_REVIEWS_SUCCESS,
+  payload: movieReviews,
+});
+
+export const fetchMovieReviewsFailure = (errorMessage) => ({
+  type: MovieActionTypes.FETCH_MOVIE_REVIEWS_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchMovieReviewsStartAsync = (movieId) => {
+  return (dispatch) => {
+    dispatch(fetchMovieReviewsStart());
+
+    fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch(fetchMovieReviewsSuccess(data.results)))
+      .catch((error) => dispatch(fetchMovieReviewsFailure(error.message)));
+  };
+};
