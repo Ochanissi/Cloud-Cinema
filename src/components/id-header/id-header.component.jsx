@@ -11,8 +11,10 @@ const IDHeader = ({ movieDetails }) => {
     tagline,
     vote_average,
     release_date,
+    runtime,
   } = movieDetails;
-  console.log(movieDetails);
+
+  // console.log(movieDetails);s
 
   if (genres)
     genres = genres
@@ -48,7 +50,7 @@ const IDHeader = ({ movieDetails }) => {
             {release_date ? release_date.split('-').reverse().join('/') : null}
           </span>
           <div className='id-header__content--col-2--links'>
-            Share Like | {vote_average * 10}% Rating
+            Runtime: {runtime}m | Rating: {vote_average * 10}%
           </div>
         </div>
       </div>

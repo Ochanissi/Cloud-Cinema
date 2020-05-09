@@ -36,7 +36,7 @@ class ItemDetails extends React.Component {
     return (
       <div className='item-details'>
         <IDHeader movieDetails={movieDetails} />
-        <IDContent />
+        <IDContent movieDetails={movieDetails} />
       </div>
     );
   }
@@ -44,9 +44,6 @@ class ItemDetails extends React.Component {
 
 const mapStateToProps = (state) => ({
   movieDetails: state.movie.movieDetails,
-  movieCredits: state.movie.movieCredits,
-  movieTrailers: state.movie.movieTrailers,
-  movieReviews: state.movie.movieReviews,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -64,5 +64,23 @@
       padding-bottom: 5rem;
       border-bottom: 2px $color-grey-dark-5 solid;
     }
+
+    &--content {
+      &--review {
+        background-color: rgba($color-grey-dark-4, 0.5);
+        border: 2px $color-grey-dark-5 solid;
+
+        padding: 5rem;
+
+        &:not(:last-child) {
+          margin-bottom: 5rem;
+        }
+
+        &--url {
+          color: inherit;
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
