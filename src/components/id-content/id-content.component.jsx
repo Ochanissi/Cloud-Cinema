@@ -1,5 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+} from 'pure-react-carousel';
 
 import './id-content.styles.scss';
 
@@ -22,23 +30,59 @@ const IDContent = ({
         <p className='id-content__summary--content'>{overview}</p>
       </div>
 
-      <div className='id-content__cast'>
-        <h2 className='id-content__title'>Cast</h2>
-        <div className='id-content__content'>
-          <div>cast</div>
-          <div>cast</div>
+      <CarouselProvider
+        naturalSlideWidth={146}
+        naturalSlideHeight={231}
+        totalSlides={movieCredits.length}
+        visibleSlides={6}
+        className='id-content__cast'
+      >
+        <div className='id-content__header'>
+          <h2 className='id-content__header--title'>Cast</h2>
+          <div className='id-content__header--arrows'>
+            <ButtonBack className='id-content__header--arrows--prev'>
+              &#10094;
+            </ButtonBack>
+            <ButtonNext className='id-content__header--arrows--next'>
+              &#10095;
+            </ButtonNext>
+          </div>
         </div>
-      </div>
-      <div className='id-content__trailers'>
-        <h2 className='id-content__title'>Trailers</h2>
-        <div className='id-content__trailers--content'>
-          <p>content</p>
-          <p>content</p>
-          <p>content</p>
+        <Slider className='id-content__cast--content'>
+          {movieCredits.map((cast) => (
+            <Slide>{cast.name}</Slide>
+          ))}
+        </Slider>
+      </CarouselProvider>
+
+      <CarouselProvider
+        naturalSlideWidth={146}
+        naturalSlideHeight={231}
+        totalSlides={movieTrailers.length}
+        visibleSlides={3}
+        className='id-content__trailers'
+      >
+        <div className='id-content__header'>
+          <h2 className='id-content__header--title'>Trailers</h2>
+          <div className='id-content__header--arrows'>
+            <ButtonBack className='id-content__header--arrows--prev'>
+              &#10094;
+            </ButtonBack>
+            <ButtonNext className='id-content__header--arrows--next'>
+              &#10095;
+            </ButtonNext>
+          </div>
         </div>
-      </div>
+        <Slider className='id-content__trailers--content'>
+          {movieTrailers.map((cast) => (
+            <Slide>{cast.id}</Slide>
+          ))}
+        </Slider>
+      </CarouselProvider>
       <div className='id-content__reviews'>
-        <h2 className='id-content__title'>Reviews</h2>
+        <div className='id-content__header'>
+          <h2 className='id-content__header--title'>Reviews</h2>
+        </div>
         <div className='id-content__reviews--content'>
           {movieReviews.map(({ author, content, id, url }) => (
             <div className='id-content__reviews--content--review' key={id}>
