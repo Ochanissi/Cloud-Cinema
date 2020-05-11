@@ -38,7 +38,7 @@ const FeaturedContainer = ({ title, contentType }) => {
             key={id}
             className='featured__container--content--slide'
           >
-            <FeaturedItem {...otherProps} />
+            <FeaturedItem id={id} {...otherProps} />
           </Slide>
         ))}
       </Slider>

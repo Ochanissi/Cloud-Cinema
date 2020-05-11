@@ -23,7 +23,7 @@
 
     width: 5rem;
 
-    transition: all 0.25s ease-in-out;
+    transition: all 0.25s linear;
 
     &--icon:link,
     &--icon:visited {
@@ -94,7 +94,7 @@
     ion-icon {
       font-size: 3rem;
       color: $color-white;
-      transition: all 0.25s ease-in-out;
+      transition: all 0.25s linear;
 
       &:hover {
         color: $color-primary;

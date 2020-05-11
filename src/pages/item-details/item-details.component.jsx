@@ -8,6 +8,13 @@ import {
   fetchMovieReviewsStartAsync,
 } from '../../redux/movie/movie.actions';
 
+import {
+  fetchTVDetailsStartAsync,
+  fetchTVCreditsStartAsync,
+  fetchTVTrailersStartAsync,
+  fetchTVReviewsStartAsync,
+} from '../../redux/tv/tv.actions';
+
 import IDHeader from '../../components/id-header/id-header.component';
 import IDContent from '../../components/id-content/id-content.component';
 
@@ -17,26 +24,50 @@ class ItemDetails extends React.Component {
   componentDidMount() {
     const { type, id } = this.props.match.params;
 
+    if (type === 'movie') return this.handleMovieFetch(id);
+    if (type === 'tv') return this.handleTVFetch(id);
+  }
+
+  handleMovieFetch = (id) => {
     const {
       fetchMovieDetailsStartAsync,
       fetchMovieCreditsStartAsync,
       fetchMovieTrailersStartAsync,
       fetchMovieReviewsStartAsync,
     } = this.props;
-    // console.log(type, id);
 
     fetchMovieDetailsStartAsync(id);
     fetchMovieCreditsStartAsync(id);
     fetchMovieTrailersStartAsync(id);
     fetchMovieReviewsStartAsync(id);
-  }
+  };
+
+  handleTVFetch = (id) => {
+    const {
+      fetchTVDetailsStartAsync,
+      fetchTVCreditsStartAsync,
+      fetchTVTrailersStartAsync,
+      fetchTVReviewsStartAsync,
+    } = this.props;
+
+    fetchTVDetailsStartAsync(id);
+    fetchTVCreditsStartAsync(id);
+    fetchTVTrailersStartAsync(id);
+    fetchTVReviewsStartAsync(id);
+  };
+
   render() {
-    const { movieDetails } = this.props;
+    const { movieDetails, TVDetails } = this.props;
+    const { type, id } = this.props.match.params;
+
+    let itemDetails;
+    if (type === 'movie') itemDetails = movieDetails;
+    if (type === 'tv') itemDetails = TVDetails;
 
     return (
       <div className='item-details'>
-        <IDHeader movieDetails={movieDetails} />
-        <IDContent movieDetails={movieDetails} />
+        <IDHeader itemDetails={itemDetails} />
+        <IDContent itemDetails={itemDetails} itemType={type} />
       </div>
     );
   }
@@ -44,6 +75,7 @@ class ItemDetails extends React.Component {
 
 const mapStateToProps = (state) => ({
   movieDetails: state.movie.movieDetails,
+  TVDetails: state.tv.TVDetails,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -55,6 +87,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchMovieTrailersStartAsync(movieId)),
   fetchMovieReviewsStartAsync: (movieId) =>
     dispatch(fetchMovieReviewsStartAsync(movieId)),
+
+  fetchTVDetailsStartAsync: (TVId) => dispatch(fetchTVDetailsStartAsync(TVId)),
+  fetchTVCreditsStartAsync: (TVId) => dispatch(fetchTVCreditsStartAsync(TVId)),
+  fetchTVTrailersStartAsync: (TVId) =>
+    dispatch(fetchTVTrailersStartAsync(TVId)),
+  fetchTVReviewsStartAsync: (TVId) => dispatch(fetchTVReviewsStartAsync(TVId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemDetails);

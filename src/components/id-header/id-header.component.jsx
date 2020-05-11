@@ -2,7 +2,7 @@ import React from 'react';
 
 import './id-header.styles.scss';
 
-const IDHeader = ({ movieDetails }) => {
+const IDHeader = ({ itemDetails }) => {
   let {
     backdrop_path,
     poster_path,
@@ -12,9 +12,7 @@ const IDHeader = ({ movieDetails }) => {
     vote_average,
     release_date,
     runtime,
-  } = movieDetails;
-
-  console.log(movieDetails);
+  } = itemDetails;
 
   if (genres)
     genres = genres
@@ -24,13 +22,15 @@ const IDHeader = ({ movieDetails }) => {
 
   return (
     <div className='id-header'>
-      <img
-        className='id-header__image-container--image'
-        alt='Header Background'
-        src={`https://image.tmdb.org/t/p/original${
-          backdrop_path || poster_path
-        }`}
-      />
+      <div className='id-header__image-container'>
+        <img
+          className='id-header__image-container--image'
+          alt='Header Background'
+          src={`https://image.tmdb.org/t/p/original${
+            backdrop_path || poster_path
+          }`}
+        />
+      </div>
       <div className='id-header__content'>
         <div className='id-header__content--col-1'>
           <img
@@ -43,7 +43,11 @@ const IDHeader = ({ movieDetails }) => {
         </div>
         <div className='id-header__content--col-2'>
           <span className='id-header__content--col-2--title'>{title}</span>
-          <span className='id-header__content--col-2--subtitle'>{tagline}</span>
+          {tagline ? (
+            <span className='id-header__content--col-2--subtitle'>
+              {tagline}
+            </span>
+          ) : null}
           <span className='id-header__content--col-2--subtitle'>{genres}</span>
           <span className='id-header__content--col-2--subtitle'>
             Release date:{' '}
