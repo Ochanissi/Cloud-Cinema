@@ -86,17 +86,17 @@ class Header extends React.Component {
                       item.backdrop_path || item.poster_path
                     }`}
                   />
+                  <div className='header__text'>
+                    <span className='header__text--type'>Playing now</span>
+                    <span className='header__text--title'>
+                      {item.title || item.name}
+                    </span>
+                    <span className='header__text--subtitle'>
+                      {item.genre_ids || 'Generic'} | {item.vote_average * 10}%
+                      Rating
+                    </span>
+                  </div>
                 </Link>
-                <div className='header__text'>
-                  <span className='header__text--type'>Playing now</span>
-                  <span className='header__text--title'>
-                    {item.title || item.name}
-                  </span>
-                  <span className='header__text--subtitle'>
-                    {item.genre_ids || 'Generic'} | {item.vote_average * 10}%
-                    Rating
-                  </span>
-                </div>
               </Slide>
             );
           })}

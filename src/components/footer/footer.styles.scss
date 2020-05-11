@@ -45,7 +45,15 @@
     &--subtitle {
       margin-bottom: 3rem;
 
-      span {
+      * {
+        color: $color-white;
+        text-decoration: none;
+        transition: all 0.25s ease-in-out;
+
+        &:hover {
+          color: $color-primary;
+        }
+
         &:not(:last-child) {
           margin-right: 6rem;
         }
@@ -64,6 +72,7 @@
       &--link:visited {
         color: inherit;
         text-decoration: none;
+        transition: all 0.25s ease-in-out;
 
         &:hover {
           opacity: 0.5;
@@ -80,6 +89,7 @@
 
     &--logo {
       width: 15rem;
+      transition: all 0.25s ease-in-out;
 
       &:hover {
         opacity: 0.5;
@@ -96,9 +106,7 @@
     display: flex;
     justify-content: center;
 
-    .btn__contact,
-    .btn__contact:link,
-    .btn__contact:visited {
+    .btn__contact {
       color: $color-white;
       text-decoration: none;
       font-size: 3rem;

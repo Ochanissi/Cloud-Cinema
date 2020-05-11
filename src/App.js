@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.scss';
 
+import ScrollToTop from './components/scroll-to-top/scroll-to-top.component';
 import Navbar from './components/navbar/navbar.component';
 import Footer from './components/footer/footer.component';
 import HomePage from './pages/home-page/home-page.component';
@@ -14,12 +15,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route path='/details/:type/:id' exact component={ItemDetails} />
-        </Switch>
-        <Footer />
+        <ScrollToTop>
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route path='/details/:type/:id' exact component={ItemDetails} />
+          </Switch>
+          <Footer />
+        </ScrollToTop>
       </div>
     );
   }

@@ -23,10 +23,11 @@
 
     width: 5rem;
 
+    transition: all 0.25s ease-in-out;
+
     &--icon:link,
     &--icon:visited {
       text-decoration: none;
-      transition: 0.5s ease;
     }
 
     &:hover {

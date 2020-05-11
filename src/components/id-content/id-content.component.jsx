@@ -9,6 +9,8 @@ import {
   ButtonNext,
 } from 'pure-react-carousel';
 
+import IDItem from '../id-item/id-item.component';
+
 import './id-content.styles.scss';
 
 const IDContent = ({
@@ -49,15 +51,17 @@ const IDContent = ({
           </div>
         </div>
         <Slider className='id-content__cast--content'>
-          {movieCredits.map((cast) => (
-            <Slide>{cast.name}</Slide>
+          {movieCredits.map((item, i) => (
+            <Slide index={i} key={item.id}>
+              <IDItem item={item} />
+            </Slide>
           ))}
         </Slider>
       </CarouselProvider>
 
       <CarouselProvider
-        naturalSlideWidth={146}
-        naturalSlideHeight={231}
+        naturalSlideWidth={160}
+        naturalSlideHeight={80}
         totalSlides={movieTrailers.length}
         visibleSlides={3}
         className='id-content__trailers'
@@ -74,11 +78,21 @@ const IDContent = ({
           </div>
         </div>
         <Slider className='id-content__trailers--content'>
-          {movieTrailers.map((cast) => (
-            <Slide>{cast.id}</Slide>
+          {movieTrailers.map(({ id, key, name }, i) => (
+            <Slide index={i} key={id}>
+              <iframe
+                className='id-content__trailers--content--video'
+                src={`https://www.youtube.com/embed/${key}`}
+                frameBorder='0'
+                allow='autoplay; encrypted-media'
+                allowFullScreen
+                title={name}
+              />
+            </Slide>
           ))}
         </Slider>
       </CarouselProvider>
+
       <div className='id-content__reviews'>
         <div className='id-content__header'>
           <h2 className='id-content__header--title'>Reviews</h2>

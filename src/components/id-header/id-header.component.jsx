@@ -14,7 +14,7 @@ const IDHeader = ({ movieDetails }) => {
     runtime,
   } = movieDetails;
 
-  // console.log(movieDetails);s
+  console.log(movieDetails);
 
   if (genres)
     genres = genres

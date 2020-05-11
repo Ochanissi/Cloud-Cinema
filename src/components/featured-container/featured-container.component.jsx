@@ -35,10 +35,10 @@ const FeaturedContainer = ({ title, contentType }) => {
         {contentType.map(({ id, ...otherProps }, i) => (
           <Slide
             index={i}
-            key={i}
+            key={id}
             className='featured__container--content--slide'
           >
-            <FeaturedItem key={id} {...otherProps} />
+            <FeaturedItem {...otherProps} />
           </Slide>
         ))}
       </Slider>

@@ -1,11 +1,11 @@
 @import '../../index.scss';
 
 .featured-item {
-  border: 2px solid $color-grey-dark-6;
+  border: 2px solid $color-grey-dark-4;
   height: 23.5rem;
   width: 15rem;
 
-  background-color: $color-grey-dark-6;
+  background-color: $color-grey-dark-4;
   // background-color: red;
 
   z-index: 9999;
@@ -24,6 +24,8 @@
     background-size: cover;
     background-position: center;
     opacity: 0.5;
+
+    transition: all 0.25s ease-in-out;
   }
 
   &--content {

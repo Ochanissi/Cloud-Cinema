@@ -78,14 +78,15 @@ body {
 
   overflow-x: hidden;
 
-  background-image: linear-gradient(
-    to right bottom,
-    #303030,
-    #252525,
-    #1b1b1b,
-    #111111,
-    #000000
-  );
+  // background-image: linear-gradient(
+  //   #303030,
+  //   #252525,
+  //   #1b1b1b,
+  //   #111111,
+  //   #000000
+  // );
+
+  background-color: $color-black;
 
   & > * {
     font-size: 1.75rem;
