@@ -25,7 +25,7 @@
     background-position: center;
     opacity: 0.5;
 
-    transition: all 0.25s ease-in-out;
+    transition: all 0.25s linear;
   }
 
   &--content {
@@ -44,7 +44,7 @@
       display: flex;
       align-items: center;
 
-      transition: all 0.25s ease-in-out;
+      transition: all 0.25s linear;
 
       &:hover {
         color: $color-white;
@@ -53,6 +53,7 @@
 
     &--history {
       position: relative;
+      overflow: visible;
 
       ion-icon {
         color: $color-button-1;
@@ -71,13 +72,13 @@
         top: 3rem;
         left: -5.5rem;
         font-size: 1.25rem;
-        background-color: $color-grey-dark-6;
+        background-color: $color-grey-dark-4;
         padding: 0.25rem 0.5rem;
         width: max-content;
         // display: none;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0.25s, opacity 0.25s linear;
+        transition: all 0.25s linear;
       }
     }
 
@@ -101,13 +102,13 @@
         top: 3rem;
         left: -3.5rem;
         font-size: 1.25rem;
-        background-color: $color-grey-dark-6;
+        background-color: $color-grey-dark-4;
         padding: 0.25rem 0.5rem;
         width: max-content;
         // display: none;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0.25s, opacity 0.25s linear;
+        transition: all 0.25s linear;
       }
     }
 
@@ -131,13 +132,13 @@
         top: 3rem;
         left: -3.5rem;
         font-size: 1.25rem;
-        background-color: $color-grey-dark-6;
+        background-color: $color-grey-dark-4;
         padding: 0.25rem 0.5rem;
         width: max-content;
         // display: none;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0.25s, opacity 0.25s linear;
+        transition: all 0.25s linear;
       }
     }
 
@@ -167,13 +168,13 @@
         top: 3rem;
         left: -1.5rem;
         font-size: 1.25rem;
-        background-color: $color-grey-dark-6;
+        background-color: $color-grey-dark-4;
         padding: 0.25rem 0.5rem;
         width: max-content;
         // display: none;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0.25s, opacity 0.25s linear;
+        transition: all 0.25s linear;
       }
     }
 

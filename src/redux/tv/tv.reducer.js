@@ -16,10 +16,22 @@ const INITIAL_STATE = {
   isTVGenreFetching: false,
   TVGenre: [],
 
+  isTVDetailsFetching: false,
+  TVDetails: {},
+
+  isTVCreditsFetching: false,
+  TVCredits: [],
+
+  isTVTrailersFetching: false,
+  TVTrailers: [],
+
+  isTVReviewsFetching: false,
+  TVReviews: [],
+
   errorMessage: undefined,
 };
 
-const movieReducer = (state = INITIAL_STATE, action) => {
+const TVReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     // TV Airing Today
     case TVActionTypes.FETCH_TV_AIRINGTODAY_START:
@@ -116,9 +128,85 @@ const movieReducer = (state = INITIAL_STATE, action) => {
         errorMessage: action.payload,
       };
 
+    // TV Details
+    case TVActionTypes.FETCH_TV_DETAILS_START:
+      return {
+        ...state,
+        isTVDetailsFetching: true,
+      };
+    case TVActionTypes.FETCH_TV_DETAILS_SUCCESS:
+      return {
+        ...state,
+        isTVDetailsFetching: false,
+        TVDetails: action.payload,
+      };
+    case TVActionTypes.FETCH_TV_DETAILS_FAILURE:
+      return {
+        ...state,
+        isTVDetailsFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // TV Credits
+    case TVActionTypes.FETCH_TV_CREDITS_START:
+      return {
+        ...state,
+        isTVCreditsFetching: true,
+      };
+    case TVActionTypes.FETCH_TV_CREDITS_SUCCESS:
+      return {
+        ...state,
+        isTVCreditsFetching: false,
+        TVCredits: action.payload,
+      };
+    case TVActionTypes.FETCH_TV_CREDITS_FAILURE:
+      return {
+        ...state,
+        isTVCreditsFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // TV Trailers
+    case TVActionTypes.FETCH_TV_TRAILERS_START:
+      return {
+        ...state,
+        isTVTrailersFetching: true,
+      };
+    case TVActionTypes.FETCH_TV_TRAILERS_SUCCESS:
+      return {
+        ...state,
+        isTVTrailersFetching: false,
+        TVTrailers: action.payload,
+      };
+    case TVActionTypes.FETCH_TV_TRAILERS_FAILURE:
+      return {
+        ...state,
+        isTVTrailersFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // TV Reviews
+    case TVActionTypes.FETCH_TV_REVIEWS_START:
+      return {
+        ...state,
+        isTVReviewsFetching: true,
+      };
+    case TVActionTypes.FETCH_TV_REVIEWS_SUCCESS:
+      return {
+        ...state,
+        isTVReviewsFetching: false,
+        TVReviews: action.payload,
+      };
+    case TVActionTypes.FETCH_TV_REVIEWS_FAILURE:
+      return {
+        ...state,
+        isTVReviewsFetching: false,
+        errorMessage: action.payload,
+      };
+
     default:
       return state;
   }
 };
 
-export default movieReducer;
+export default TVReducer;

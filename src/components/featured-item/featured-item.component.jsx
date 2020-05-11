@@ -1,25 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import './featured-item.styles.scss';
 
 const FeaturedItem = ({
-  title,
   vote_average,
   poster_path,
   backdrop_path,
-  ...props
+  id: itemId,
+  itemType,
 }) => {
-  // console.log(props);
-
   return (
     <div className='featured-item'>
-      <a href='# ' className='featured-item--image-container'>
+      <Link
+        to={`/details/${itemType.toLowerCase()}/${itemId}`}
+        className='featured-item--image-container'
+      >
         <img
           className='featured-item--image'
           alt='Featured Item'
           src={`https://image.tmdb.org/t/p/w200${poster_path || backdrop_path}`}
         />
-      </a>
+      </Link>
 
       <div className='featured-item--content'>
         <div className='featured-item--content--history'>
@@ -69,4 +72,8 @@ const FeaturedItem = ({
   );
 };
 
-export default FeaturedItem;
+const mapStateToProps = (state) => ({
+  itemType: state.user.itemType,
+});
+
+export default connect(mapStateToProps)(FeaturedItem);
