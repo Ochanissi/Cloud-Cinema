@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import mainLogo from '../../assets/logo.png';
 import { ReactComponent as TMDBLogo } from '../../assets/tmdb-logo.svg';
@@ -10,9 +11,15 @@ const Footer = () => (
     <div className='footer__col-1'>
       <h2 className='footer__col-1--title'>Cloud Cinema</h2>
       <div className='footer__col-1--subtitle'>
-        <span>Home</span>
-        <span>Discover</span>
-        <span>Profile</span>
+        <Link to='/' label='Home'>
+          Home
+        </Link>
+        <Link to='/discover' label='Discover'>
+          Discover
+        </Link>
+        <Link to='/account' label='Profile'>
+          Profile
+        </Link>
       </div>
       <div className='footer__col-1--copyright'>
         Copyright &copy; 2020{' '}
@@ -34,9 +41,9 @@ const Footer = () => (
     </div>
 
     <div className='footer__col-2'>
-      <a href=' #' alt='Logo'>
+      <Link to='/' label='Home'>
         <img src={mainLogo} alt='App Logo' className='footer__col-2--logo' />
-      </a>
+      </Link>
       <TMDBLogo />
     </div>
 
@@ -53,7 +60,7 @@ const Footer = () => (
         <ion-icon name='logo-github'></ion-icon>
       </a>
       <a
-        href=' #'
+        href='https://github.com/Ochanissi/'
         target='_blank'
         rel='noopener noreferrer'
         className='btn btn__contact'
@@ -61,7 +68,7 @@ const Footer = () => (
         <ion-icon name='logo-codepen'></ion-icon>
       </a>
       <a
-        href=' #'
+        href='https://github.com/Ochanissi/'
         target='_blank'
         rel='noopener noreferrer'
         className='btn btn__contact'

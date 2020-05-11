@@ -6,6 +6,8 @@
 
   padding: 10rem 0;
 
+  max-width: 111rem;
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -65,7 +67,7 @@
 
     &:not(:last-child) {
       padding-bottom: 5rem;
-      border-bottom: 2px $color-grey-dark-5 solid;
+      border-bottom: 2px $color-grey-dark-4 solid;
     }
   }
 
@@ -84,6 +86,13 @@
     &:not(:last-child) {
       padding-bottom: 5rem;
       border-bottom: 2px $color-grey-dark-5 solid;
+    }
+
+    &--content {
+      &--video {
+        height: 100%;
+        width: 33rem;
+      }
     }
   }
 
