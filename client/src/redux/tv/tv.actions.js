@@ -22,7 +22,7 @@ export const fetchTVAiringTodayStartAsync = () => {
     dispatch(fetchTVAiringTodayStart());
 
     fetch(
-      `https://api.theTVdb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchTVAiringTodaySuccess(data.results)))
@@ -50,7 +50,7 @@ export const fetchTVPopularStartAsync = () => {
     dispatch(fetchTVPopularStart());
 
     fetch(
-      `https://api.theTVdb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchTVPopularSuccess(data.results)))
@@ -78,7 +78,7 @@ export const fetchTVOnTheAirStartAsync = () => {
     dispatch(fetchTVOnTheAirStart());
 
     fetch(
-      `https://api.theTVdb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchTVOnTheAirSuccess(data.results)))
@@ -106,7 +106,7 @@ export const fetchTVTopRatedStartAsync = () => {
     dispatch(fetchTVTopRatedStart());
 
     fetch(
-      `https://api.theTVdb.org/3/tv/top_rated?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchTVTopRatedSuccess(data.results)))
@@ -134,7 +134,7 @@ export const fetchTVGenreStartAsync = () => {
     dispatch(fetchTVGenreStart());
 
     fetch(
-      `https://api.theTVdb.org/3/genre/tv/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/genre/tv/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchTVGenreSuccess(data.genres)))
@@ -162,7 +162,7 @@ export const fetchTVDetailsStartAsync = (TVId) => {
     dispatch(fetchTVDetailsStart());
 
     fetch(
-      `https://api.theTVdb.org/3/tv/${TVId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${TVId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchTVDetailsSuccess(data)))
@@ -190,7 +190,7 @@ export const fetchTVCreditsStartAsync = (TVId) => {
     dispatch(fetchTVCreditsStart());
 
     fetch(
-      `https://api.theTVdb.org/3/tv/${TVId}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${TVId}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchTVCreditsSuccess(data.cast)))
@@ -218,7 +218,7 @@ export const fetchTVTrailersStartAsync = (TVId) => {
     dispatch(fetchTVTrailersStart());
 
     fetch(
-      `https://api.theTVdb.org/3/tv/${TVId}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${TVId}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchTVTrailersSuccess(data.results)))
@@ -246,7 +246,7 @@ export const fetchTVReviewsStartAsync = (TVId) => {
     dispatch(fetchTVReviewsStart());
 
     fetch(
-      `https://api.theTVdb.org/3/tv/${TVId}/reviews?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${TVId}/reviews?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchTVReviewsSuccess(data.results)))
