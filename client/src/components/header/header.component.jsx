@@ -60,6 +60,8 @@ class Header extends React.Component {
     const backgroundItem = this.handleBackgroundItem();
     const { itemType } = this.props;
 
+    backgroundItem.map((item) => console.log(item.genre_ids));
+
     return (
       <CarouselProvider
         className='header'
