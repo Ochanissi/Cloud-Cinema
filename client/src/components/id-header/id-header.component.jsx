@@ -17,6 +17,8 @@ const IDHeader = ({ itemDetails }) => {
     episode_run_time,
   } = itemDetails;
 
+  console.log(itemDetails);
+
   if (genres)
     genres = genres
       .map((genre) => genre.name)
