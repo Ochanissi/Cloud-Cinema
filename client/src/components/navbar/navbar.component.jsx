@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import mainLogo from '../../assets/logo.png';
 
@@ -6,9 +7,9 @@ import './navbar.styles.scss';
 
 const Navbar = () => (
   <nav className='navbar'>
-    <a href=' #' alt='Logo'>
+    <Link to='/' label='Home' alt='Logo'>
       <img src={mainLogo} alt='App Logo' className='navbar__logo' />
-    </a>
+    </Link>
 
     <input id='menu-toggle' type='checkbox' />
     <label className='menu-button-container' htmlFor='menu-toggle'>
@@ -29,19 +30,19 @@ const Navbar = () => (
 
     <ul className='navbar__secondary'>
       <li>
-        <a href=' #'>
+        <Link to='/' label='Home'>
           <ion-icon name='home'></ion-icon>
-        </a>
+        </Link>
       </li>
       <li>
-        <a href=' #'>
+        <Link to='/discover' label='Discover'>
           <ion-icon name='compass'></ion-icon>
-        </a>
+        </Link>
       </li>
       <li>
-        <a href=' #'>
+        <Link to='/account' label='Profile'>
           <ion-icon name='person-circle'></ion-icon>
-        </a>
+        </Link>
       </li>
     </ul>
   </nav>

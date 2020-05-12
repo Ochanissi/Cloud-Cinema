@@ -15,6 +15,12 @@ import {
   fetchTVReviewsStartAsync,
 } from '../../redux/tv/tv.actions';
 
+import {
+  fetchPeopleDetailsStartAsync,
+  fetchPeopleMovieCreditsStartAsync,
+  fetchPeopleTVCreditsStartAsync,
+} from '../../redux/people/people.actions';
+
 import IDHeader from '../../components/id-header/id-header.component';
 import IDContent from '../../components/id-content/id-content.component';
 
@@ -26,6 +32,7 @@ class ItemDetails extends React.Component {
 
     if (type === 'movie') return this.handleMovieFetch(id);
     if (type === 'tv') return this.handleTVFetch(id);
+    if (type === 'people') return this.handlePeopleFetch(id);
   }
 
   handleMovieFetch = (id) => {
@@ -56,18 +63,31 @@ class ItemDetails extends React.Component {
     fetchTVReviewsStartAsync(id);
   };
 
+  handlePeopleFetch = (id) => {
+    const {
+      fetchPeopleDetailsStartAsync,
+      fetchPeopleMovieCreditsStartAsync,
+      fetchPeopleTVCreditsStartAsync,
+    } = this.props;
+
+    fetchPeopleDetailsStartAsync(id);
+    fetchPeopleMovieCreditsStartAsync(id);
+    fetchPeopleTVCreditsStartAsync(id);
+  };
+
   render() {
-    const { movieDetails, TVDetails } = this.props;
+    const { movieDetails, TVDetails, peopleDetails } = this.props;
     const { type } = this.props.match.params;
 
     let itemDetails;
     if (type === 'movie') itemDetails = movieDetails;
     if (type === 'tv') itemDetails = TVDetails;
+    if (type === 'people') itemDetails = peopleDetails;
 
     return (
       <div className='item-details'>
         <IDHeader itemDetails={itemDetails} />
-        <IDContent itemDetails={itemDetails} itemType={type} />
+        {/* <IDContent itemDetails={itemDetails} itemType={type} /> */}
       </div>
     );
   }
@@ -76,6 +96,7 @@ class ItemDetails extends React.Component {
 const mapStateToProps = (state) => ({
   movieDetails: state.movie.movieDetails,
   TVDetails: state.tv.TVDetails,
+  peopleDetails: state.people.peopleDetails,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -93,6 +114,13 @@ const mapDispatchToProps = (dispatch) => ({
   fetchTVTrailersStartAsync: (TVId) =>
     dispatch(fetchTVTrailersStartAsync(TVId)),
   fetchTVReviewsStartAsync: (TVId) => dispatch(fetchTVReviewsStartAsync(TVId)),
+
+  fetchPeopleDetailsStartAsync: (peopleId) =>
+    dispatch(fetchPeopleDetailsStartAsync(peopleId)),
+  fetchPeopleMovieCreditsStartAsync: (peopleId) =>
+    dispatch(fetchPeopleMovieCreditsStartAsync(peopleId)),
+  fetchPeopleTVCreditsStartAsync: (peopleId) =>
+    dispatch(fetchPeopleTVCreditsStartAsync(peopleId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemDetails);
