@@ -58,7 +58,7 @@ class ItemDetails extends React.Component {
 
   render() {
     const { movieDetails, TVDetails } = this.props;
-    const { type, id } = this.props.match.params;
+    const { type } = this.props.match.params;
 
     let itemDetails;
     if (type === 'movie') itemDetails = movieDetails;

@@ -79,9 +79,7 @@ const IDContent = ({
             ))}
           </Slider>
         </CarouselProvider>
-      ) : (
-        0
-      )}
+      ) : null}
 
       {itemTrailers.length > 0 ? (
         <CarouselProvider

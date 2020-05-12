@@ -12,6 +12,7 @@ import './header.styles.scss';
 class Header extends React.Component {
   componentDidMount() {
     const { fetchMoviesGenreStartAsync, fetchTVGenreStartAsync } = this.props;
+
     fetchMoviesGenreStartAsync();
     fetchTVGenreStartAsync();
   }
@@ -59,8 +60,6 @@ class Header extends React.Component {
   render() {
     const backgroundItem = this.handleBackgroundItem();
     const { itemType } = this.props;
-
-    backgroundItem.map((item) => console.log(item.genre_ids));
 
     return (
       <CarouselProvider

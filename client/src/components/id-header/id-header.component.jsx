@@ -12,6 +12,9 @@ const IDHeader = ({ itemDetails }) => {
     vote_average,
     release_date,
     runtime,
+    name,
+    last_air_date,
+    episode_run_time,
   } = itemDetails;
 
   if (genres)
@@ -19,6 +22,8 @@ const IDHeader = ({ itemDetails }) => {
       .map((genre) => genre.name)
       .slice(0, 2)
       .join(' | ');
+
+  let date = release_date || last_air_date;
 
   return (
     <div className='id-header'>
@@ -42,7 +47,9 @@ const IDHeader = ({ itemDetails }) => {
           />
         </div>
         <div className='id-header__content--col-2'>
-          <span className='id-header__content--col-2--title'>{title}</span>
+          <span className='id-header__content--col-2--title'>
+            {title || name}
+          </span>
           {tagline ? (
             <span className='id-header__content--col-2--subtitle'>
               {tagline}
@@ -50,11 +57,11 @@ const IDHeader = ({ itemDetails }) => {
           ) : null}
           <span className='id-header__content--col-2--subtitle'>{genres}</span>
           <span className='id-header__content--col-2--subtitle'>
-            Release date:{' '}
-            {release_date ? release_date.split('-').reverse().join('/') : null}
+            Release date: {date ? date.split('-').reverse().join('/') : null}
           </span>
           <div className='id-header__content--col-2--links'>
-            Runtime: {runtime}m | Rating: {vote_average * 10}%
+            Runtime: {runtime || episode_run_time}m | Rating:{' '}
+            {vote_average * 10}%
           </div>
         </div>
       </div>
