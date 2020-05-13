@@ -1,5 +1,9 @@
 import React from 'react';
 
+import castLogo from '../../assets/default-cast.png';
+import creditLogo from '../../assets/default-credit.png';
+import peopleBackground from '../../assets/default-people.png';
+
 import './id-header.styles.scss';
 
 const IDHeader = ({ itemDetails }) => {
@@ -15,6 +19,10 @@ const IDHeader = ({ itemDetails }) => {
     name,
     last_air_date,
     episode_run_time,
+    profile_path,
+    known_for_department,
+    birthday,
+    place_of_birth,
   } = itemDetails;
 
   console.log(itemDetails);
@@ -33,9 +41,13 @@ const IDHeader = ({ itemDetails }) => {
         <img
           className='id-header__image-container--image'
           alt='Header Background'
-          src={`https://image.tmdb.org/t/p/original${
+          src={
             backdrop_path || poster_path
-          }`}
+              ? `https://image.tmdb.org/t/p/original${
+                  backdrop_path || poster_path
+                }`
+              : peopleBackground
+          }
         />
       </div>
       <div className='id-header__content'>
@@ -43,9 +55,15 @@ const IDHeader = ({ itemDetails }) => {
           <img
             className='id-header__content--col-1--image'
             alt='Featured Item'
-            src={`https://image.tmdb.org/t/p/w200${
-              poster_path || backdrop_path
-            }`}
+            src={
+              poster_path || backdrop_path || profile_path
+                ? `https://image.tmdb.org/t/p/w200${
+                    poster_path || backdrop_path || profile_path
+                  }`
+                : title
+                ? creditLogo
+                : castLogo
+            }
           />
         </div>
         <div className='id-header__content--col-2'>
@@ -57,13 +75,28 @@ const IDHeader = ({ itemDetails }) => {
               {tagline}
             </span>
           ) : null}
-          <span className='id-header__content--col-2--subtitle'>{genres}</span>
           <span className='id-header__content--col-2--subtitle'>
-            Release date: {date ? date.split('-').reverse().join('/') : null}
+            {genres || `Known for: ${known_for_department}`}
+          </span>
+          <span className='id-header__content--col-2--subtitle'>
+            {date
+              ? `Release date: ${
+                  date ? date.split('-').reverse().join('/') : null
+                }`
+              : birthday
+              ? `Date of birth: ${
+                  birthday ? birthday.split('-').reverse().join('/') : null
+                }`
+              : null}
           </span>
           <div className='id-header__content--col-2--links'>
-            Runtime: {runtime || episode_run_time}m | Rating:{' '}
-            {vote_average * 10}%
+            {place_of_birth
+              ? `Place of birth: ${place_of_birth}`
+              : runtime || episode_run_time
+              ? `Runtime: ${runtime || episode_run_time}m | Rating: ${
+                  vote_average * 10
+                }%`
+              : null}
           </div>
         </div>
       </div>

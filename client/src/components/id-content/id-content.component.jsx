@@ -24,31 +24,64 @@ const IDContent = ({
   TVCredits,
   TVTrailers,
   TVReviews,
-}) => {
-  const { overview } = itemDetails;
 
-  let itemCredits, itemTrailers, itemReviews;
+  peopleMovieCredits,
+  peopleTVCredits,
+}) => {
+  const { overview, biography } = itemDetails;
+
+  let itemCredits, itemCreditsTV, itemTrailers, itemReviews;
+
   if (itemType === 'movie') {
     itemCredits = movieCredits;
     itemTrailers = movieTrailers;
     itemReviews = movieReviews;
+
+    itemCreditsTV = [];
   }
   if (itemType === 'tv') {
     itemCredits = TVCredits;
     itemTrailers = TVTrailers;
     itemReviews = TVReviews;
+
+    itemCreditsTV = [];
+  }
+
+  if (itemType === 'people') {
+    itemCredits = [];
+    const dataMovie = Object.values(peopleMovieCredits).filter((item) => {
+      const i = itemCredits.findIndex((x) => x.id == item.id);
+      if (i <= -1) {
+        itemCredits.push(item);
+      }
+      return null;
+    });
+
+    itemCreditsTV = [];
+    const dataTV = Object.values(peopleTVCredits).filter((item) => {
+      const i = itemCreditsTV.findIndex((x) => x.id == item.id);
+      if (i <= -1) {
+        itemCreditsTV.push(item);
+      }
+      return null;
+    });
+
+    itemTrailers = [];
+    itemReviews = [];
   }
 
   return (
     <div className='id-content'>
-      {overview ? (
+      {overview || biography ? (
         <div className='id-content__summary'>
-          <h2 className='id-content__title'>Summary</h2>
-          <p className='id-content__summary--content'>{overview}</p>
+          <h2 className='id-content__header--title'>
+            {overview ? 'Summary' : 'Biography'}
+          </h2>
+          <p className='id-content__summary--content'>
+            {overview || biography}
+          </p>
         </div>
-      ) : (
-        0
-      )}
+      ) : null}
 
       {itemCredits.length > 0 ? (
         <CarouselProvider
@@ -59,7 +92,9 @@ const IDContent = ({
           className='id-content__cast'
         >
           <div className='id-content__header'>
-            <h2 className='id-content__header--title'>Cast</h2>
+            <h2 className='id-content__header--title'>
+              {itemType === 'people' ? 'Movie Credits' : 'Cast'}
+            </h2>
             {itemCredits.length >= 6 ? (
               <div className='id-content__header--arrows'>
                 <ButtonBack className='id-content__header--arrows--prev'>
@@ -74,7 +109,41 @@ const IDContent = ({
           <Slider className='id-content__cast--content'>
             {itemCredits.map((item, i) => (
               <Slide index={i} key={item.id}>
-                <IDItem item={item} />
+                <IDItem
+                  item={item}
+                  itemType={itemType === 'people' ? 'movie' : 'people'}
+                />
+              </Slide>
+            ))}
+          </Slider>
+        </CarouselProvider>
+      ) : null}
+
+      {itemCreditsTV.length > 0 ? (
+        <CarouselProvider
+          naturalSlideWidth={146}
+          naturalSlideHeight={231}
+          totalSlides={itemCreditsTV.length}
+          visibleSlides={6}
+          className='id-content__cast'
+        >
+          <div className='id-content__header'>
+            <h2 className='id-content__header--title'>TV Shows Credits</h2>
+            {itemCreditsTV.length >= 6 ? (
+              <div className='id-content__header--arrows'>
+                <ButtonBack className='id-content__header--arrows--prev'>
+                  &#10094;
+                </ButtonBack>
+                <ButtonNext className='id-content__header--arrows--next'>
+                  &#10095;
+                </ButtonNext>
+              </div>
+            ) : null}
+          </div>
+          <Slider className='id-content__cast--content'>
+            {itemCreditsTV.map((item, i) => (
+              <Slide index={i} key={item.id}>
+                <IDItem item={item} itemType={'tv'} />
               </Slide>
             ))}
           </Slider>
@@ -158,6 +227,9 @@ const mapStateToProps = (state) => ({
   TVCredits: state.tv.TVCredits,
   TVTrailers: state.tv.TVTrailers,
   TVReviews: state.tv.TVReviews,
+
+  peopleMovieCredits: state.people.peopleMovieCredits,
+  peopleTVCredits: state.people.peopleTVCredits,
 });
 
 export default connect(mapStateToProps)(IDContent);
