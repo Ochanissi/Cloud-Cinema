@@ -28,12 +28,26 @@ import './item-details.styles.scss';
 
 class ItemDetails extends React.Component {
   componentDidMount() {
-    const { type, id } = this.props.match.params;
+    const { id, type } = this.props.match.params;
 
+    this.handleDataFetch(id, type);
+  }
+
+  // Checks if the component received new props and refetches data
+  componentDidUpdate(prevProps) {
+    const { id, type } = this.props.match.params;
+
+    if (id !== prevProps.match.params.id) {
+      this.handleDataFetch(id, type);
+      console.log(id, type);
+    }
+  }
+
+  handleDataFetch = (id, type) => {
     if (type === 'movie') return this.handleMovieFetch(id);
     if (type === 'tv') return this.handleTVFetch(id);
     if (type === 'people') return this.handlePeopleFetch(id);
-  }
+  };
 
   handleMovieFetch = (id) => {
     const {
@@ -87,7 +101,7 @@ class ItemDetails extends React.Component {
     return (
       <div className='item-details'>
         <IDHeader itemDetails={itemDetails} />
-        {/* <IDContent itemDetails={itemDetails} itemType={type} /> */}
+        <IDContent itemDetails={itemDetails} itemType={type} />
       </div>
     );
   }
