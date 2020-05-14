@@ -39,7 +39,7 @@ class ItemDetails extends React.Component {
 
     if (id !== prevProps.match.params.id) {
       this.handleDataFetch(id, type);
-      console.log(id, type);
+      // console.log(id, type);
     }
   }
 

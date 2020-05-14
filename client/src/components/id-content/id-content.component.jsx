@@ -49,8 +49,8 @@ const IDContent = ({
 
   if (itemType === 'people') {
     itemCredits = [];
-    const dataMovie = Object.values(peopleMovieCredits).filter((item) => {
-      const i = itemCredits.findIndex((x) => x.id == item.id);
+    Object.values(peopleMovieCredits).filter((item) => {
+      const i = itemCredits.findIndex((x) => x.id === item.id);
       if (i <= -1) {
         itemCredits.push(item);
       }
@@ -58,8 +58,8 @@ const IDContent = ({
     });
 
     itemCreditsTV = [];
-    const dataTV = Object.values(peopleTVCredits).filter((item) => {
-      const i = itemCreditsTV.findIndex((x) => x.id == item.id);
+    Object.values(peopleTVCredits).filter((item) => {
+      const i = itemCreditsTV.findIndex((x) => x.id === item.id);
       if (i <= -1) {
         itemCreditsTV.push(item);
       }
@@ -200,7 +200,9 @@ const IDContent = ({
                   {author}
                 </h4>
                 <p className='id-content__reviews--content--review--content'>
-                  {content.slice(0, 420)}...
+                  {content.length > 420
+                    ? `${content.slice(0, 420)}...`
+                    : content}
                 </p>
                 <a
                   className='id-content__reviews--content--review--url'
