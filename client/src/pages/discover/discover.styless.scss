@@ -26,8 +26,10 @@
       height: 55rem;
 
       &--image {
-        width: 100%;
         height: 100%;
+        width: 100%;
+        background-position: center;
+        background-size: cover;
         object-fit: cover;
 
         opacity: 0.5;
@@ -35,20 +37,31 @@
 
       &--title {
         position: absolute;
-        top: 1rem;
-        left: 1rem;
+        top: 2rem;
+        left: 2rem;
+
+        text-transform: uppercase;
       }
 
       &--more {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 2rem;
+        right: 2rem;
+
+        text-transform: uppercase;
 
         a {
           text-decoration: none;
           color: $color-white;
 
+          display: flex;
+          align-items: center;
+
           transition: all 0.25s linear;
+
+          ion-icon {
+            margin-left: 0.5rem;
+          }
 
           &:hover {
             color: $color-primary;
@@ -63,9 +76,23 @@
         transform: translate(-50%, -50%);
       }
     }
+
+    &--tv {
+      grid-column: 2 / 3;
+      margin-top: 5.5rem;
+
+      position: relative;
+
+      height: 55rem;
+    }
   }
 
   &__featured {
     grid-row: 2 / 3;
+    grid-column: full-start / full0end;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, min-content);
   }
 }
