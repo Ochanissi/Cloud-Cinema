@@ -253,3 +253,59 @@ export const fetchTVReviewsStartAsync = (TVId) => {
       .catch((error) => dispatch(fetchTVReviewsFailure(error.message)));
   };
 };
+
+// TV Trending
+export const fetchTVTrendingStart = () => ({
+  type: TVActionTypes.FETCH_TV_TRENDING_START,
+});
+
+export const fetchTVTrendingSuccess = (TVTrending) => ({
+  type: TVActionTypes.FETCH_TV_TRENDING_SUCCESS,
+  payload: TVTrending,
+});
+
+export const fetchTVTrendingFailure = (errorMessage) => ({
+  type: TVActionTypes.FETCH_TV_TRENDING_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchTVTrendingStartAsync = () => {
+  return (dispatch) => {
+    dispatch(fetchTVTrendingStart());
+
+    fetch(
+      `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch(fetchTVTrendingSuccess(data.results)))
+      .catch((error) => dispatch(fetchTVTrendingFailure(error.message)));
+  };
+};
+
+// TV Trending
+export const fetchTVTrendingTodayStart = () => ({
+  type: TVActionTypes.FETCH_TV_TRENDING_TODAY_START,
+});
+
+export const fetchTVTrendingTodaySuccess = (TVTrendingToday) => ({
+  type: TVActionTypes.FETCH_TV_TRENDING_TODAY_SUCCESS,
+  payload: TVTrendingToday,
+});
+
+export const fetchTVTrendingTodayFailure = (errorMessage) => ({
+  type: TVActionTypes.FETCH_TV_TRENDING_TODAY_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchTVTrendingTodayStartAsync = () => {
+  return (dispatch) => {
+    dispatch(fetchTVTrendingTodayStart());
+
+    fetch(
+      `https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch(fetchTVTrendingTodaySuccess(data.results)))
+      .catch((error) => dispatch(fetchTVTrendingTodayFailure(error.message)));
+  };
+};

@@ -28,6 +28,9 @@ const INITIAL_STATE = {
   ismovieReviewsFetching: false,
   movieReviews: [],
 
+  ismoviesTrendingFetching: false,
+  moviesTrending: [],
+
   errorMessage: undefined,
 };
 
@@ -201,6 +204,25 @@ const movieReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         ismovieReviewsFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // Movie Trending
+    case MovieActionTypes.FETCH_MOVIES_TRENDING_START:
+      return {
+        ...state,
+        ismoviesTrendingFetching: true,
+      };
+    case MovieActionTypes.FETCH_MOVIES_TRENDING_SUCCESS:
+      return {
+        ...state,
+        ismoviesTrendingFetching: false,
+        moviesTrending: action.payload,
+      };
+    case MovieActionTypes.FETCH_MOVIES_TRENDING_FAILURE:
+      return {
+        ...state,
+        ismoviesTrendingFetching: false,
         errorMessage: action.payload,
       };
 

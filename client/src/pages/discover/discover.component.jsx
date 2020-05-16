@@ -1,59 +1,46 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { fetchMoviesTrendingStartAsync } from '../../redux/movie/movie.actions';
+import {
+  fetchTVTrendingStartAsync,
+  fetchTVTrendingTodayStartAsync,
+} from '../../redux/tv/tv.actions';
+
+import DiscoverFeaturedItem from '../../components/discover-featured-item/discover-featured-item.component';
+import DiscoverTrendsItem from '../../components/discover-trends-item/discover-trends-item.component';
 
 import './discover.styless.scss';
 
-import DiscoverFeaturedItem from '../../components/discover-featured-item/discover-featured-item.component';
-
 class Discover extends React.Component {
+  componentDidMount() {
+    const {
+      fetchMoviesTrendingStartAsync,
+      fetchTVTrendingStartAsync,
+      fetchTVTrendingTodayStartAsync,
+    } = this.props;
+
+    fetchMoviesTrendingStartAsync();
+    fetchTVTrendingStartAsync();
+    fetchTVTrendingTodayStartAsync();
+  }
+
   render() {
+    const { moviesTrending, TVTrending, TVTrendingToday } = this.props;
+
     return (
       <div className='discover'>
         <div className='discover__trends'>
-          <div className='discover__trends--movie'>
-            <img
-              className='discover__trends--movie--image'
-              alt='Discover Background'
-              src={'https://wallpaperaccess.com/full/1290120.jpg'}
-            />
-            <span className='discover__trends--movie--title'>
-              Top TV Shows Last Week
-            </span>
-            <span className='discover__trends--movie--more'>
-              <a
-                className=''
-                href=' #'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <span>See full review</span>
-                <ion-icon name='chevron-forward-circle-outline'></ion-icon>
-              </a>
-            </span>
-            <div className='discover__trends--movie--content'>Content</div>
-          </div>
-
-          <div className='discover__trends--tv'>
-            <img
-              className='discover__trends--movie--image'
-              alt='Discover Background'
-              src={'https://wallpaperaccess.com/full/1290120.jpg'}
-            />
-            <span className='discover__trends--movie--title'>
-              Top TV Shows Last Week
-            </span>
-            <span className='discover__trends--movie--more'>
-              <a
-                className=''
-                href=' #'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <span>See full review</span>
-                <ion-icon name='chevron-forward-circle-outline'></ion-icon>
-              </a>
-            </span>
-            <div className='discover__trends--movie--content'>Content</div>
-          </div>
+          <DiscoverTrendsItem
+            itemTitle={'Movies Trending This Week'}
+            itemType={'movie'}
+            itemContent={moviesTrending}
+          />
+          <DiscoverTrendsItem
+            itemTitle={'TV Shows Trending This Week'}
+            itemType={'tv'}
+            itemContent={TVTrending}
+          />
         </div>
 
         <div className='discover__featured'>
@@ -99,10 +86,31 @@ class Discover extends React.Component {
           />
         </div>
 
-        <div className='discover__popular'></div>
+        <div className='discover__popular'>
+          <DiscoverTrendsItem
+            itemTitle={'TV Shows Trending Today'}
+            itemType={'tv'}
+            popular={true}
+            itemContent={TVTrendingToday}
+          />
+        </div>
       </div>
     );
   }
 }
 
-export default Discover;
+const mapStateToProps = (state) => ({
+  moviesTrending: state.movie.moviesTrending,
+  TVTrending: state.tv.TVTrending,
+  TVTrendingToday: state.tv.TVTrendingToday,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchMoviesTrendingStartAsync: () =>
+    dispatch(fetchMoviesTrendingStartAsync()),
+  fetchTVTrendingStartAsync: () => dispatch(fetchTVTrendingStartAsync()),
+  fetchTVTrendingTodayStartAsync: () =>
+    dispatch(fetchTVTrendingTodayStartAsync()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Discover);

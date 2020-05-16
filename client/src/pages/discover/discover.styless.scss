@@ -17,82 +17,24 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    &--movie {
-      grid-column: 1 / 2;
-      margin-top: 5.5rem;
+    margin-top: 5.5rem;
 
-      position: relative;
-
-      height: 55rem;
-
-      &--image {
-        height: 100%;
-        width: 100%;
-        background-position: center;
-        background-size: cover;
-        object-fit: cover;
-
-        opacity: 0.5;
-      }
-
-      &--title {
-        position: absolute;
-        top: 2rem;
-        left: 2rem;
-
-        text-transform: uppercase;
-      }
-
-      &--more {
-        position: absolute;
-        top: 2rem;
-        right: 2rem;
-
-        text-transform: uppercase;
-
-        a {
-          text-decoration: none;
-          color: $color-white;
-
-          display: flex;
-          align-items: center;
-
-          transition: all 0.25s linear;
-
-          ion-icon {
-            margin-left: 0.5rem;
-          }
-
-          &:hover {
-            color: $color-primary;
-          }
-        }
-      }
-
-      &--content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-
-    &--tv {
-      grid-column: 2 / 3;
-      margin-top: 5.5rem;
-
-      position: relative;
-
-      height: 55rem;
-    }
+    height: 55rem;
   }
 
   &__featured {
     grid-row: 2 / 3;
-    grid-column: full-start / full0end;
+    grid-column: full-start / full-end;
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, min-content);
+  }
+
+  &__popular {
+    grid-row: 3 / 4;
+    grid-column: full-start / full-end;
+
+    height: 110rem;
   }
 }

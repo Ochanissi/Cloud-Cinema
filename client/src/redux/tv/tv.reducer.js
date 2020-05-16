@@ -28,6 +28,12 @@ const INITIAL_STATE = {
   isTVReviewsFetching: false,
   TVReviews: [],
 
+  isTVTrendingFetching: false,
+  TVTrending: [],
+
+  isTVTrendingTodayFetching: false,
+  TVTrendingToday: [],
+
   errorMessage: undefined,
 };
 
@@ -201,6 +207,44 @@ const TVReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isTVReviewsFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // TV Trending
+    case TVActionTypes.FETCH_TV_TRENDING_START:
+      return {
+        ...state,
+        isTVTrendingFetching: true,
+      };
+    case TVActionTypes.FETCH_TV_TRENDING_SUCCESS:
+      return {
+        ...state,
+        isTVTrendingFetching: false,
+        TVTrending: action.payload,
+      };
+    case TVActionTypes.FETCH_TV_TRENDING_FAILURE:
+      return {
+        ...state,
+        isTVTrendingFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // TV Trending Today
+    case TVActionTypes.FETCH_TV_TRENDING_TODAY_START:
+      return {
+        ...state,
+        isTVTrendingTodayFetching: true,
+      };
+    case TVActionTypes.FETCH_TV_TRENDING_TODAY_SUCCESS:
+      return {
+        ...state,
+        isTVTrendingTodayFetching: false,
+        TVTrendingToday: action.payload,
+      };
+    case TVActionTypes.FETCH_TV_TRENDING_TODAY_FAILURE:
+      return {
+        ...state,
+        isTVTrendingTodayFetching: false,
         errorMessage: action.payload,
       };
 

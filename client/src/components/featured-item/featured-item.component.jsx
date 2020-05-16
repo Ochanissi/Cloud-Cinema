@@ -10,15 +10,20 @@ const FeaturedItem = ({
   backdrop_path,
   id: itemId,
   itemType,
+  itemTypeDisc,
 }) => {
   return (
     <div className='featured-item'>
       <Link
-        to={`/details/${itemType.toLowerCase()}/${itemId}`}
+        to={`/details/${
+          itemTypeDisc ? itemTypeDisc.toLowerCase() : itemType.toLowerCase()
+        }/${itemId}`}
         className='featured-item--image-container'
       >
         <img
-          className='featured-item--image'
+          className={`featured-item--image ${
+            itemTypeDisc ? 'featured-item--image--disc' : null
+          }`}
           alt='Featured Item'
           src={`https://image.tmdb.org/t/p/w200${poster_path || backdrop_path}`}
         />
