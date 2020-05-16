@@ -253,3 +253,31 @@ export const fetchMovieReviewsStartAsync = (movieId) => {
       .catch((error) => dispatch(fetchMovieReviewsFailure(error.message)));
   };
 };
+
+// Movies Trending
+export const fetchMoviesTrendingStart = () => ({
+  type: MovieActionTypes.FETCH_MOVIES_TRENDING_START,
+});
+
+export const fetchMoviesTrendingSuccess = (moviesTrending) => ({
+  type: MovieActionTypes.FETCH_MOVIES_TRENDING_SUCCESS,
+  payload: moviesTrending,
+});
+
+export const fetchMoviesTrendingFailure = (errorMessage) => ({
+  type: MovieActionTypes.FETCH_MOVIES_TRENDING_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchMoviesTrendingStartAsync = () => {
+  return (dispatch) => {
+    dispatch(fetchMoviesTrendingStart());
+
+    fetch(
+      `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch(fetchMoviesTrendingSuccess(data.results)))
+      .catch((error) => dispatch(fetchMoviesTrendingFailure(error.message)));
+  };
+};

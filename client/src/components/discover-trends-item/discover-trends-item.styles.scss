@@ -1,0 +1,128 @@
+@import '../../index.scss';
+
+.discover__trends {
+  &--container {
+    position: relative;
+
+    max-height: 100%;
+    overflow: hidden;
+
+    // height: 55rem;
+
+    // .horizontalSlider___281Ls {
+    //   height: 55rem;
+    // }
+
+    &--prev,
+    &--next {
+      cursor: pointer;
+      transition: all 0.25s linear;
+
+      border: none;
+      background: none;
+
+      color: inherit;
+      font-size: inherit;
+
+      font-size: 5rem;
+
+      opacity: 1;
+
+      &:focus {
+        outline: 0;
+      }
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+
+    &--prev {
+      position: absolute;
+      top: 50%;
+      left: 3rem;
+      transform: translate(0, -50%);
+    }
+
+    &--next {
+      position: absolute;
+      top: 50%;
+      right: 3rem;
+      transform: translate(0, -50%);
+    }
+  }
+
+  &--item {
+    position: relative;
+
+    // height: 55rem;
+
+    &--image {
+      height: 100%;
+      width: 100%;
+      background-position: center;
+      background-size: cover;
+      object-fit: cover;
+
+      opacity: 0.5;
+    }
+
+    &--title {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+
+      text-transform: uppercase;
+    }
+
+    &--more {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+
+      text-transform: uppercase;
+
+      a {
+        text-decoration: none;
+        color: $color-white;
+
+        display: flex;
+        align-items: center;
+
+        transition: all 0.25s linear;
+
+        ion-icon {
+          margin-left: 0.5rem;
+        }
+
+        &:hover {
+          color: $color-primary;
+        }
+      }
+    }
+
+    &--content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      display: flex;
+      align-items: center;
+
+      &--description {
+        margin-left: 5rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        max-width: 50rem;
+
+        &--title {
+          font-size: 4rem;
+        }
+      }
+    }
+  }
+}

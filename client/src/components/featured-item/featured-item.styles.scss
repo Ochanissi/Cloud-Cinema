@@ -26,6 +26,10 @@
     opacity: 0.5;
 
     transition: all 0.25s linear;
+
+    &--disc {
+      opacity: 1;
+    }
   }
 
   &--content {
