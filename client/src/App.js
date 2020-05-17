@@ -24,6 +24,7 @@ class App extends React.Component {
             <Route path='/details/:type/:id' exact component={ItemDetails} />
             <Route path='/discover' exact component={Discover} />
             <Route path='/discover/:type/:id' exact component={DiscoverItem} />
+            <Route path='/search/:id' exact component={DiscoverItem} />
           </Switch>
           <Footer />
         </ScrollToTop>

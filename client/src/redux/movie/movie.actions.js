@@ -281,3 +281,31 @@ export const fetchMoviesTrendingStartAsync = () => {
       .catch((error) => dispatch(fetchMoviesTrendingFailure(error.message)));
   };
 };
+
+// Multi Search
+export const fetchMultiSearchStart = () => ({
+  type: MovieActionTypes.FETCH_MULTI_SEARCH_START,
+});
+
+export const fetchMultiSearchSuccess = (multiSearch) => ({
+  type: MovieActionTypes.FETCH_MULTI_SEARCH_SUCCESS,
+  payload: multiSearch,
+});
+
+export const fetchMultiSearchFailure = (errorMessage) => ({
+  type: MovieActionTypes.FETCH_MULTI_SEARCH_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchMultiSearchStartAsync = (query) => {
+  return (dispatch) => {
+    dispatch(fetchMultiSearchStart());
+
+    fetch(
+      `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch(fetchMultiSearchSuccess(data.results)))
+      .catch((error) => dispatch(fetchMultiSearchFailure(error.message)));
+  };
+};

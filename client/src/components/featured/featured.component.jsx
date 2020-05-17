@@ -22,8 +22,8 @@ import './featured.styles.scss';
 class Featured extends React.Component {
   componentDidMount() {
     const { itemType } = this.props;
-    if (itemType === 'MOVIE') return this.handleMovieFetch();
-    if (itemType === 'TV') return this.handleTVFetch();
+    if (itemType === 'MOVIE') this.handleMovieFetch();
+    if (itemType === 'TV') this.handleTVFetch();
   }
 
   handleMovieFetch = () => {
