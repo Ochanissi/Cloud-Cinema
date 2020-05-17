@@ -31,6 +31,9 @@ const INITIAL_STATE = {
   ismoviesTrendingFetching: false,
   moviesTrending: [],
 
+  ismultiSearchFetching: false,
+  multiSearch: [],
+
   errorMessage: undefined,
 };
 
@@ -223,6 +226,25 @@ const movieReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         ismoviesTrendingFetching: false,
+        errorMessage: action.payload,
+      };
+
+    // Multi Search
+    case MovieActionTypes.FETCH_MULTI_SEARCH_START:
+      return {
+        ...state,
+        ismultiSearchFetching: true,
+      };
+    case MovieActionTypes.FETCH_MULTI_SEARCH_SUCCESS:
+      return {
+        ...state,
+        ismultiSearchFetching: false,
+        multiSearch: action.payload,
+      };
+    case MovieActionTypes.FETCH_MULTI_SEARCH_FAILURE:
+      return {
+        ...state,
+        ismultiSearchFetching: false,
         errorMessage: action.payload,
       };
 

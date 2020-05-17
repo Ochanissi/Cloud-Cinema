@@ -6,6 +6,7 @@ import {
   fetchMoviesPopularStartAsync,
   fetchMoviesNowPlayingStartAsync,
   fetchMoviesTopRatedStartAsync,
+  fetchMultiSearchStartAsync,
 } from '../../redux/movie/movie.actions';
 
 import {
@@ -21,10 +22,22 @@ import './discover-item.styles.scss';
 
 class DiscoverItem extends React.Component {
   componentDidMount() {
-    const { type: itemType } = this.props.match.params;
+    const { id: itemId, type: itemType } = this.props.match.params;
 
-    if (itemType === 'movie') return this.handleMovieFetch();
-    if (itemType === 'tv') return this.handleTVFetch();
+    if (itemType === 'movie') this.handleMovieFetch();
+    if (itemType === 'tv') this.handleTVFetch();
+    if (!itemType) this.handleSearch(itemId);
+  }
+
+  // Checks if the component received new props and refetches data
+  componentDidUpdate(prevProps) {
+    const { id: itemId, type: itemType } = this.props.match.params;
+
+    if (itemId !== prevProps.match.params.id) {
+      if (itemType === 'movie') this.handleMovieFetch();
+      if (itemType === 'tv') this.handleTVFetch();
+      if (!itemType) this.handleSearch(itemId);
+    }
   }
 
   handleMovieFetch = () => {
@@ -37,10 +50,10 @@ class DiscoverItem extends React.Component {
       fetchMoviesTopRatedStartAsync,
     } = this.props;
 
-    if (itemId === 'upcoming') return fetchMoviesUpcomingStartAsync();
-    if (itemId === 'popular') return fetchMoviesPopularStartAsync();
-    if (itemId === 'now-playing') return fetchMoviesNowPlayingStartAsync();
-    if (itemId === 'top-rated') return fetchMoviesTopRatedStartAsync();
+    if (itemId === 'upcoming') fetchMoviesUpcomingStartAsync();
+    if (itemId === 'popular') fetchMoviesPopularStartAsync();
+    if (itemId === 'now-playing') fetchMoviesNowPlayingStartAsync();
+    if (itemId === 'top-rated') fetchMoviesTopRatedStartAsync();
   };
 
   handleTVFetch = () => {
@@ -53,10 +66,16 @@ class DiscoverItem extends React.Component {
       fetchTVTopRatedStartAsync,
     } = this.props;
 
-    if (itemId === 'airing-today') return fetchTVAiringTodayStartAsync();
-    if (itemId === 'popular') return fetchTVPopularStartAsync();
-    if (itemId === 'on-the-air') return fetchTVOnTheAirStartAsync();
-    if (itemId === 'top-rated') return fetchTVTopRatedStartAsync();
+    if (itemId === 'airing-today') fetchTVAiringTodayStartAsync();
+    if (itemId === 'popular') fetchTVPopularStartAsync();
+    if (itemId === 'on-the-air') fetchTVOnTheAirStartAsync();
+    if (itemId === 'top-rated') fetchTVTopRatedStartAsync();
+  };
+
+  handleSearch = (query) => {
+    const { fetchMultiSearchStartAsync } = this.props;
+
+    fetchMultiSearchStartAsync(query);
   };
 
   handleItemContent = () => {
@@ -69,6 +88,9 @@ class DiscoverItem extends React.Component {
       moviesPopular,
       moviesNowPlaying,
       moviesTopRated,
+
+      multiSearch,
+
       TVAiringToday,
       TVPopular,
       TVOnTheAir,
@@ -105,7 +127,7 @@ class DiscoverItem extends React.Component {
         break;
 
       default:
-        console.log('Something went wrong!');
+        itemContent = multiSearch;
     }
 
     return itemContent;
@@ -119,7 +141,9 @@ class DiscoverItem extends React.Component {
     let itemName =
       itemType === 'movie'
         ? `${itemId} ${itemType}s`
-        : `${itemId} ${itemType} shows`;
+        : itemType === 'movie'
+        ? `${itemId} ${itemType} shows`
+        : 'Search Results';
 
     return (
       <div className='discover-item'>
@@ -148,6 +172,9 @@ const mapStateToProps = (state) => ({
   ismoviesTopRatedFetching: state.movie.ismoviesTopRatedFetching,
   moviesTopRated: state.movie.moviesTopRated,
 
+  ismultiSearchFetching: state.movie.ismultiSearchFetching,
+  multiSearch: state.movie.multiSearch,
+
   isTVAiringTodayFetching: state.tv.isTVAiringTodayFetching,
   TVAiringToday: state.tv.TVAiringToday,
   isTVPopularFetching: state.tv.isTVPopularFetching,
@@ -166,6 +193,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchMoviesNowPlayingStartAsync()),
   fetchMoviesTopRatedStartAsync: () =>
     dispatch(fetchMoviesTopRatedStartAsync()),
+
+  fetchMultiSearchStartAsync: (query) =>
+    dispatch(fetchMultiSearchStartAsync(query)),
 
   fetchTVAiringTodayStartAsync: () => dispatch(fetchTVAiringTodayStartAsync()),
   fetchTVPopularStartAsync: () => dispatch(fetchTVPopularStartAsync()),
