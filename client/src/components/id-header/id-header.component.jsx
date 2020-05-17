@@ -27,7 +27,7 @@ const IDHeader = ({ itemDetails }) => {
 
   console.log(backdrop_path);
 
-  // console.log(itemDetails);
+  console.log(itemDetails);
 
   if (genres)
     genres = genres
@@ -95,9 +95,9 @@ const IDHeader = ({ itemDetails }) => {
             {place_of_birth
               ? `Place of birth: ${place_of_birth}`
               : runtime || episode_run_time
-              ? `Runtime: ${runtime || episode_run_time}m | Rating: ${
-                  vote_average * 10
-                }%`
+              ? `Runtime: ${
+                  runtime || episode_run_time.join('m / ')
+                }m | Rating: ${vote_average * 10}%`
               : null}
           </div>
         </div>
