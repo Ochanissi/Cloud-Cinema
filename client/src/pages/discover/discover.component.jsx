@@ -34,11 +34,13 @@ class Discover extends React.Component {
           <DiscoverTrendsItem
             itemTitle={'Movies Trending This Week'}
             itemType={'movie'}
+            itemId={'popular'}
             itemContent={moviesTrending}
           />
           <DiscoverTrendsItem
             itemTitle={'TV Shows Trending This Week'}
             itemType={'tv'}
+            itemId={'popular'}
             itemContent={TVTrending}
           />
         </div>
@@ -48,41 +50,57 @@ class Discover extends React.Component {
             name={'Upcoming Movies'}
             icon={'time'}
             image={'/ww7eC3BqSbFsyE5H5qMde8WkxJ2.jpg'}
+            itemType={'movie'}
+            itemId={'upcoming'}
           />
           <DiscoverFeaturedItem
             name={'Popular Movies'}
             icon={'trending-up'}
             image={'/ocUrMYbdjknu2TwzMHKT9PBBQRw.jpg'}
+            itemType={'movie'}
+            itemId={'popular'}
           />
           <DiscoverFeaturedItem
             name={'Now Playing Movies'}
             icon={'play'}
             image={'/9sXHqZTet3Zg5tgcc0hCDo8Tn35.jpg'}
+            itemType={'movie'}
+            itemId={'now-playing'}
           />
           <DiscoverFeaturedItem
             name={'Top Rated Movies'}
             icon={'trophy'}
             image={'/7VrRna8S3x6xbijooeBmxqvHXiu.jpg'}
+            itemType={'movie'}
+            itemId={'top-rated'}
           />
           <DiscoverFeaturedItem
             name={'Airing Today TV Shows'}
             icon={'play'}
             image={'/8YWQ1JrA4fihMwf9kYvGtd6mSe0.jpg'}
+            itemType={'tv'}
+            itemId={'airing-today'}
           />
           <DiscoverFeaturedItem
             name={'Popular TV Shows'}
             icon={'trending-up'}
             image={'/jC1KqsFx8ZyqJyQa2Ohi7xgL7XC.jpg'}
+            itemType={'tv'}
+            itemId={'popular'}
           />
           <DiscoverFeaturedItem
             name={'On The Air TV Shows'}
             icon={'time'}
             image={'/eV3XnUul4UfIivz3kxgeIozeo50.jpg'}
+            itemType={'tv'}
+            itemId={'on-the-air'}
           />
           <DiscoverFeaturedItem
             name={'Top Rated TV Shows'}
             icon={'trophy'}
             image={'/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg'}
+            itemType={'tv'}
+            itemId={'top-rated'}
           />
         </div>
 
@@ -90,6 +108,7 @@ class Discover extends React.Component {
           <DiscoverTrendsItem
             itemTitle={'TV Shows Trending Today'}
             itemType={'tv'}
+            itemId={'airing-today'}
             popular={true}
             itemContent={TVTrendingToday}
           />

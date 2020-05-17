@@ -9,6 +9,7 @@ import Footer from './components/footer/footer.component';
 import HomePage from './pages/home-page/home-page.component';
 import ItemDetails from './pages/item-details/item-details.component';
 import Discover from './pages/discover/discover.component';
+import DiscoverItem from './pages/discover-item/discover-item.component';
 
 // import { setCurrentUser } from './redux/user/user.actions';
 
@@ -22,6 +23,7 @@ class App extends React.Component {
             <Route exact path='/' component={HomePage} />
             <Route path='/details/:type/:id' exact component={ItemDetails} />
             <Route path='/discover' exact component={Discover} />
+            <Route path='/discover/:type/:id' exact component={DiscoverItem} />
           </Switch>
           <Footer />
         </ScrollToTop>

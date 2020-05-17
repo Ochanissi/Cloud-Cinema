@@ -1,10 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './discover-featured-item.styles.scss';
 
-const DiscoverFeaturedItem = ({ name, icon, image }) => {
+const DiscoverFeaturedItem = ({ name, icon, image, itemType, itemId }) => {
   return (
-    <div className='discover__featured--item'>
+    <Link
+      to={`/discover/${itemType}/${itemId}`}
+      className='discover__featured--item'
+    >
       <img
         className='discover__featured--item--image'
         alt='Featured Background'
@@ -14,7 +18,7 @@ const DiscoverFeaturedItem = ({ name, icon, image }) => {
         <ion-icon name={icon}></ion-icon>
         <span className='discover__featured--item--content--title'>{name}</span>
       </div>
-    </div>
+    </Link>
   );
 };
 

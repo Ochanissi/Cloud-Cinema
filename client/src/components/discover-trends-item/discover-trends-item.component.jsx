@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import {
@@ -13,9 +14,13 @@ import FeaturedItem from '../../components/featured-item/featured-item.component
 
 import './discover-trends-item.styles.scss';
 
-const DiscoverTrendsItem = ({ itemTitle, itemType, itemContent, popular }) => {
-  console.log(itemContent[0]);
-
+const DiscoverTrendsItem = ({
+  itemTitle,
+  itemType,
+  itemId,
+  itemContent,
+  popular,
+}) => {
   return (
     <CarouselProvider
       naturalSlideWidth={146}
@@ -53,10 +58,10 @@ const DiscoverTrendsItem = ({ itemTitle, itemType, itemContent, popular }) => {
       </Slider>
       <span className='discover__trends--item--title'>{itemTitle}</span>
       <span className='discover__trends--item--more'>
-        <a className='' href=' #' target='_blank' rel='noopener noreferrer'>
+        <Link to={`/discover/${itemType}/${itemId}`}>
           <span>See More</span>
           <ion-icon name='chevron-forward-circle-outline'></ion-icon>
-        </a>
+        </Link>
       </span>
       <ButtonBack className='discover__trends--container--prev'>
         &#10094;
