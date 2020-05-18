@@ -40,7 +40,12 @@ const DiscoverTrendsItem = ({
               }`}
             />
             <div className='discover__trends--item--content'>
-              <FeaturedItem id={item.id} itemTypeDisc={itemType} {...item} />
+              <FeaturedItem
+                id={item.id}
+                itemTypeDisc={itemType}
+                discover={true}
+                {...item}
+              />
 
               {popular ? (
                 <div className='discover__trends--item--content--description'>

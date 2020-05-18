@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import creditLogo from '../../assets/default-credit.png';
+
 import './featured-item.styles.scss';
 
 const FeaturedItem = ({
@@ -11,6 +13,7 @@ const FeaturedItem = ({
   id: itemId,
   itemType,
   itemTypeDisc,
+  discover,
 }) => {
   return (
     <div className='featured-item'>
@@ -22,10 +25,14 @@ const FeaturedItem = ({
       >
         <img
           className={`featured-item--image ${
-            itemTypeDisc ? 'featured-item--image--disc' : null
+            discover ? 'featured-item--image--disc' : null
           }`}
           alt='Featured Item'
-          src={`https://image.tmdb.org/t/p/w200${poster_path || backdrop_path}`}
+          src={
+            poster_path || backdrop_path
+              ? `https://image.tmdb.org/t/p/w200${poster_path || backdrop_path}`
+              : creditLogo
+          }
         />
       </Link>
 
@@ -61,7 +68,7 @@ const FeaturedItem = ({
 
         <div className='featured-item--content--like'>
           <span className='featured-item--content--rating'>
-            {vote_average * 10}%
+            {vote_average ? `${vote_average * 10}%` : 'N/A'}
           </span>
           <div className='featured-item--content--rate'>
             <a href='# ' className='featured-item--content--rate--button'>

@@ -10,6 +10,7 @@ import {
 } from 'pure-react-carousel';
 
 import IDItem from '../id-item/id-item.component';
+import FeaturedItem from '../../components/featured-item/featured-item.component';
 
 import './id-content.styles.scss';
 
@@ -70,6 +71,8 @@ const IDContent = ({
     itemReviews = [];
   }
 
+  console.log(itemCredits);
+
   return (
     <div className='id-content'>
       {overview || biography ? (
@@ -107,14 +110,23 @@ const IDContent = ({
             ) : null}
           </div>
           <Slider className='id-content__cast--content'>
-            {itemCredits.map((item, i) => (
-              <Slide index={i} key={item.id}>
-                <IDItem
-                  item={item}
-                  itemType={itemType === 'people' ? 'movie' : 'people'}
-                />
-              </Slide>
-            ))}
+            {itemCredits.map((item, i) => {
+              if (itemType === 'people')
+                return (
+                  <Slide index={i} key={item.id}>
+                    <FeaturedItem {...item} itemTypeDisc={'movie'} />
+                  </Slide>
+                );
+
+              if (itemType === 'movie' || itemType === 'tv')
+                return (
+                  <Slide index={i} key={item.id}>
+                    <IDItem item={item} itemType={'people'} />
+                  </Slide>
+                );
+
+              return null;
+            })}
           </Slider>
         </CarouselProvider>
       ) : null}
@@ -143,7 +155,7 @@ const IDContent = ({
           <Slider className='id-content__cast--content'>
             {itemCreditsTV.map((item, i) => (
               <Slide index={i} key={item.id}>
-                <IDItem item={item} itemType={'tv'} />
+                <FeaturedItem {...item} itemTypeDisc={'tv'} />
               </Slide>
             ))}
           </Slider>

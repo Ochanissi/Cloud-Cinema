@@ -25,9 +25,9 @@ const IDHeader = ({ itemDetails }) => {
     place_of_birth,
   } = itemDetails;
 
-  console.log(backdrop_path);
+  // console.log(backdrop_path);
 
-  console.log(itemDetails);
+  // console.log(itemDetails);
 
   if (genres)
     genres = genres
