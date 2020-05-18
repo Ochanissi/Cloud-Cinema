@@ -17,6 +17,7 @@ import {
 } from '../../redux/tv/tv.actions';
 
 import FeaturedItem from '../../components/featured-item/featured-item.component';
+import IDItem from '../../components/id-item/id-item.component';
 
 import './discover-item.styles.scss';
 
@@ -128,6 +129,9 @@ class DiscoverItem extends React.Component {
 
       default:
         itemContent = multiSearch;
+      // .filter(
+      //   (item) => item.media_type === 'movie' || item.media_type === 'tv'
+      // );
     }
 
     return itemContent;
@@ -137,6 +141,8 @@ class DiscoverItem extends React.Component {
     const { id: itemId, type: itemType } = this.props.match.params;
 
     const itemContent = this.handleItemContent();
+
+    // console.log(itemContent);
 
     let itemName =
       itemType === 'movie'
@@ -151,9 +157,27 @@ class DiscoverItem extends React.Component {
           {itemName.replace(/-/g, ' ')}
         </div>
         <div className='discover-item__content'>
-          {itemContent.map((item) => (
-            <FeaturedItem key={item.id} {...item} />
-          ))}
+          {itemContent.map((item) => {
+            if (itemType)
+              return (
+                <FeaturedItem key={item.id} {...item} itemTypeDisc={itemType} />
+              );
+
+            if (item.media_type === 'movie')
+              return (
+                <FeaturedItem key={item.id} {...item} itemTypeDisc={'movie'} />
+              );
+
+            if (item.media_type === 'tv')
+              return (
+                <FeaturedItem key={item.id} {...item} itemTypeDisc={'tv'} />
+              );
+
+            if (item.media_type === 'person')
+              return <IDItem key={item.id} item={item} itemType={'people'} />;
+
+            return null;
+          })}
         </div>
       </div>
     );
