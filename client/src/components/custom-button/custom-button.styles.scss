@@ -1,8 +1,6 @@
 @import '../../index.scss';
 
-.custom-button,
-.custom-button:link,
-.custom-button:visited {
+.custom-button {
   padding: 1.25rem 2rem;
   border: 2px solid $color-primary-dark;
   background-color: $color-primary;
@@ -29,5 +27,20 @@
 
   &:focus {
     outline: 0;
+  }
+
+  &__inverted {
+    background-color: transparent;
+    color: $color-primary;
+
+    padding: 0.9rem 2rem;
+
+    border: 2px solid $color-primary;
+
+    &:hover {
+      background: $color-primary;
+      border: 2px solid $color-primary-dark;
+      color: $color-white;
+    }
   }
 }
