@@ -30,6 +30,8 @@ class SignIn extends React.Component {
   };
 
   render() {
+    const { email, password } = this.state;
+
     return (
       <div className='sign-in'>
         <span className='sign-in__background' />
@@ -45,7 +47,7 @@ class SignIn extends React.Component {
             <FormInput
               name='email'
               type='email'
-              value={this.state.email}
+              value={email}
               handleChange={this.handleChange}
               required
               label='Email Address'
@@ -54,7 +56,7 @@ class SignIn extends React.Component {
             <FormInput
               name='password'
               type='password'
-              value={this.state.password}
+              value={password}
               handleChange={this.handleChange}
               required
               label='Password'
@@ -63,7 +65,9 @@ class SignIn extends React.Component {
 
             <div className='sign-in__content--form--btns'>
               <CustomButton type='submit'>Sign In</CustomButton>
-              <CustomButton type='submit'>Sign up</CustomButton>
+              <CustomButton type='submit' link='/auth/sign-up'>
+                Sign up
+              </CustomButton>
             </div>
           </form>
         </div>
