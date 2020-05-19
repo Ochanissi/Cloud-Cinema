@@ -17,6 +17,8 @@
 
   padding: 10rem 0 3rem 0;
 
+  z-index: 2;
+
   &__col-1 {
     grid-column: center-start / col-end 4;
     grid-row: 1 / 2;

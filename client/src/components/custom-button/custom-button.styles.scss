@@ -1,0 +1,33 @@
+@import '../../index.scss';
+
+.custom-button,
+.custom-button:link,
+.custom-button:visited {
+  padding: 1.25rem 2rem;
+  border: 2px solid $color-primary-dark;
+  background-color: $color-primary;
+  color: $color-white;
+  font-family: $font-display;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.5rem;
+  letter-spacing: 0.4rem;
+  cursor: pointer;
+  transition: all 0.25s linear;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background: $color-primary-dark;
+    border: 2px solid $color-primary-darker;
+    color: $color-white;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}

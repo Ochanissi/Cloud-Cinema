@@ -1,5 +1,10 @@
 import React from 'react';
 
+import LogoForm from '../../assets/logo-form.png';
+
+import FormInput from '../../components/form-input/form-input.component';
+import CustomButton from '../../components/custom-button/custom-button.component';
+
 import './sign-in.styles.scss';
 
 class SignIn extends React.Component {
@@ -27,28 +32,41 @@ class SignIn extends React.Component {
   render() {
     return (
       <div className='sign-in'>
-        <h1>Sign In</h1>
-
-        <form onSubmit={this.handleSubmit}>
-          <input
-            name='email'
-            type='email'
-            value={this.state.email}
-            onchange={this.handleChange}
-            required
+        <span className='sign-in__background' />
+        <div className='sign-in__content'>
+          <img
+            className='sign-in__content--logo'
+            alt='Form Logo'
+            src={LogoForm}
           />
-          <label>Email</label>
-          <input
-            name='password'
-            type='password'
-            value={this.state.password}
-            onchange={this.handleChange}
-            required
-          />
-          <label>Password</label>
+          <form className='sign-in__content--form' onSubmit={this.handleSubmit}>
+            <h2 className='sign-in__content--form--header'>Sign In</h2>
 
-          <input type='submit' value='Submit' />
-        </form>
+            <FormInput
+              name='email'
+              type='email'
+              value={this.state.email}
+              handleChange={this.handleChange}
+              required
+              label='Email Address'
+              placeholder='example@google.com'
+            />
+            <FormInput
+              name='password'
+              type='password'
+              value={this.state.password}
+              handleChange={this.handleChange}
+              required
+              label='Password'
+              placeholder='••••••••'
+            />
+
+            <div className='sign-in__content--form--btns'>
+              <CustomButton type='submit'>Sign In</CustomButton>
+              <CustomButton type='submit'>Sign up</CustomButton>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
