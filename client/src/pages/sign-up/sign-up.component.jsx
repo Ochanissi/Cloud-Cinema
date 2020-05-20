@@ -28,24 +28,42 @@ class SignUp extends React.Component {
       return;
     }
 
-    try {
-      // post data
-
-      this.setState({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
+    fetch('http://localhost:5000/sign-up', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        displayName,
+        email,
+        password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === 'success') {
+          console.log('success');
+        }
       });
-    } catch (error) {
-      console.error(error);
-    }
+
+    // try {
+    //   // post data
+
+    //   this.setState({
+    //     displayName: '',
+    //     email: '',
+    //     password: '',
+    //     confirmPassword: '',
+    //   });
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   handleChange = (event) => {
     const { name, value } = event.target;
 
     this.setState({ [name]: value });
+
+    console.log({ [name]: value });
   };
 
   render() {
@@ -93,8 +111,8 @@ class SignUp extends React.Component {
             />
 
             <FormInput
-              name='password'
-              type='confirmPassword'
+              name='confirmPassword'
+              type='password'
               value={confirmPassword}
               handleChange={this.handleChange}
               required

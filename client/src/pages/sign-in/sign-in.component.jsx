@@ -20,6 +20,23 @@ class SignIn extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
+    const { email, password } = this.state;
+
+    fetch('http://localhost:5000/sign-in', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === 'success') {
+          console.log('success');
+        }
+      });
+
     this.setState({ email: '', password: '' });
   };
 
