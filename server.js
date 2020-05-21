@@ -2,32 +2,28 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const bcrypt = require('bcrypt');
+const knex = require('knex');
+
+const db = knex({
+  client: 'pg',
+  connection: {
+    host: '127.0.0.1',
+    user: '',
+    password: '',
+    database: 'cloudcinema',
+  },
+});
+
+// db.select('*')
+//   .from('users')
+//   .then((data) => {
+//     console.log(data);
+//   });
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config;
 
 const app = express();
 const port = process.env.PORT || 5000;
-
-const database = {
-  users: [
-    {
-      id: '123',
-      displayName: 'John',
-      email: 'john@email.com',
-      password: 'test1234',
-      entries: 0,
-      joined: new Date(),
-    },
-    {
-      id: '124',
-      displayName: 'Sally',
-      email: 'sally@email.com',
-      password: 'test1234',
-      entries: 0,
-      joined: new Date(),
-    },
-  ],
-};
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -64,21 +60,33 @@ app.post('/sign-in', (req, res) => {
 });
 
 app.post('/sign-up', (req, res) => {
-  const { email, displayName, password } = req.body;
+  const { email, name, password } = req.body;
+
+  db('users')
+    .returning('*')
+    .insert({
+      email: email,
+      name: name,
+      joined: new Date(),
+    })
+    .then((user) => {
+      res.json(user[0]);
+    })
+    .catch((err) => res.status(400).json('Unable to register!'));
 
   // bcrypt.hash(password, 10, function (err, hash) {
   //   console.log(hash);
   // });
 
-  database.users.push({
-    id: '125',
-    displayName: displayName,
-    password: password,
-    entries: 0,
-    joined: new Date(),
-  });
+  // database.users.push({
+  //   id: '125',
+  //   displayName: displayName,
+  //   password: password,
+  //   entries: 0,
+  //   joined: new Date(),
+  // });
 
-  res.json(database.users[database.users.length - 1]);
+  // res.json(database.users[database.users.length - 1]);
 });
 
 app.post('/profile/:id', (req, res) => {
