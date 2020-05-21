@@ -11,7 +11,7 @@ class SignUp extends React.Component {
     super();
 
     this.state = {
-      displayName: '',
+      name: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -21,7 +21,7 @@ class SignUp extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { displayName, email, password, confirmPassword } = this.state;
+    const { name, email, password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
       alert("Passwords don't match");
@@ -32,7 +32,7 @@ class SignUp extends React.Component {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        displayName,
+        name,
         email,
         password,
       }),
@@ -48,7 +48,7 @@ class SignUp extends React.Component {
     //   // post data
 
     //   this.setState({
-    //     displayName: '',
+    //     name: '',
     //     email: '',
     //     password: '',
     //     confirmPassword: '',
@@ -67,7 +67,7 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { displayName, email, password, confirmPassword } = this.state;
+    const { name, email, password, confirmPassword } = this.state;
 
     return (
       <div className='sign-up'>
@@ -82,9 +82,9 @@ class SignUp extends React.Component {
             <h2 className='sign-up__content--form--header'>Sign Up</h2>
 
             <FormInput
-              name='displayName'
+              name='name'
               type='text'
-              value={displayName}
+              value={name}
               handleChange={this.handleChange}
               required
               label='Display Name'
