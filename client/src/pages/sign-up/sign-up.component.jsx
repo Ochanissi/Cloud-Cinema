@@ -38,9 +38,9 @@ class SignUp extends React.Component {
       }),
     })
       .then((response) => response.json())
-      .then((data) => {
-        if (data === 'success') {
-          console.log('success');
+      .then((user) => {
+        if (user.id) {
+          console.log(user);
         }
       });
 
@@ -62,8 +62,6 @@ class SignUp extends React.Component {
     const { name, value } = event.target;
 
     this.setState({ [name]: value });
-
-    console.log({ [name]: value });
   };
 
   render() {

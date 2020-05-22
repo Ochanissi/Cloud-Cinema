@@ -31,9 +31,9 @@ class SignIn extends React.Component {
       }),
     })
       .then((response) => response.json())
-      .then((data) => {
-        if (data === 'success') {
-          console.log('success');
+      .then((user) => {
+        if (user.id) {
+          console.log(user);
         }
       });
 
