@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { signInStartAsync } from '../../redux/user/user.actions';
 
 import LogoForm from '../../assets/logo-form.png';
 
@@ -22,25 +25,11 @@ class SignIn extends React.Component {
 
     const { email, password } = this.state;
 
-    fetch('http://localhost:5000/sign-in', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((user) => {
-        if (user.id) {
-          console.log(user);
+    const { signInStartAsync } = this.props;
 
-          this.setState({ email: '', password: '' });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    signInStartAsync(email, password);
+
+    // this.setState({ email: '', password: '' });
   };
 
   handleChange = (event) => {
@@ -96,4 +85,11 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  signInStartAsync: (email, password) =>
+    dispatch(signInStartAsync(email, password)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -17,7 +17,7 @@ const Footer = () => (
         <Link to='/discover' label='Discover'>
           Discover
         </Link>
-        <Link to='/account' label='Profile'>
+        <Link to='/profile' label='Profile'>
           Profile
         </Link>
       </div>

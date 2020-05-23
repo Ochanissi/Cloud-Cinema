@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   isPeopleTVCreditsFetching: false,
   peopleTVCredits: [],
 
-  errorMessage: undefined,
+  errorMessage: null,
 };
 
 const peopleReducer = (state = INITIAL_STATE, action) => {
