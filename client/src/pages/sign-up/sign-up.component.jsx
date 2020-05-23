@@ -42,6 +42,9 @@ class SignUp extends React.Component {
         if (user.id) {
           console.log(user);
         }
+      })
+      .catch((error) => {
+        console.error(error);
       });
 
     // try {
