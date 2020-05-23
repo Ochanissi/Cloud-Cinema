@@ -60,7 +60,7 @@ class Navbar extends React.Component {
             </Link>
           </li>
           <li>
-            <Link to='/account' label='Profile'>
+            <Link to='/profile' label='Profile'>
               <ion-icon name='person-circle'></ion-icon>
             </Link>
           </li>

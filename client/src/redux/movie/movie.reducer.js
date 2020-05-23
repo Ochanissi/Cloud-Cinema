@@ -34,7 +34,7 @@ const INITIAL_STATE = {
   ismultiSearchFetching: false,
   multiSearch: [],
 
-  errorMessage: undefined,
+  errorMessage: null,
 };
 
 const movieReducer = (state = INITIAL_STATE, action) => {

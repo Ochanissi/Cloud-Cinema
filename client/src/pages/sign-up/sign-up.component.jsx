@@ -1,8 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import LogoForm from '../../assets/logo-form.png';
 
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
+
+import { signUpStartAsync } from '../../redux/user/user.actions';
 
 import './sign-up.styles.scss';
 
@@ -23,42 +27,14 @@ class SignUp extends React.Component {
 
     const { name, email, password, confirmPassword } = this.state;
 
+    const { signUpStartAsync } = this.props;
+
     if (password !== confirmPassword) {
       alert("Passwords don't match");
       return;
     }
 
-    fetch('http://localhost:5000/sign-up', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((user) => {
-        if (user.id) {
-          console.log(user);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    // try {
-    //   // post data
-
-    //   this.setState({
-    //     name: '',
-    //     email: '',
-    //     password: '',
-    //     confirmPassword: '',
-    //   });
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    signUpStartAsync(name, email, password);
   };
 
   handleChange = (event) => {
@@ -134,4 +110,11 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  signUpStartAsync: (name, email, password) =>
+    dispatch(signUpStartAsync(name, email, password)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

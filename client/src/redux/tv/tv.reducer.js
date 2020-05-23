@@ -34,7 +34,7 @@ const INITIAL_STATE = {
   isTVTrendingTodayFetching: false,
   TVTrendingToday: [],
 
-  errorMessage: undefined,
+  errorMessage: null,
 };
 
 const TVReducer = (state = INITIAL_STATE, action) => {
