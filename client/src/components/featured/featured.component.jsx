@@ -59,27 +59,48 @@ class Featured extends React.Component {
 
     const {
       moviesUpcoming,
+      ismoviesUpcomingFetching,
       moviesPopular,
+      ismoviesPopularFetching,
       moviesNowPlaying,
+      ismoviesNowPlayingFetching,
       moviesTopRated,
+      ismoviesTopRatedFetching,
 
       TVAiringToday,
+      isTVAiringTodayFetching,
       TVPopular,
+      isTVPopularFetching,
       TVOnTheAir,
+      isTVOnTheAirFetching,
       TVTopRated,
+      isTVTopRatedFetching,
     } = this.props;
 
     let featuredContent;
     if (itemType === 'MOVIE') {
       featuredContent = (
         <div>
-          <FeaturedContainer title='Upcoming' contentType={moviesUpcoming} />
-          <FeaturedContainer title='Popular' contentType={moviesPopular} />
           <FeaturedContainer
+            isLoading={ismoviesUpcomingFetching}
+            title='Upcoming'
+            contentType={moviesUpcoming}
+          />
+          <FeaturedContainer
+            isLoading={ismoviesPopularFetching}
+            title='Popular'
+            contentType={moviesPopular}
+          />
+          <FeaturedContainer
+            isLoading={ismoviesNowPlayingFetching}
             title='Now Playing'
             contentType={moviesNowPlaying}
           />
-          <FeaturedContainer title='Top Rated' contentType={moviesTopRated} />
+          <FeaturedContainer
+            isLoading={ismoviesTopRatedFetching}
+            title='Top Rated'
+            contentType={moviesTopRated}
+          />
         </div>
       );
     }
@@ -87,10 +108,26 @@ class Featured extends React.Component {
     if (itemType === 'TV') {
       featuredContent = (
         <div>
-          <FeaturedContainer title='Airing Today' contentType={TVAiringToday} />
-          <FeaturedContainer title='Popular' contentType={TVPopular} />
-          <FeaturedContainer title='On The Air' contentType={TVOnTheAir} />
-          <FeaturedContainer title='Top Rated' contentType={TVTopRated} />
+          <FeaturedContainer
+            isLoading={isTVAiringTodayFetching}
+            title='Airing Today'
+            contentType={TVAiringToday}
+          />
+          <FeaturedContainer
+            isLoading={isTVPopularFetching}
+            title='Popular'
+            contentType={TVPopular}
+          />
+          <FeaturedContainer
+            isLoading={isTVOnTheAirFetching}
+            title='On The Air'
+            contentType={TVOnTheAir}
+          />
+          <FeaturedContainer
+            isLoading={isTVTopRatedFetching}
+            title='Top Rated'
+            contentType={TVTopRated}
+          />
         </div>
       );
     }

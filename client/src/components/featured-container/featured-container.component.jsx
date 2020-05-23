@@ -1,5 +1,7 @@
 import React from 'react';
+
 import FeaturedItem from '../featured-item/featured-item.component';
+
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import {
   CarouselProvider,
@@ -15,7 +17,7 @@ const FeaturedContainer = ({ title, contentType }) => {
   return (
     <CarouselProvider
       naturalSlideWidth={146}
-      naturalSlideHeight={231}
+      naturalSlideHeight={200}
       totalSlides={contentType.length}
       visibleSlides={6}
       className='featured__container'
