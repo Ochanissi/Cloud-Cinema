@@ -34,10 +34,13 @@ class SignIn extends React.Component {
       .then((user) => {
         if (user.id) {
           console.log(user);
-        }
-      });
 
-    this.setState({ email: '', password: '' });
+          this.setState({ email: '', password: '' });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   handleChange = (event) => {
