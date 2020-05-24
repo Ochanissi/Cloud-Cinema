@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import StatsItem from '../../components/stats-item/stats-item.component';
 
 import CustomButton from '../../components/custom-button/custom-button.component';
 
@@ -17,6 +20,12 @@ class Profile extends React.Component {
   };
 
   render() {
+    const profileContent = this.props.match.path.split('/').slice(-1)[0];
+
+    const {
+      currentUser: { name, joined },
+    } = this.props;
+
     return (
       <div className='profile'>
         <div className='profile__header'>
@@ -31,31 +40,57 @@ class Profile extends React.Component {
               />
               <div className='profile__header--details--content'>
                 <span className='profile__header--details--content--name'>
-                  Hello, Mirel Bitoi!
+                  Hello, {name}!
                 </span>
                 <span className='profile__header--details--content--date'>
                   <span className='profile__header--details--content--date--since'>
                     Member since{' '}
                   </span>
-                  APR 15, 2016 02:08
+                  {joined.split('T')[0].split('-').reverse().join('/')}
                 </span>
               </div>
             </div>
             <div className='profile__header--details--col-2'>
-              <CustomButton link='/profile/settings'>Settings</CustomButton>
-              <CustomButton onClick={this.handleSignOut}>Sign Out</CustomButton>
+              {profileContent === 'profile' ? (
+                <CustomButton profile link={'/profile/settings'}>
+                  Settings
+                </CustomButton>
+              ) : profileContent === 'settings' ? (
+                <CustomButton profile link={'/profile'}>
+                  Collection
+                </CustomButton>
+              ) : null}
+              <CustomButton profile onClick={this.handleSignOut}>
+                Sign Out
+              </CustomButton>
             </div>
           </div>
         </div>
 
-        <div className='profile__stats'>TV, Movies, Collected</div>
+        <div className='profile__stats'>
+          <StatsItem icon='tv' />
+          <StatsItem icon='videocam' />
+          <StatsItem icon='file-tray-full-outline' />
+        </div>
+
+        {profileContent === 'profile' ? (
+          <div className='profile__content'>lel</div>
+        ) : profileContent === 'settings' ? (
+          <div className='profile__settings'>settings</div>
+        ) : null}
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   signOutSuccess: () => dispatch(signOutSuccess()),
 });
 
-export default connect(null, mapDispatchToProps)(Profile);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Profile)
+);

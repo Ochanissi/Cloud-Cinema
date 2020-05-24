@@ -35,6 +35,13 @@ class App extends React.Component {
             />
             <Route
               exact
+              path='/profile/settings'
+              render={() =>
+                currentUser ? <Profile /> : <Redirect to='/auth/sign-in' />
+              }
+            />
+            <Route
+              exact
               path='/auth/sign-in'
               render={() => (currentUser ? <Redirect to='/' /> : <SignIn />)}
             />

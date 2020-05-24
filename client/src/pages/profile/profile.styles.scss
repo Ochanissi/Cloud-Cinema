@@ -2,7 +2,7 @@
 
 .profile {
   display: grid;
-  grid-template-rows: repeat(2, min-content);
+  grid-template-rows: repeat(3, min-content);
   grid-template-columns:
     [full-start] minmax(6rem, 1fr) [center-start] repeat(
       8,
@@ -41,12 +41,16 @@
       display: flex;
       justify-content: space-between;
 
+      min-height: 10rem;
+
       &--col-1 {
         display: flex;
       }
 
       &--col-2 {
-        // display: flex;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
 
       &--image {
@@ -86,5 +90,18 @@
     grid-column: center-start / center-end;
 
     margin: 3rem 0;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__content {
+    grid-row: 3 / 4;
+    grid-column: center-start / center-end;
+  }
+
+  &__settings {
+    grid-row: 3 / 4;
+    grid-column: center-start / center-end;
   }
 }
