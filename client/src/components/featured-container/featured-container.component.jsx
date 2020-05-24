@@ -17,7 +17,7 @@ const FeaturedContainer = ({ title, contentType }) => {
   return (
     <CarouselProvider
       naturalSlideWidth={146}
-      naturalSlideHeight={200}
+      naturalSlideHeight={210}
       totalSlides={contentType.length}
       visibleSlides={6}
       className='featured__container'

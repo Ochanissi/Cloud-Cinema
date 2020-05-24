@@ -1,0 +1,19 @@
+@import '../../index.scss';
+
+.stats-item {
+  display: flex;
+  align-items: center;
+
+  ion-icon {
+    font-size: 4rem;
+  }
+
+  &__content {
+    margin-left: 3rem;
+
+    font-size: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+  }
+}
