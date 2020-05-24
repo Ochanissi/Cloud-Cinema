@@ -7,6 +7,7 @@ const knex = require('knex');
 const signUp = require('./controllers/sign-up');
 const signIn = require('./controllers/sign-in');
 const profile = require('./controllers/profile');
+const watched = require('./controllers/watched');
 
 if (process.env.NODE_ENV !== 'production')
   require('dotenv').config({ path: __dirname + '/.env' });
@@ -47,6 +48,18 @@ app.post('/sign-up', (req, res) => {
 
 app.get('/profile/:id', (req, res) => {
   profile.handleProfile(req, res, db);
+});
+
+app.post('/watched', (req, res) => {
+  watched.handlePostWatched(req, res, db);
+});
+
+app.post('/get-watched', (req, res) => {
+  watched.handleGetWatched(req, res, db);
+});
+
+app.post('/delete-watched', (req, res) => {
+  watched.handleDeleteWatched(req, res, db);
 });
 
 app.listen(port, (error) => {
