@@ -11,14 +11,22 @@ const handleSignIn = (req, res, db, bcrypt) => {
     .then((data) => {
       const isValid = bcrypt.compareSync(password, data[0].hash);
       if (isValid) {
-        return db
-          .select('*')
-          .from('users')
-          .where('email', '=', email)
-          .then((user) => {
-            res.json(user[0]);
-          })
-          .catch((err) => res.status(400).json('Unable to connect!'));
+        return (
+          db
+            // .select('*')
+            // .from('watched')
+            // .leftOuterJoin('users', { 'users.email': 'watched.email' })
+
+            .select('*')
+            .from('users')
+            .where('email', '=', email)
+            .then((user) => {
+              res.json(user[0]);
+
+              // console.log(user);
+            })
+            .catch((err) => res.status(400).json('Unable to connect!'))
+        );
       } else {
         res.status(400).json('Wrong credentials!');
       }

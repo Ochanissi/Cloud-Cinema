@@ -14,12 +14,18 @@ import ItemDetails from './pages/item-details/item-details.component';
 import Discover from './pages/discover/discover.component';
 import DiscoverItem from './pages/discover-item/discover-item.component';
 
+import { getUserWatchedStartAsync } from './redux/user/user.actions';
+
 // import { setCurrentUser } from './redux/user/user.actions';
 
 class App extends React.Component {
   render() {
-    const { currentUser } = this.props;
-    // console.log(this.props.currentUser);
+    const { currentUser, getUserWatchedStartAsync } = this.props;
+
+    if (currentUser) {
+      getUserWatchedStartAsync(currentUser.email);
+    }
+
     return (
       <div>
         <ScrollToTop>
@@ -68,6 +74,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   // setCurrentUser: (user) => dispatch(setCurrentUser * user),
+  getUserWatchedStartAsync: (email) =>
+    dispatch(getUserWatchedStartAsync(email)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

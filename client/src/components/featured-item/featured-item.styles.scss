@@ -37,9 +37,16 @@
     align-items: center;
     // justify-content: space-between;
 
-    margin-top: -0.6rem;
+    margin-top: -0.1rem;
 
     // padding: 0 0.5rem;
+
+    button {
+      background-color: transparent;
+      border: none;
+
+      cursor: pointer;
+    }
 
     ion-icon {
       font-size: 2rem;
@@ -185,6 +192,8 @@
     &--rating {
       font-weight: 500;
       color: $color-grey-light-3;
+
+      margin-top: -0.7rem;
     }
   }
 }
