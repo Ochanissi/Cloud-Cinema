@@ -99,9 +99,7 @@ class SignUp extends React.Component {
 
             <div className='sign-up__content--form--btns'>
               <CustomButton type='submit'>Sign Up</CustomButton>
-              <CustomButton type='submit' link='/auth/sign-in'>
-                Sign In
-              </CustomButton>
+              <CustomButton link='/auth/sign-in'>Sign In</CustomButton>
             </div>
           </form>
         </div>
@@ -110,11 +108,9 @@ class SignUp extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
-
 const mapDispatchToProps = (dispatch) => ({
   signUpStartAsync: (name, email, password) =>
     dispatch(signUpStartAsync(name, email, password)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(null, mapDispatchToProps)(SignUp);

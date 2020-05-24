@@ -1,10 +1,12 @@
 import { UserActionTypes } from './user.types';
 
+// Set Item Type
 export const setItemType = (itemType) => ({
   type: UserActionTypes.SET_ITEM_TYPE,
   payload: itemType,
 });
 
+// Set Current User
 export const setCurrentUser = (user) => ({
   type: UserActionTypes.SET_CURRENT_USER,
   payload: user,
@@ -84,3 +86,18 @@ export const signUpStartAsync = (name, email, password) => {
       .catch((error) => dispatch(signUpFailure(error.message)));
   };
 };
+
+// Sign Out
+
+// export const signOutStart = () => ({
+//   type: UserActionTypes.SIGN_OUT_START,
+// });
+
+export const signOutSuccess = () => ({
+  type: UserActionTypes.SIGN_OUT_SUCCESS,
+});
+
+// export const signOutFailure = (error) => ({
+//   type: UserActionTypes.SIGN_OUT_FAILURE,
+//   payload: error,
+// });
