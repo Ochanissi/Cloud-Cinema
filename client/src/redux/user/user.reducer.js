@@ -1,9 +1,11 @@
 import { UserActionTypes } from './user.types';
 
 const INITIAL_STATE = {
-  itemType: 'MOVIE',
+  itemType: 'movie',
   currentUser: null,
   watchedHistory: [],
+  collection: [],
+  watchlist: [],
 
   errorMessage: null,
 };
@@ -52,6 +54,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         currentUser: null,
       };
 
+    // User Watched
     case UserActionTypes.POST_USER_WATCHED_SUCCESS:
       return {
         ...state,
@@ -83,6 +86,80 @@ const userReducer = (state = INITIAL_STATE, action) => {
       };
 
     case UserActionTypes.DELETE_USER_WATCHED_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+
+    // User Collection
+    case UserActionTypes.POST_USER_COLLECTION_SUCCESS:
+      return {
+        ...state,
+        collection: action.payload,
+      };
+
+    case UserActionTypes.POST_USER_COLLECTION_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+
+    case UserActionTypes.GET_USER_COLLECTION_SUCCESS:
+      return {
+        ...state,
+        collection: action.payload,
+      };
+
+    case UserActionTypes.GET_USER_COLLECTION_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+
+    case UserActionTypes.DELETE_USER_COLLECTION_SUCCESS:
+      return {
+        ...state,
+        collection: action.payload,
+      };
+
+    case UserActionTypes.DELETE_USER_COLLECTION_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+
+    // User Watchlist
+    case UserActionTypes.POST_USER_WATCHLIST_SUCCESS:
+      return {
+        ...state,
+        watchlist: action.payload,
+      };
+
+    case UserActionTypes.POST_USER_WATCHLIST_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+
+    case UserActionTypes.GET_USER_WATCHLIST_SUCCESS:
+      return {
+        ...state,
+        watchlist: action.payload,
+      };
+
+    case UserActionTypes.GET_USER_WATCHLIST_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+
+    case UserActionTypes.DELETE_USER_WATCHLIST_SUCCESS:
+      return {
+        ...state,
+        watchlist: action.payload,
+      };
+
+    case UserActionTypes.DELETE_USER_WATCHLIST_FAILURE:
       return {
         ...state,
         errorMessage: action.payload,

@@ -54,10 +54,10 @@ class Controller extends React.Component {
       <div className='controller'>
         <button
           className={`controller__btn controller__movies ${
-            itemType === 'MOVIE' ? 'controller__btn--selected' : null
+            itemType === 'movie' ? 'controller__btn--selected' : null
           }`}
           onClick={() => {
-            setItemType('MOVIE');
+            setItemType('movie');
             this.handleMovieFetch();
           }}
         >
@@ -65,10 +65,10 @@ class Controller extends React.Component {
         </button>
         <button
           className={`controller__btn controller__shows ${
-            itemType === 'TV' ? 'controller__btn--selected' : null
+            itemType === 'tv' ? 'controller__btn--selected' : null
           }`}
           onClick={() => {
-            setItemType('TV');
+            setItemType('tv');
             this.handleTVFetch();
           }}
         >

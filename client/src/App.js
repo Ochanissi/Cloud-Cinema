@@ -14,16 +14,27 @@ import ItemDetails from './pages/item-details/item-details.component';
 import Discover from './pages/discover/discover.component';
 import DiscoverItem from './pages/discover-item/discover-item.component';
 
-import { getUserWatchedStartAsync } from './redux/user/user.actions';
+import {
+  getUserWatchedStartAsync,
+  getUserCollectionStartAsync,
+  getUserWatchlistStartAsync,
+} from './redux/user/user.actions';
 
 // import { setCurrentUser } from './redux/user/user.actions';
 
 class App extends React.Component {
   render() {
-    const { currentUser, getUserWatchedStartAsync } = this.props;
+    const {
+      currentUser,
+      getUserWatchedStartAsync,
+      getUserCollectionStartAsync,
+      getUserWatchlistStartAsync,
+    } = this.props;
 
     if (currentUser) {
       getUserWatchedStartAsync(currentUser.email);
+      getUserCollectionStartAsync(currentUser.email);
+      getUserWatchlistStartAsync(currentUser.email);
     }
 
     return (
@@ -76,6 +87,10 @@ const mapDispatchToProps = (dispatch) => ({
   // setCurrentUser: (user) => dispatch(setCurrentUser * user),
   getUserWatchedStartAsync: (email) =>
     dispatch(getUserWatchedStartAsync(email)),
+  getUserCollectionStartAsync: (email) =>
+    dispatch(getUserCollectionStartAsync(email)),
+  getUserWatchlistStartAsync: (email) =>
+    dispatch(getUserWatchlistStartAsync(email)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
