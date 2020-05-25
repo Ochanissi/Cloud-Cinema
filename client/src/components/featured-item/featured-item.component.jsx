@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Toast from 'light-toast';
+
 import creditLogo from '../../assets/default-credit.png';
 
 import {
@@ -39,22 +41,29 @@ class FeaturedItem extends React.Component {
       const itemTitle = title || name;
       const url = poster_path || backdrop_path;
 
-      console.log(watchedHistory);
+      // console.log(watchedHistory);
 
-      const watchedDuplicate = watchedHistory.find(
-        (item) => item.id === id.toString()
-      );
+      const watchedDuplicate =
+        watchedHistory.find((item) => item.id === id.toString()) || {};
 
       // console.log({ id, email, type, itemTitle, url, vote_average });
 
-      deleteUserWatchedStartAsync(id);
+      // deleteUserWatchedStartAsync(id);
 
       // console.log(watchedDuplicate.id);
 
-      // watchedDuplicate.id
-      //   ? deleteUserWatchedStartAsync(id)
-      //   :
-      // postUserWatchedStartAsync(id, email, type, itemTitle, url, vote_average);
+      watchedDuplicate.id
+        ? deleteUserWatchedStartAsync(id)
+        : postUserWatchedStartAsync(
+            id,
+            email,
+            type,
+            itemTitle,
+            url,
+            vote_average
+          );
+    } else {
+      Toast.fail('Please sign in to add to watched history!', 1000);
     }
   };
 

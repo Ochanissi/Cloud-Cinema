@@ -20,7 +20,7 @@ const handlePostWatched = (req, res, db) => {
       .into('watched')
       .returning('*')
       .then((data) => {
-        return trx('watched', 'users')
+        return trx('watched')
           .where('email', '=', email)
           .returning('*')
           .then((data) => {
@@ -53,19 +53,28 @@ const handleGetWatched = (req, res, db) => {
 const handleDeleteWatched = (req, res, db) => {
   const { id } = req.body;
 
-  console.log(id);
+  // console.log(id);
 
   if (!id) {
     return res.status(400).json('Incorrect request!');
   }
 
-  db('watched')
-    .where('id', '=', id)
-    .del()
-    .then((data) => {
-      res.json('Deleted successfully!');
-    })
-    .catch((err) => res.status(400).json('Unable to delete watched!'));
+  db.transaction((trx) => {
+    trx('watched')
+      .where('id', '=', id)
+      .del()
+      .returning('*')
+      .then((data) => {
+        return trx('watched')
+          .where('id', '!=', id)
+          .returning('*')
+          .then((data) => {
+            res.json(data);
+          });
+      })
+      .then(trx.commit)
+      .catch(trx.rollback);
+  }).catch((err) => res.status(400).json('Unable to submit data!'));
 };
 
 module.exports = {

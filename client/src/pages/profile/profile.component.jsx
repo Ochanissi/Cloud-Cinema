@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import Toast from 'light-toast';
+
 import StatsItem from '../../components/stats-item/stats-item.component';
 
 import CustomButton from '../../components/custom-button/custom-button.component';
@@ -14,9 +16,13 @@ class Profile extends React.Component {
   handleSignOut = (event) => {
     event.preventDefault();
 
-    const { signOutSuccess } = this.props;
+    const {
+      signOutSuccess,
+      currentUser: { name },
+    } = this.props;
 
     signOutSuccess();
+    Toast.success(`See you soon, ${name}!`, 1500);
   };
 
   render() {

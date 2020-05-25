@@ -1,5 +1,7 @@
 import { UserActionTypes } from './user.types';
 
+import Toast from 'light-toast';
+
 // Set Item Type
 export const setItemType = (itemType) => ({
   type: UserActionTypes.SET_ITEM_TYPE,
@@ -43,9 +45,13 @@ export const signInStartAsync = (email, password) => {
       .then((user) => {
         if (user.id) {
           dispatch(signInSuccess(user));
+          Toast.success(`Welcome back ${user.name}!`, 1500);
         }
       })
-      .catch((error) => dispatch(signInFailure(error.message)));
+      .catch((error) => {
+        dispatch(signInFailure(error.message));
+        Toast.fail(`Failed signing in!`, 1500);
+      });
   };
 };
 
@@ -81,9 +87,13 @@ export const signUpStartAsync = (name, email, password) => {
       .then((user) => {
         if (user.id) {
           dispatch(signUpSuccess(user));
+          Toast.success(`Welcome to Cloud Cinema, ${user.name}!`, 1500);
         }
       })
-      .catch((error) => dispatch(signUpFailure(error.message)));
+      .catch((error) => {
+        dispatch(signUpFailure(error.message));
+        Toast.fail(`Failed Signing up!`, 1500);
+      });
   };
 };
 
@@ -142,8 +152,12 @@ export const postUserWatchedStartAsync = (
       .then((response) => response.json())
       .then((data) => {
         dispatch(postUserWatchedSuccess(data));
+        Toast.success('Added to watched history!', 1000);
       })
-      .catch((error) => dispatch(postUserWatchedFailure(error.message)));
+      .catch((error) => {
+        dispatch(postUserWatchedFailure(error.message));
+        Toast.fail('Failed adding to watched history!', 1000);
+      });
   };
 };
 
@@ -208,7 +222,11 @@ export const deleteUserWatchedStartAsync = (id) => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(deleteUserWatchedSuccess(data));
+        Toast.success('Deleted from watched history!', 1000);
       })
-      .catch((error) => dispatch(deleteUserWatchedFailure(error.message)));
+      .catch((error) => {
+        dispatch(deleteUserWatchedFailure(error.message));
+        Toast.fail('Failed deleting from watched history!', 1000);
+      });
   };
 };
