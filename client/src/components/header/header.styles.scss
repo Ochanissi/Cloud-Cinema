@@ -18,9 +18,29 @@
 
   position: relative;
 
+  // @media only screen and (max-width: $bp-medium) {
+  //   height: 50rem;
+  // }
+
+  // @media only screen and (max-width: $bp-medium) {
+  //   height: 55rem;
+  // }
+
   .slideHorizontal___1NzNV {
     width: 100vw;
     height: 100vh;
+
+    @media only screen and (max-width: $bp-medium) {
+      height: 60rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      height: 50rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      height: 45rem;
+    }
   }
 
   &__image-container {
@@ -76,6 +96,14 @@
 
     padding: 10rem;
 
+    @media only screen and (max-width: $bp-medium) {
+      padding: 5rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.75rem;
+    }
+
     &--type {
       text-transform: uppercase;
     }
@@ -84,6 +112,10 @@
       font-weight: 500;
 
       font-size: 3rem;
+
+      @media only screen and (max-width: $bp-small) {
+        font-size: 2.5rem;
+      }
     }
 
     &--subtitle {

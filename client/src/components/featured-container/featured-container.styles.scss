@@ -53,10 +53,6 @@
         color: inherit;
         font-size: inherit;
 
-        &:focus {
-          outline: 0;
-        }
-
         &:hover {
           color: $color-primary;
         }

@@ -9,6 +9,8 @@ class Navbar extends React.Component {
   constructor() {
     super();
 
+    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.state = {
       searchValue: '',
     };
@@ -16,6 +18,14 @@ class Navbar extends React.Component {
 
   handleSearch = (e) => {
     this.setState({ searchValue: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    console.log('dasdasdsa');
+
+    e.preventDefault();
+
+    this.setState({ searchValue: '' });
   };
 
   render() {
@@ -32,20 +42,24 @@ class Navbar extends React.Component {
           <div className='menu-button'></div>
         </label>
 
-        <form className='navbar__main'>
+        <form onSubmit={this.handleSubmit} className='navbar__main'>
           <input
             id='searchBar'
             className='navbar__main--searchbar'
             type='text'
             placeholder='Search...'
-            autocomplete='off'
+            autoComplete='off'
             onChange={this.handleSearch}
           />
           <Link
             to={`/search/${this.state.searchValue}`}
             className='navbar__main--btn-search'
           >
-            <button className='navbar__main--btn-search' type='submit'>
+            <button
+              className='navbar__main--btn-search'
+              type='submit'
+              value='Submit'
+            >
               <ion-icon name='search'></ion-icon>
             </button>
           </Link>

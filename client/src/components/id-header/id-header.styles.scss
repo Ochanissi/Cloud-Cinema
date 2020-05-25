@@ -6,6 +6,18 @@
 
   position: relative;
 
+  @media only screen and (max-width: $bp-medium) {
+    height: 60rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    height: 50rem;
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    height: 45rem;
+  }
+
   &__image-container {
     &::after {
       content: '';
@@ -52,6 +64,22 @@
 
     padding: 10rem;
 
+    @media only screen and (max-width: $bp-medium) {
+      padding: 5rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.75rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      padding: 5rem 2rem;
+    }
+
+    @media only screen and (max-width: $bp-phone) {
+      font-size: 1.5rem;
+    }
+
     &--col-1 {
       &--image {
         width: 15rem;
@@ -62,6 +90,11 @@
         border: 2px solid $color-grey-dark-3;
 
         margin-right: 3rem;
+
+        @media only screen and (max-width: $bp-phone) {
+          width: 12.5rem;
+          height: 17.5rem;
+        }
       }
     }
 
@@ -75,6 +108,14 @@
         font-weight: 500;
 
         font-size: 3rem;
+
+        @media only screen and (max-width: $bp-small) {
+          font-size: 2.5rem;
+        }
+
+        @media only screen and (max-width: $bp-phone) {
+          font-size: 2rem;
+        }
       }
 
       &--subtitle {

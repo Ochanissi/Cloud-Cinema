@@ -8,6 +8,10 @@
 
   max-width: 111rem;
 
+  @media only screen and (max-width: $bp-smallest) {
+    padding: 5rem 0;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -50,10 +54,6 @@
 
         color: inherit;
         font-size: inherit;
-
-        &:focus {
-          outline: 0;
-        }
 
         &:hover {
           color: $color-primary;
@@ -110,6 +110,24 @@
         border: 2px $color-grey-dark-5 solid;
 
         padding: 5rem;
+
+        // white-space: pre-wrap; /* CSS3 */
+        // white-space: -moz-pre-wrap; /* Firefox */
+        // white-space: -pre-wrap; /* Opera <7 */
+        // white-space: -o-pre-wrap; /* Opera 7 */
+        // word-wrap: break-word; /* IE */
+        // word-break: break-all;
+        // word-wrap: break-word;
+        // word-break: break-all;
+        word-break: break-word;
+
+        @media only screen and (max-width: $bp-small) {
+          padding: 3rem;
+        }
+
+        @media only screen and (max-width: $bp-smallest) {
+          padding: 2rem;
+        }
 
         &:not(:last-child) {
           margin-bottom: 5rem;

@@ -9,6 +9,12 @@
 
   padding: 10rem 0;
 
+  @media only screen and (max-width: $bp-small) {
+    padding: 5rem 0 7.5rem 0;
+
+    grid-column: full-start / full-end;
+  }
+
   &__btn {
     padding: 1rem 10rem;
     font-weight: 500;
@@ -25,8 +31,17 @@
     text-decoration: none;
     transition: all 0.25s linear;
 
-    &:focus {
-      outline: 0;
+    @media only screen and (max-width: $bp-medium) {
+      padding: 1rem 5rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      padding: 1rem 2.5rem;
+    }
+
+    @media only screen and (max-width: $bp-phone) {
+      padding: 1rem 2rem;
+      letter-spacing: 0.2rem;
     }
 
     &:hover {

@@ -25,10 +25,6 @@
     color: $color-white;
   }
 
-  &:focus {
-    outline: 0;
-  }
-
   &__inverted {
     background-color: transparent;
     color: $color-primary;

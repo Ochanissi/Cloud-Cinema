@@ -54,6 +54,14 @@
       font-size: 1.75rem;
       border-bottom: $color-white solid 2px;
       transition: 0.3s;
+
+      @media only screen and (max-width: $bp-small) {
+        width: 15rem;
+      }
+
+      @media only screen and (max-width: $bp-smallest) {
+        width: 12.5rem;
+      }
     }
 
     &--searchbar::placeholder {
@@ -67,6 +75,18 @@
       /* Stops the input box from inheriting the styling from the inputs on the request form */
       border-bottom: $color-white solid 2px;
       outline: none;
+
+      @media only screen and (max-width: $bp-small) {
+        width: 30rem;
+      }
+
+      @media only screen and (max-width: $bp-smallest) {
+        width: 20rem;
+      }
+
+      @media only screen and (max-width: $bp-phone) {
+        width: 17.5rem;
+      }
     }
 
     &--btn-search {
