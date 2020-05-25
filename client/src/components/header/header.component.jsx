@@ -28,7 +28,7 @@ class Header extends React.Component {
 
     let backgroundItem;
 
-    if (itemType === 'MOVIE') {
+    if (itemType === 'movie') {
       backgroundItem = moviesNowPlaying.slice(0, 3) || [];
 
       if (backgroundItem && moviesGenre) {
@@ -41,7 +41,7 @@ class Header extends React.Component {
       // console.log(backgroundItem);
     }
 
-    if (itemType === 'TV') {
+    if (itemType === 'tv') {
       backgroundItem = TVOnTheAir.slice(0, 3) || [];
 
       if (backgroundItem && TVGenre) {

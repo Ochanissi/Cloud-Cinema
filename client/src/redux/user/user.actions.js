@@ -222,11 +222,249 @@ export const deleteUserWatchedStartAsync = (id) => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(deleteUserWatchedSuccess(data));
-        Toast.success('Deleted from watched history!', 1000);
+        Toast.success('Removed from watched history!', 1000);
       })
       .catch((error) => {
         dispatch(deleteUserWatchedFailure(error.message));
-        Toast.fail('Failed deleting from watched history!', 1000);
+        Toast.fail('Failed removing from watched history!', 1000);
+      });
+  };
+};
+
+// Post User Collection
+export const postUserCollectionStart = () => ({
+  type: UserActionTypes.POST_USER_COLLECTION_START,
+});
+
+export const postUserCollectionSuccess = (collection) => ({
+  type: UserActionTypes.POST_USER_COLLECTION_SUCCESS,
+  payload: collection,
+});
+
+export const postUserCollectionFailure = (errorMessage) => ({
+  type: UserActionTypes.POST_USER_COLLECTION_FAILURE,
+  payload: errorMessage,
+});
+
+export const postUserCollectionStartAsync = (
+  id,
+  email,
+  type,
+  title,
+  url,
+  rating
+) => {
+  return (dispatch) => {
+    dispatch(postUserCollectionStart());
+    fetch('http://localhost:5000/collection', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id,
+        email,
+        type,
+        title,
+        url,
+        rating,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(postUserCollectionSuccess(data));
+        Toast.success('Added to collection!', 1000);
+      })
+      .catch((error) => {
+        dispatch(postUserCollectionFailure(error.message));
+        Toast.fail('Failed adding to collection!', 1000);
+      });
+  };
+};
+
+// Get User Collection
+export const getUserCollectionStart = () => ({
+  type: UserActionTypes.GET_USER_COLLECTION_START,
+});
+
+export const getUserCollectionSuccess = (collection) => ({
+  type: UserActionTypes.GET_USER_COLLECTION_SUCCESS,
+  payload: collection,
+});
+
+export const getUserCollectionFailure = (errorMessage) => ({
+  type: UserActionTypes.GET_USER_COLLECTION_FAILURE,
+  payload: errorMessage,
+});
+
+export const getUserCollectionStartAsync = (email) => {
+  return (dispatch) => {
+    dispatch(getUserCollectionStart());
+    fetch(`http://localhost:5000/get-collection/`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(getUserCollectionSuccess(data));
+      })
+      .catch((error) => dispatch(getUserCollectionFailure(error.message)));
+  };
+};
+
+// Delete User Collection
+export const deleteUserCollectionStart = () => ({
+  type: UserActionTypes.DELETE_USER_COLLECTION_START,
+});
+
+export const deleteUserCollectionSuccess = (collection) => ({
+  type: UserActionTypes.DELETE_USER_COLLECTION_SUCCESS,
+  payload: collection,
+});
+
+export const deleteUserCollectionFailure = (errorMessage) => ({
+  type: UserActionTypes.DELETE_USER_COLLECTION_FAILURE,
+  payload: errorMessage,
+});
+
+export const deleteUserCollectionStartAsync = (id) => {
+  return (dispatch) => {
+    dispatch(deleteUserCollectionStart());
+    fetch('http://localhost:5000/delete-collection/', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(deleteUserCollectionSuccess(data));
+        Toast.success('Removed from collection!', 1000);
+      })
+      .catch((error) => {
+        dispatch(deleteUserCollectionFailure(error.message));
+        Toast.fail('Failed removing from collection!', 1000);
+      });
+  };
+};
+
+// Post User Watchlist
+export const postUserWatchlistStart = () => ({
+  type: UserActionTypes.POST_USER_WATCHLIST_START,
+});
+
+export const postUserWatchlistSuccess = (watchlist) => ({
+  type: UserActionTypes.POST_USER_WATCHLIST_SUCCESS,
+  payload: watchlist,
+});
+
+export const postUserWatchlistFailure = (errorMessage) => ({
+  type: UserActionTypes.POST_USER_WATCHLIST_FAILURE,
+  payload: errorMessage,
+});
+
+export const postUserWatchlistStartAsync = (
+  id,
+  email,
+  type,
+  title,
+  url,
+  rating
+) => {
+  return (dispatch) => {
+    dispatch(postUserWatchlistStart());
+    fetch('http://localhost:5000/watchlist', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id,
+        email,
+        type,
+        title,
+        url,
+        rating,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(postUserWatchlistSuccess(data));
+        Toast.success('Added to watchlist!', 1000);
+      })
+      .catch((error) => {
+        dispatch(postUserWatchlistFailure(error.message));
+        Toast.fail('Failed adding to watchlist!', 1000);
+      });
+  };
+};
+
+// Get User Watchlist
+export const getUserWatchlistStart = () => ({
+  type: UserActionTypes.GET_USER_WATCHLIST_START,
+});
+
+export const getUserWatchlistSuccess = (watchlist) => ({
+  type: UserActionTypes.GET_USER_WATCHLIST_SUCCESS,
+  payload: watchlist,
+});
+
+export const getUserWatchlistFailure = (errorMessage) => ({
+  type: UserActionTypes.GET_USER_WATCHLIST_FAILURE,
+  payload: errorMessage,
+});
+
+export const getUserWatchlistStartAsync = (email) => {
+  return (dispatch) => {
+    dispatch(getUserWatchlistStart());
+    fetch(`http://localhost:5000/get-watchlist/`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(getUserWatchlistSuccess(data));
+      })
+      .catch((error) => dispatch(getUserWatchlistFailure(error.message)));
+  };
+};
+
+// Delete User Watchlist
+export const deleteUserWatchlistStart = () => ({
+  type: UserActionTypes.DELETE_USER_WATCHLIST_START,
+});
+
+export const deleteUserWatchlistSuccess = (watchlist) => ({
+  type: UserActionTypes.DELETE_USER_WATCHLIST_SUCCESS,
+  payload: watchlist,
+});
+
+export const deleteUserWatchlistFailure = (errorMessage) => ({
+  type: UserActionTypes.DELETE_USER_WATCHLIST_FAILURE,
+  payload: errorMessage,
+});
+
+export const deleteUserWatchlistStartAsync = (id) => {
+  return (dispatch) => {
+    dispatch(deleteUserWatchlistStart());
+    fetch('http://localhost:5000/delete-watchlist/', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(deleteUserWatchlistSuccess(data));
+        Toast.success('Removed from watchlist!', 1000);
+      })
+      .catch((error) => {
+        dispatch(deleteUserWatchlistFailure(error.message));
+        Toast.fail('Failed removing from watchlist!', 1000);
       });
   };
 };

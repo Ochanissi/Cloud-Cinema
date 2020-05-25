@@ -9,6 +9,10 @@ import creditLogo from '../../assets/default-credit.png';
 import {
   postUserWatchedStartAsync,
   deleteUserWatchedStartAsync,
+  postUserCollectionStartAsync,
+  deleteUserCollectionStartAsync,
+  postUserWatchlistStartAsync,
+  deleteUserWatchlistStartAsync,
 } from '../../redux/user/user.actions';
 
 import './featured-item.styles.scss';
@@ -67,6 +71,124 @@ class FeaturedItem extends React.Component {
     }
   };
 
+  handleCollection = (event) => {
+    event.preventDefault();
+
+    const { currentUser } = this.props;
+
+    if (currentUser) {
+      const {
+        postUserCollectionStartAsync,
+        deleteUserCollectionStartAsync,
+
+        collection,
+
+        id,
+        currentUser: { email },
+        itemType,
+        itemTypeDisc,
+        title,
+        name,
+        poster_path,
+        backdrop_path,
+        vote_average,
+      } = this.props;
+
+      const type = itemTypeDisc || itemType;
+      const itemTitle = title || name;
+      const url = poster_path || backdrop_path;
+
+      // console.log(watchedHistory);
+
+      const collectionDuplicate =
+        collection.find((item) => item.id === id.toString()) || {};
+
+      // console.log({ id, email, type, itemTitle, url, vote_average });
+
+      // deleteUserCollectionStartAsync(id);
+
+      // console.log(collectionDuplicate.id);
+
+      collectionDuplicate.id
+        ? deleteUserCollectionStartAsync(id)
+        : postUserCollectionStartAsync(
+            id,
+            email,
+            type,
+            itemTitle,
+            url,
+            vote_average
+          );
+    } else {
+      Toast.fail('Please sign in to add to collection!', 1000);
+    }
+  };
+
+  handleWatchlist = (event) => {
+    event.preventDefault();
+
+    const { currentUser } = this.props;
+
+    if (currentUser) {
+      const {
+        postUserWatchlistStartAsync,
+        deleteUserWatchlistStartAsync,
+
+        watchlist,
+
+        id,
+        currentUser: { email },
+        itemType,
+        itemTypeDisc,
+        title,
+        name,
+        poster_path,
+        backdrop_path,
+        vote_average,
+      } = this.props;
+
+      const type = itemTypeDisc || itemType;
+      const itemTitle = title || name;
+      const url = poster_path || backdrop_path;
+
+      // console.log(watchedHistory);
+
+      const watchlistDuplicate =
+        watchlist.find((item) => item.id === id.toString()) || {};
+
+      // console.log({ id, email, type, itemTitle, url, vote_average });
+
+      // deleteUserWatchlistStartAsync(id);
+
+      // console.log(watchlistDuplicate.id);
+
+      watchlistDuplicate.id
+        ? deleteUserWatchlistStartAsync(id)
+        : postUserWatchlistStartAsync(
+            id,
+            email,
+            type,
+            itemTitle,
+            url,
+            vote_average
+          );
+    } else {
+      Toast.fail('Please sign in to add to watchlist!', 1000);
+    }
+  };
+
+  handleRate = (event) => {
+    event.preventDefault();
+
+    const { currentUser } = this.props;
+
+    if (currentUser) {
+      Toast.success('Thank you for the rating!', 1000);
+    } else {
+      Toast.fail('Please sign in to rate!', 1000);
+    }
+  };
+
   render() {
     const {
       vote_average,
@@ -116,7 +238,10 @@ class FeaturedItem extends React.Component {
           </div>
 
           <div className='featured-item--content--collection'>
-            <button className='featured-item--content--collection--button'>
+            <button
+              onClick={this.handleCollection}
+              className='featured-item--content--collection--button'
+            >
               <ion-icon name='file-tray-full'></ion-icon>
             </button>
 
@@ -125,7 +250,10 @@ class FeaturedItem extends React.Component {
             </span>
           </div>
           <div className='featured-item--content--watchlist'>
-            <button className='featured-item--content--watchlist--button'>
+            <button
+              onClick={this.handleWatchlist}
+              className='featured-item--content--watchlist--button'
+            >
               <ion-icon name='time'></ion-icon>
             </button>
 
@@ -139,7 +267,10 @@ class FeaturedItem extends React.Component {
               {vote_average ? `${vote_average * 10}%` : 'N/A'}
             </span>
             <div className='featured-item--content--rate'>
-              <button className='featured-item--content--rate--button'>
+              <button
+                onClick={this.handleRate}
+                className='featured-item--content--rate--button'
+              >
                 <ion-icon name='heart'></ion-icon>
               </button>
               <span className='featured-item--content--rate--text'>
@@ -159,15 +290,57 @@ const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
 
   watchedHistory: state.user.watchedHistory,
+
+  collection: state.user.collection,
+
+  watchlist: state.user.watchlist,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  // User Watched
   postUserWatchedStartAsync: (id, email, type, itemTitle, url, vote_average) =>
     dispatch(
       postUserWatchedStartAsync(id, email, type, itemTitle, url, vote_average)
     ),
   deleteUserWatchedStartAsync: (id) =>
     dispatch(deleteUserWatchedStartAsync(id)),
+
+  // User Collection
+  postUserCollectionStartAsync: (
+    id,
+    email,
+    type,
+    itemTitle,
+    url,
+    vote_average
+  ) =>
+    dispatch(
+      postUserCollectionStartAsync(
+        id,
+        email,
+        type,
+        itemTitle,
+        url,
+        vote_average
+      )
+    ),
+  deleteUserCollectionStartAsync: (id) =>
+    dispatch(deleteUserCollectionStartAsync(id)),
+
+  // User Watchlist
+  postUserWatchlistStartAsync: (
+    id,
+    email,
+    type,
+    itemTitle,
+    url,
+    vote_average
+  ) =>
+    dispatch(
+      postUserWatchlistStartAsync(id, email, type, itemTitle, url, vote_average)
+    ),
+  deleteUserWatchlistStartAsync: (id) =>
+    dispatch(deleteUserWatchlistStartAsync(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeaturedItem);

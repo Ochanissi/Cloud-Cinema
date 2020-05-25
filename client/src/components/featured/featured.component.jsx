@@ -22,8 +22,8 @@ import './featured.styles.scss';
 class Featured extends React.Component {
   componentDidMount() {
     const { itemType } = this.props;
-    if (itemType === 'MOVIE') this.handleMovieFetch();
-    if (itemType === 'TV') this.handleTVFetch();
+    if (itemType === 'movie') this.handleMovieFetch();
+    if (itemType === 'tv') this.handleTVFetch();
   }
 
   handleMovieFetch = () => {
@@ -70,7 +70,7 @@ class Featured extends React.Component {
     } = this.props;
 
     let featuredContent;
-    if (itemType === 'MOVIE') {
+    if (itemType === 'movie') {
       featuredContent = (
         <div>
           <FeaturedContainer title='Upcoming' contentType={moviesUpcoming} />
@@ -84,7 +84,7 @@ class Featured extends React.Component {
       );
     }
 
-    if (itemType === 'TV') {
+    if (itemType === 'tv') {
       featuredContent = (
         <div>
           <FeaturedContainer title='Airing Today' contentType={TVAiringToday} />
