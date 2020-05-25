@@ -19,10 +19,22 @@
 
   z-index: 2;
 
+  @media only screen and (max-width: $bp-small) {
+    padding: 5rem 0 3rem 0;
+
+    grid-gap: 3rem;
+  }
+
   &__col-1 {
     grid-column: center-start / col-end 4;
     grid-row: 1 / 2;
     position: relative;
+
+    @media only screen and (max-width: $bp-smallest) {
+      grid-column: center-start / center-end;
+
+      justify-self: center;
+    }
 
     &--title {
       font-weight: 500;
@@ -41,11 +53,20 @@
         position: absolute;
         bottom: 12rem;
         left: 0;
+
+        @media only screen and (max-width: $bp-small) {
+          bottom: 14rem;
+        }
       }
     }
 
     &--subtitle {
       margin-bottom: 3rem;
+
+      @media only screen and (max-width: $bp-small) {
+        display: flex;
+        justify-content: space-around;
+      }
 
       * {
         color: $color-white;
@@ -58,16 +79,27 @@
 
         &:not(:last-child) {
           margin-right: 6rem;
+
+          @media only screen and (max-width: $bp-small) {
+            margin-right: 0rem;
+          }
         }
       }
     }
 
     &--copyright {
+      @media only screen and (max-width: $bp-small) {
+        text-align: center;
+      }
+
       &--name {
         color: $color-primary;
       }
 
       &--rights {
+        @media only screen and (max-width: $bp-small) {
+          display: block;
+        }
       }
 
       &--link:link,
@@ -89,6 +121,13 @@
 
     justify-self: flex-end;
 
+    @media only screen and (max-width: $bp-smallest) {
+      grid-column: center-start / center-end;
+      grid-row: 2 / 3;
+
+      justify-self: center;
+    }
+
     &--logo {
       width: 15rem;
       transition: all 0.25s linear;
@@ -107,6 +146,12 @@
 
     display: flex;
     justify-content: center;
+
+    @media only screen and (max-width: $bp-smallest) {
+      grid-row: 3 / 4;
+
+      margin-top: 0;
+    }
 
     .btn__contact {
       color: $color-white;

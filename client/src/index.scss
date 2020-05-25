@@ -33,12 +33,12 @@ $font-primary: 'Maven Pro', sans-serif;
 $font-display: 'Maven Pro', sans-serif;
 
 // RESPONSIVE BREAKPOINTS
-// $bp-largest: 75em; // 1200px
-// $bp-large: 62.5em; // 1000px
-// $bp-medium: 50em; // 800px
-// $bp-small: 37.5em; // 600px
-// $bp-smallest: 31.25em; // 500px
-// $bp-phone: 25em; // 400px
+$bp-largest: 75em; // 1200px
+$bp-large: 62.5em; // 1000px
+$bp-medium: 50em; // 800px
+$bp-small: 37.5em; // 600px
+$bp-smallest: 31.25em; // 500px
+$bp-phone: 25em; // 400px
 
 *,
 *::before,
@@ -46,6 +46,10 @@ $font-display: 'Maven Pro', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+}
+
+*:focus {
+  outline: none;
 }
 
 *::selection {
@@ -58,9 +62,9 @@ html {
 
   overflow-x: hidden;
 
-  // @media only screen and (max-width: $bp-largest) {
-  //   font-size: 50%;
-  // }
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 50%;
+  }
 
   // @media only screen and (max-width: $bp-phone) {
   //   font-size: 40%;

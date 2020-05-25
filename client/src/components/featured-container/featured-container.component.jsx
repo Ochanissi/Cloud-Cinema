@@ -2,6 +2,8 @@ import React from 'react';
 
 import FeaturedItem from '../featured-item/featured-item.component';
 
+import { useMediaQuery } from 'react-responsive';
+
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import {
   CarouselProvider,
@@ -14,12 +16,38 @@ import {
 import './featured-container.styles.scss';
 
 const FeaturedContainer = ({ title, contentType }) => {
+  const mediaBig = useMediaQuery({ maxDeviceWidth: 1110 });
+  const mediaLarge = useMediaQuery({ maxDeviceWidth: 950 });
+  const mediaMedium = useMediaQuery({ maxDeviceWidth: 800 });
+  const mediaSmall = useMediaQuery({ maxDeviceWidth: 650 });
+  const mediaPhone = useMediaQuery({ maxDeviceWidth: 500 });
+
+  let slides = mediaPhone
+    ? 2
+    : mediaMedium
+    ? 3
+    : mediaLarge
+    ? 4
+    : mediaBig
+    ? 5
+    : 6;
+
+  let height = mediaSmall
+    ? 210
+    : mediaMedium
+    ? 150
+    : mediaLarge
+    ? 160
+    : mediaBig
+    ? 170
+    : 210;
+
   return (
     <CarouselProvider
       naturalSlideWidth={146}
-      naturalSlideHeight={210}
+      naturalSlideHeight={height}
       totalSlides={contentType.length}
-      visibleSlides={6}
+      visibleSlides={slides}
       className='featured__container'
     >
       <div className='featured__container--header'>

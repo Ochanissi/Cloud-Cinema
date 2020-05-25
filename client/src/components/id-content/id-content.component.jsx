@@ -9,6 +9,8 @@ import {
   ButtonNext,
 } from 'pure-react-carousel';
 
+import { useMediaQuery } from 'react-responsive';
+
 import IDItem from '../id-item/id-item.component';
 import FeaturedItem from '../../components/featured-item/featured-item.component';
 
@@ -71,7 +73,43 @@ const IDContent = ({
     itemReviews = [];
   }
 
-  console.log(itemCredits);
+  // console.log(itemCredits);
+
+  const mediaBig = useMediaQuery({ maxDeviceWidth: 1110 });
+  const mediaLarge = useMediaQuery({ maxDeviceWidth: 950 });
+  const mediaMedium = useMediaQuery({ maxDeviceWidth: 800 });
+  const mediaSmall = useMediaQuery({ maxDeviceWidth: 650 });
+  const mediaPhone = useMediaQuery({ maxDeviceWidth: 500 });
+
+  let slides = mediaPhone
+    ? 2
+    : mediaMedium
+    ? 3
+    : mediaLarge
+    ? 4
+    : mediaBig
+    ? 5
+    : 6;
+
+  let height = mediaSmall
+    ? 210
+    : mediaMedium
+    ? 150
+    : mediaLarge
+    ? 160
+    : mediaBig
+    ? 170
+    : 210;
+
+  let slidesTrailers = mediaSmall ? 1 : mediaLarge ? 2 : 3;
+
+  let heigthTrailers = mediaPhone
+    ? 45
+    : mediaSmall
+    ? 30
+    : mediaMedium
+    ? 45
+    : 37;
 
   return (
     <div className='id-content'>
@@ -89,9 +127,9 @@ const IDContent = ({
       {itemCredits.length > 0 ? (
         <CarouselProvider
           naturalSlideWidth={146}
-          naturalSlideHeight={231}
+          naturalSlideHeight={height}
           totalSlides={itemCredits.length}
-          visibleSlides={6}
+          visibleSlides={slides}
           className='id-content__cast'
         >
           <div className='id-content__header'>
@@ -134,9 +172,9 @@ const IDContent = ({
       {itemCreditsTV.length > 0 ? (
         <CarouselProvider
           naturalSlideWidth={146}
-          naturalSlideHeight={231}
+          naturalSlideHeight={height}
           totalSlides={itemCreditsTV.length}
-          visibleSlides={6}
+          visibleSlides={slides}
           className='id-content__cast'
         >
           <div className='id-content__header'>
@@ -165,9 +203,9 @@ const IDContent = ({
       {itemTrailers.length > 0 ? (
         <CarouselProvider
           naturalSlideWidth={66}
-          naturalSlideHeight={37}
+          naturalSlideHeight={heigthTrailers}
           totalSlides={itemTrailers.length}
-          visibleSlides={3}
+          visibleSlides={slidesTrailers}
           className='id-content__trailers'
         >
           <div className='id-content__header'>
