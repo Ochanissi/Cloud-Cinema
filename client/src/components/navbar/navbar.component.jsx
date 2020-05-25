@@ -32,21 +32,24 @@ class Navbar extends React.Component {
           <div className='menu-button'></div>
         </label>
 
-        <div className='navbar__main'>
+        <form className='navbar__main'>
           <input
             id='searchBar'
             className='navbar__main--searchbar'
             type='text'
             placeholder='Search...'
+            autocomplete='off'
             onChange={this.handleSearch}
           />
           <Link
             to={`/search/${this.state.searchValue}`}
             className='navbar__main--btn-search'
           >
-            <ion-icon name='search'></ion-icon>
+            <button className='navbar__main--btn-search' type='submit'>
+              <ion-icon name='search'></ion-icon>
+            </button>
           </Link>
-        </div>
+        </form>
 
         <ul className='navbar__secondary'>
           <li>
