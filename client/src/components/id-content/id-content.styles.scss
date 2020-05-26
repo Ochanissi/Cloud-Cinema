@@ -12,6 +12,12 @@
     padding: 5rem 0;
   }
 
+  @media only screen and (max-width: $bp-small) {
+    padding: 5rem 3rem 0 3rem;
+
+    grid-column: full-start / full-end;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;

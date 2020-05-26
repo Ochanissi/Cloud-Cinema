@@ -10,6 +10,8 @@ import {
   ButtonNext,
 } from 'pure-react-carousel';
 
+import { useMediaQuery } from 'react-responsive';
+
 import FeaturedItem from '../../components/featured-item/featured-item.component';
 
 import './discover-trends-item.styles.scss';
@@ -21,6 +23,11 @@ const DiscoverTrendsItem = ({
   itemContent,
   popular,
 }) => {
+  const mediaSmall = useMediaQuery({ maxDeviceWidth: 600 });
+  const mediaPhone = useMediaQuery({ maxDeviceWidth: 500 });
+
+  // let descriptionLength = mediaSmall ? 50 : mediaSmall ? 75 : 100;
+
   return (
     <CarouselProvider
       naturalSlideWidth={146}
@@ -39,7 +46,11 @@ const DiscoverTrendsItem = ({
                 item.backdrop_path || item.poster_path
               }`}
             />
-            <div className='discover__trends--item--content'>
+            <div
+              className={`discover__trends--item--content ${
+                popular ? 'discover__trends--item--popular' : null
+              }`}
+            >
               <FeaturedItem
                 id={item.id}
                 itemTypeDisc={itemType}
@@ -53,7 +64,11 @@ const DiscoverTrendsItem = ({
                     {item.name || item.original_name}
                   </span>
                   <span className='discover__trends--item--content--description--text'>
-                    {item.overview}
+                    {mediaSmall && item.overview.split(' ').length > 30
+                      ? item.overview.split(' ').slice(0, 20).join(' ') + '.'
+                      : mediaPhone && item.overview.split(' ').length > 20
+                      ? item.overview.split(' ').slice(0, 20).join(' ') + '.'
+                      : item.overview}
                   </span>
                 </div>
               ) : null}
