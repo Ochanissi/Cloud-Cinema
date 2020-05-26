@@ -203,7 +203,7 @@ class FeaturedItem extends React.Component {
       url,
     } = this.props;
 
-    console.log(this.props);
+    // console.log(this.props);
 
     return (
       <div className='featured-item'>

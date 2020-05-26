@@ -66,6 +66,7 @@ class SignUp extends React.Component {
               required
               label='Display Name'
               placeholder='John Doe'
+              maxLength='50'
             />
             <FormInput
               name='email'
@@ -85,6 +86,7 @@ class SignUp extends React.Component {
               required
               label='Password'
               placeholder='••••••••'
+              minLength='8'
             />
 
             <FormInput
@@ -95,6 +97,7 @@ class SignUp extends React.Component {
               required
               label='Confirm Password'
               placeholder='••••••••'
+              minLength='8'
             />
 
             <div className='sign-up__content--form--btns'>
