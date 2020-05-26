@@ -36,6 +36,10 @@
       justify-self: center;
     }
 
+    @media only screen and (max-width: $bp-phone) {
+      grid-column: full-start / full-end;
+    }
+
     &--title {
       font-weight: 500;
       font-size: 3rem;
@@ -43,6 +47,10 @@
       letter-spacing: 0.25rem;
 
       margin-bottom: 3rem;
+
+      // @media only screen and (max-width: $bp-phone) {
+      //   font-size: 2.5rem;
+      // }
 
       &::after {
         display: block;
@@ -57,6 +65,10 @@
         @media only screen and (max-width: $bp-small) {
           bottom: 14rem;
         }
+
+        // @media only screen and (max-width: $bp-phone) {
+        //   width: 21rem;
+        // }
       }
     }
 

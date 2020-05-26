@@ -5,4 +5,14 @@
   grid-column: center-start / center-end;
 
   padding-bottom: 10rem;
+
+  @media only screen and (max-width: $bp-small) {
+    padding-bottom: 5rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 0rem 3rem;
+
+    grid-column: full-start / full-end;
+  }
 }
