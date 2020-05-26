@@ -17,9 +17,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 
+    @media only screen and (max-width: $bp-large) {
+      grid-template-columns: auto;
+    }
+
     margin-top: 5.5rem;
 
-    height: 55rem;
+    // height: 55rem;
   }
 
   &__featured {
@@ -29,12 +33,22 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, min-content);
+
+    @media only screen and (max-width: $bp-large) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, min-content);
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, min-content);
+    }
   }
 
   &__popular {
     grid-row: 3 / 4;
     grid-column: full-start / full-end;
 
-    height: 110rem;
+    // height: 110rem;
   }
 }

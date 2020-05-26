@@ -4,7 +4,7 @@
   &--container {
     position: relative;
 
-    max-height: 100%;
+    height: 100%;
     overflow: hidden;
 
     // height: 55rem;
@@ -69,6 +69,20 @@
       left: 2rem;
 
       text-transform: uppercase;
+
+      @media only screen and (max-width: $bp-smallest) {
+        top: 1.5rem;
+        left: 1.5rem;
+
+        font-size: 1.75rem;
+      }
+
+      @media only screen and (max-width: $bp-phone) {
+        top: 1rem;
+        left: 1rem;
+
+        font-size: 1.5rem;
+      }
     }
 
     &--more {
@@ -77,6 +91,20 @@
       right: 2rem;
 
       text-transform: uppercase;
+
+      @media only screen and (max-width: $bp-smallest) {
+        top: 1.5rem;
+        right: 1.5rem;
+
+        font-size: 1.75rem;
+      }
+
+      @media only screen and (max-width: $bp-phone) {
+        top: 1rem;
+        right: 1rem;
+
+        font-size: 1.5rem;
+      }
 
       a {
         text-decoration: none;
@@ -106,6 +134,21 @@
       display: flex;
       align-items: center;
 
+      @media only screen and (max-width: $bp-smallest) {
+        top: 20%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+
+        transform: scale(0.9);
+      }
+
+      @media only screen and (max-width: $bp-phone) {
+        top: 10%;
+        left: 32.5%;
+
+        transform: scale(0.7);
+      }
+
       &--description {
         margin-left: 5rem;
 
@@ -115,9 +158,54 @@
 
         max-width: 50rem;
 
+        @media only screen and (max-width: $bp-small) {
+          margin-left: 2rem;
+          // min-width: 30rem;
+        }
+
         &--title {
           font-size: 4rem;
+          font-weight: 500;
+
+          @media only screen and (max-width: $bp-small) {
+            font-size: 2.5rem;
+          }
         }
+
+        &--text {
+          @media only screen and (max-width: $bp-smallest) {
+            font-size: 1.75rem;
+          }
+        }
+      }
+    }
+
+    &--popular {
+      @media only screen and (max-width: $bp-medium) {
+        margin-left: 2rem;
+        width: 60rem;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        margin-left: 2rem;
+        width: 45rem;
+      }
+
+      @media only screen and (max-width: $bp-smallest) {
+        left: 5%;
+        transform: translate(-50%, -50%);
+
+        transform: scale(0.9);
+
+        width: 40rem;
+      }
+
+      @media only screen and (max-width: $bp-phone) {
+        width: 40rem;
+
+        left: -2.5%;
+
+        transform: scale(0.7);
       }
     }
   }
