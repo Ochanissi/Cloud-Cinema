@@ -12,6 +12,10 @@
 
   margin-top: 20rem;
 
+  @media only screen and (max-width: $bp-small) {
+    margin-top: 10rem;
+  }
+
   &__header {
     grid-row: 1 / 2;
     grid-column: center-start / center-end;
@@ -29,6 +33,16 @@
     font-size: 3.5rem;
 
     position: relative;
+
+    @media only screen and (max-width: $bp-smallest) {
+      grid-column: full-start / full-end;
+
+      padding: 0 3rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      font-size: 3rem;
+    }
 
     &::after {
       display: block;
@@ -52,6 +66,37 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
 
+    justify-content: center;
+
     grid-gap: 5rem;
+
+    @media only screen and (max-width: $bp-small) {
+      margin-top: 5rem;
+    }
+
+    .featured-item,
+    .id-item {
+      margin: 0 auto;
+    }
+
+    @media only screen and (max-width: $bp-largest) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      // grid-template-columns: repeat(2, 1fr);
+
+      grid-column: full-start / full-end;
+
+      padding: 0 3rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
