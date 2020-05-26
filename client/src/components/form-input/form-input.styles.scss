@@ -46,4 +46,39 @@
     font-weight: 700;
     margin-bottom: 0.75rem;
   }
+
+  &__photo {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 5rem;
+
+    &--image {
+      width: 6rem;
+
+      // border-radius: 50%;
+      border: 1px solid $color-white;
+    }
+
+    &--text {
+      display: none;
+    }
+  }
+}
+
+#form-input__photo--btn {
+  color: $color-primary;
+
+  background-color: transparent;
+
+  margin-left: 3rem;
+
+  &:hover {
+    background-color: $color-primary;
+
+    border: 2px solid $color-primary-darker;
+    color: $color-white;
+
+    margin-left: 3rem;
+  }
 }

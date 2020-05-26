@@ -80,8 +80,8 @@
         width: 8rem;
         height: 8rem;
 
-        border-radius: 50%;
-        // border: 2px solid $color-white;
+        // border-radius: 50%;
+        border: 1px solid $color-white;
       }
 
       &--content {
@@ -149,10 +149,50 @@
     grid-row: 3 / 4;
     grid-column: center-start / center-end;
 
-    @media only screen and (max-width: $bp-small) {
+    width: 65rem;
+
+    margin: 0 auto;
+
+    margin-bottom: 10rem;
+
+    label {
+      color: $color-white;
+    }
+
+    input {
+      border: 2px solid $color-grey-dark-1;
+    }
+
+    textarea {
+      border: 2px solid $color-grey-dark-1;
+
+      resize: none;
+
+      color: $color-grey-dark-4;
+
+      margin-bottom: 2.5rem;
+    }
+
+    button {
+      margin: 0 auto;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
       padding: 0rem 3rem;
 
       grid-column: full-start / full-end;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      width: 50rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      width: 45rem;
+    }
+
+    @media only screen and (max-width: $bp-phone) {
+      width: 40rem;
     }
   }
 }
