@@ -4,6 +4,21 @@
   display: flex;
   align-items: center;
 
+  @media only screen and (max-width: $bp-medium) {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+  }
+
   ion-icon {
     font-size: 4rem;
   }

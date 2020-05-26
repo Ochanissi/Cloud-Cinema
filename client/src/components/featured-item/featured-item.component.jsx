@@ -198,13 +198,18 @@ class FeaturedItem extends React.Component {
       itemType,
       itemTypeDisc,
       discover,
+      rating,
+      type,
+      url,
     } = this.props;
+
+    console.log(this.props);
 
     return (
       <div className='featured-item'>
         <Link
           to={`/details/${
-            itemTypeDisc ? itemTypeDisc.toLowerCase() : itemType.toLowerCase()
+            type || itemTypeDisc || itemTypeDisc || itemType
           }/${itemId}`}
           className='featured-item--image-container'
         >
@@ -214,9 +219,9 @@ class FeaturedItem extends React.Component {
             }`}
             alt='Featured Item'
             src={
-              poster_path || backdrop_path
+              url || poster_path || backdrop_path
                 ? `https://image.tmdb.org/t/p/w200${
-                    poster_path || backdrop_path
+                    url || poster_path || backdrop_path
                   }`
                 : creditLogo
             }
@@ -264,7 +269,11 @@ class FeaturedItem extends React.Component {
 
           <div className='featured-item--content--like'>
             <span className='featured-item--content--rating'>
-              {vote_average ? `${vote_average * 10}%` : 'N/A'}
+              {vote_average
+                ? `${vote_average * 10}%`
+                : rating
+                ? `${rating * 10}%`
+                : 'N/A'}
             </span>
             <div className='featured-item--content--rate'>
               <button

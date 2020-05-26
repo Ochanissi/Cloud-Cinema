@@ -10,6 +10,8 @@ import CustomButton from '../../components/custom-button/custom-button.component
 
 import { signOutSuccess } from '../../redux/user/user.actions';
 
+import FeaturedContainer from '../../components/featured-container/featured-container.component';
+
 import './profile.styles.scss';
 
 class Profile extends React.Component {
@@ -30,6 +32,9 @@ class Profile extends React.Component {
 
     const {
       currentUser: { name, joined },
+      collection,
+      watchedHistory,
+      watchlist,
     } = this.props;
 
     return (
@@ -74,15 +79,22 @@ class Profile extends React.Component {
         </div>
 
         <div className='profile__stats'>
-          <StatsItem icon='tv' />
-          <StatsItem icon='videocam' />
-          <StatsItem icon='file-tray-full-outline' />
+          <StatsItem icon='tv' stats={collection.length} />
+          <StatsItem icon='videocam' stats={watchedHistory.length} />
+          <StatsItem icon='file-tray-full-outline' stats={watchlist.length} />
         </div>
 
         {profileContent === 'profile' ? (
-          <div className='profile__content'>lel</div>
+          <div className='profile__content'>
+            <FeaturedContainer title='Collection' contentType={collection} />
+            <FeaturedContainer
+              title='Watched History'
+              contentType={watchedHistory}
+            />
+            <FeaturedContainer title='Watchlist' contentType={watchlist} />
+          </div>
         ) : profileContent === 'settings' ? (
-          <div className='profile__settings'>settings</div>
+          <div className='profile__settings'>Settings</div>
         ) : null}
       </div>
     );
@@ -91,6 +103,9 @@ class Profile extends React.Component {
 
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
+  collection: state.user.collection,
+  watchedHistory: state.user.watchedHistory,
+  watchlist: state.user.watchlist,
 });
 
 const mapDispatchToProps = (dispatch) => ({
