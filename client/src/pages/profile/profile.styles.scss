@@ -43,6 +43,17 @@
 
       min-height: 10rem;
 
+      @media only screen and (max-width: $bp-small) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @media only screen and (max-width: $bp-smallest) {
+        grid-column: full-start / full-end;
+        padding: 0 3rem;
+      }
+
       &--col-1 {
         display: flex;
       }
@@ -51,6 +62,18 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        @media only screen and (max-width: $bp-small) {
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+
+          margin-top: 5rem;
+
+          a {
+            margin-right: 3rem;
+          }
+        }
       }
 
       &--image {
@@ -69,8 +92,14 @@
 
         font-weight: 500;
 
+        max-width: 111rem;
+
         &--name {
           font-size: 3rem;
+
+          @media only screen and (max-width: $bp-smallest) {
+            font-size: 2.5rem;
+          }
         }
 
         &--date {
@@ -89,19 +118,41 @@
     grid-row: 2 / 3;
     grid-column: center-start / center-end;
 
-    margin: 3rem 0;
+    margin: 3rem 0 10rem 0;
 
     display: flex;
     justify-content: space-between;
+
+    @media only screen and (max-width: $bp-medium) {
+      grid-column: full-start / full-end;
+      padding: 0 3rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__content {
     grid-row: 3 / 4;
     grid-column: center-start / center-end;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0rem 3rem;
+
+      grid-column: full-start / full-end;
+    }
   }
 
   &__settings {
     grid-row: 3 / 4;
     grid-column: center-start / center-end;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0rem 3rem;
+
+      grid-column: full-start / full-end;
+    }
   }
 }
