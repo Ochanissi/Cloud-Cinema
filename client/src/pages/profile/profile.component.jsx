@@ -8,7 +8,10 @@ import StatsItem from '../../components/stats-item/stats-item.component';
 
 import CustomButton from '../../components/custom-button/custom-button.component';
 
-import { signOutSuccess } from '../../redux/user/user.actions';
+import {
+  signOutSuccess,
+  updateUserDataStartAsync,
+} from '../../redux/user/user.actions';
 
 import FeaturedContainer from '../../components/featured-container/featured-container.component';
 
@@ -17,14 +20,19 @@ import FormInput from '../../components/form-input/form-input.component';
 import './profile.styles.scss';
 
 class Profile extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    const { currentUser } = this.props;
 
     this.state = {
-      // name: '',
-      // email: '',
-      // password: '',
-      // confirmPassword: '',
+      name: currentUser.name,
+      email: currentUser.email,
+      age: currentUser.age,
+      occupation: currentUser.occupation,
+      country: currentUser.country,
+      about: currentUser.about,
+      photo: currentUser.photo,
     };
   }
 
@@ -41,30 +49,40 @@ class Profile extends React.Component {
   };
 
   handleSubmit = async (event) => {
-    // event.preventDefault();
-    // const { name, email, password, confirmPassword } = this.state;
-    // const { signUpStartAsync } = this.props;
-    // if (password !== confirmPassword) {
-    //   alert("Passwords don't match");
-    //   return;
-    // }
-    // signUpStartAsync(name, email, password);
+    event.preventDefault();
+    const { name, email, age, occupation, country, about, photo } = this.state;
+
+    const { updateUserDataStartAsync } = this.props;
+
+    updateUserDataStartAsync(
+      name,
+      email,
+      age,
+      occupation,
+      country,
+      about,
+      photo
+    );
   };
 
   handleChange = (event) => {
-    // const { name, value } = event.target;
-    // this.setState({ [name]: value });
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+
+    // console.log({ [name]: value });
   };
 
   render() {
     const profileContent = this.props.match.path.split('/').slice(-1)[0];
 
     const {
-      currentUser: { name, joined },
+      currentUser: { name: username, joined },
       collection,
       watchedHistory,
       watchlist,
     } = this.props;
+
+    const { name, email, age, occupation, country, about, photo } = this.state;
 
     return (
       <div className='profile'>
@@ -80,7 +98,7 @@ class Profile extends React.Component {
               />
               <div className='profile__header--details--content'>
                 <span className='profile__header--details--content--name'>
-                  Hello, {name}!
+                  Hello, {username}!
                 </span>
                 <span className='profile__header--details--content--date'>
                   <span className='profile__header--details--content--date--since'>
@@ -133,7 +151,7 @@ class Profile extends React.Component {
               <FormInput
                 name='name'
                 type='text'
-                value=''
+                value={name || ''}
                 handleChange={this.handleChange}
                 required
                 label='Your name'
@@ -143,18 +161,29 @@ class Profile extends React.Component {
               <FormInput
                 name='email'
                 type='email'
-                value=''
+                value={email || ''}
                 handleChange={this.handleChange}
                 required
                 label='Email Address'
                 placeholder='example@google.com'
+                disabled
               />
+              <FormInput
+                name='age'
+                type='number'
+                value={age || ''}
+                handleChange={this.handleChange}
+                label='Age'
+                placeholder='How old are you.'
+                min='12'
+                max='110'
+              />
+
               <FormInput
                 name='occupation'
                 type='text'
-                value=''
+                value={occupation || ''}
                 handleChange={this.handleChange}
-                required
                 label='Occupation'
                 placeholder='What do you do for a living.'
                 maxLength='50'
@@ -162,9 +191,8 @@ class Profile extends React.Component {
               <FormInput
                 name='country'
                 type='text'
-                value=''
+                value={country || ''}
                 handleChange={this.handleChange}
-                required
                 label='Country'
                 placeholder='Which country you are from.'
                 maxLength='50'
@@ -177,10 +205,10 @@ class Profile extends React.Component {
                   name='about'
                   type='text'
                   onChange={this.handleChange}
-                  required
                   placeholder='Tell us about yourself.'
                   maxLength='200'
                   rows='3'
+                  value={about || ''}
                 ></textarea>
               </div>
 
@@ -231,6 +259,26 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   signOutSuccess: () => dispatch(signOutSuccess()),
+  updateUserDataStartAsync: (
+    name,
+    email,
+    age,
+    occupation,
+    country,
+    about,
+    photo
+  ) =>
+    dispatch(
+      updateUserDataStartAsync(
+        name,
+        email,
+        age,
+        occupation,
+        country,
+        about,
+        photo
+      )
+    ),
 });
 
 export default withRouter(
