@@ -168,6 +168,18 @@ const userReducer = (state = INITIAL_STATE, action) => {
         errorMessage: action.payload,
       };
 
+    case UserActionTypes.UPDATE_USER_DATA_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
+
+    case UserActionTypes.UPDATE_USER_DATA_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+
     default:
       return state;
   }

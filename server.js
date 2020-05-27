@@ -31,6 +31,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
+app.options('*', cors());
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+  next();
+});
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirdisplayName, 'client/build')));
@@ -48,8 +59,14 @@ app.post('/sign-up', (req, res) => {
   signUp.handleSignUp(req, res, db, bcrypt);
 });
 
+// User Profile
+
 app.get('/profile/:id', (req, res) => {
-  profile.handleProfile(req, res, db);
+  profile.handleGetProfile(req, res, db);
+});
+
+app.patch('/profile', (req, res) => {
+  profile.handlePatchProfile(req, res, db);
 });
 
 // User Watched

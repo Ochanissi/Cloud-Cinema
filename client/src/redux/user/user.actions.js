@@ -34,7 +34,7 @@ export const signInStartAsync = (email, password) => {
     dispatch(signInStart());
 
     fetch('http://localhost:5000/sign-in', {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email,
@@ -75,7 +75,7 @@ export const signUpStartAsync = (name, email, password) => {
     dispatch(signUpStart());
 
     fetch('http://localhost:5000/sign-up', {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name,
@@ -138,7 +138,7 @@ export const postUserWatchedStartAsync = (
   return (dispatch) => {
     dispatch(postUserWatchedStart());
     fetch('http://localhost:5000/watched', {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
@@ -180,7 +180,7 @@ export const getUserWatchedStartAsync = (email) => {
   return (dispatch) => {
     dispatch(getUserWatchedStart());
     fetch(`http://localhost:5000/get-watched/`, {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email,
@@ -213,7 +213,7 @@ export const deleteUserWatchedStartAsync = (id) => {
   return (dispatch) => {
     dispatch(deleteUserWatchedStart());
     fetch('http://localhost:5000/delete-watched/', {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
@@ -257,7 +257,7 @@ export const postUserCollectionStartAsync = (
   return (dispatch) => {
     dispatch(postUserCollectionStart());
     fetch('http://localhost:5000/collection', {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
@@ -299,7 +299,7 @@ export const getUserCollectionStartAsync = (email) => {
   return (dispatch) => {
     dispatch(getUserCollectionStart());
     fetch(`http://localhost:5000/get-collection/`, {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email,
@@ -332,7 +332,7 @@ export const deleteUserCollectionStartAsync = (id) => {
   return (dispatch) => {
     dispatch(deleteUserCollectionStart());
     fetch('http://localhost:5000/delete-collection/', {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
@@ -376,7 +376,7 @@ export const postUserWatchlistStartAsync = (
   return (dispatch) => {
     dispatch(postUserWatchlistStart());
     fetch('http://localhost:5000/watchlist', {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
@@ -418,7 +418,7 @@ export const getUserWatchlistStartAsync = (email) => {
   return (dispatch) => {
     dispatch(getUserWatchlistStart());
     fetch(`http://localhost:5000/get-watchlist/`, {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email,
@@ -451,7 +451,7 @@ export const deleteUserWatchlistStartAsync = (id) => {
   return (dispatch) => {
     dispatch(deleteUserWatchlistStart());
     fetch('http://localhost:5000/delete-watchlist/', {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
@@ -465,6 +465,57 @@ export const deleteUserWatchlistStartAsync = (id) => {
       .catch((error) => {
         dispatch(deleteUserWatchlistFailure(error.message));
         Toast.fail('Failed removing from watchlist!', 1000);
+      });
+  };
+};
+
+// Update User Data
+export const updateUserDataStart = () => ({
+  type: UserActionTypes.UPDATE_USER_DATA_START,
+});
+
+export const updateUserDataSuccess = (currentUser) => ({
+  type: UserActionTypes.UPDATE_USER_DATA_SUCCESS,
+  payload: currentUser,
+});
+
+export const updateUserDataFailure = (errorMessage) => ({
+  type: UserActionTypes.UPDATE_USER_DATA_FAILURE,
+  payload: errorMessage,
+});
+
+export const updateUserDataStartAsync = (
+  name,
+  email,
+  age,
+  occupation,
+  country,
+  about,
+  photo
+) => {
+  return (dispatch) => {
+    dispatch(updateUserDataStart());
+    fetch('http://localhost:5000/profile', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name,
+        email,
+        age,
+        occupation,
+        country,
+        about,
+        photo,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(updateUserDataSuccess(data));
+        Toast.success('Data successfully updated!', 1000);
+      })
+      .catch((error) => {
+        dispatch(updateUserDataFailure(error.message));
+        Toast.fail('Failed updating data!', 1000);
       });
   };
 };
