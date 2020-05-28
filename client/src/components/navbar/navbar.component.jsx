@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import mainLogo from '../../assets/logo.png';
+import defaultLogo from '../../assets/default.png';
 
 import './navbar.styles.scss';
 
@@ -30,6 +32,8 @@ class Navbar extends React.Component {
 
   render() {
     // console.log(this.state.searchValue);
+
+    const { currentUser } = this.props;
 
     return (
       <nav className='navbar'>
@@ -78,7 +82,15 @@ class Navbar extends React.Component {
           </li>
           <li>
             <Link to='/profile' label='Profile'>
-              <ion-icon name='person-circle'></ion-icon>
+              {currentUser ? (
+                <img
+                  src={defaultLogo}
+                  alt='User Profile'
+                  className='navbar__secondary--logo'
+                />
+              ) : (
+                <ion-icon name='person-circle'></ion-icon>
+              )}
             </Link>
           </li>
         </ul>
@@ -87,4 +99,8 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Navbar);

@@ -69,4 +69,10 @@
       list-style: none;
     }
   }
+
+  &--placeholder {
+    &--span {
+      color: $color-primary;
+    }
+  }
 }

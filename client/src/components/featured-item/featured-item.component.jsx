@@ -39,13 +39,19 @@ class FeaturedItem extends React.Component {
         poster_path,
         backdrop_path,
         vote_average,
+        url,
+        type,
+        rating,
       } = this.props;
 
-      const type = itemTypeDisc || itemType;
+      const itemCategory = type || itemTypeDisc || itemTypeDisc || itemType;
       const itemTitle = title || name;
-      const url = poster_path || backdrop_path;
+      const itemUrl = url || poster_path || backdrop_path;
+      const itemRating = rating || vote_average;
 
       // console.log(watchedHistory);
+
+      // console.log(this.prop);
 
       const watchedDuplicate =
         watchedHistory.find((item) => item.id === id.toString()) || {};
@@ -57,14 +63,14 @@ class FeaturedItem extends React.Component {
       // console.log(watchedDuplicate.id);
 
       watchedDuplicate.id
-        ? deleteUserWatchedStartAsync(id)
+        ? deleteUserWatchedStartAsync(id, email)
         : postUserWatchedStartAsync(
             id,
             email,
-            type,
+            itemCategory,
             itemTitle,
-            url,
-            vote_average
+            itemUrl,
+            itemRating
           );
     } else {
       Toast.fail('Please sign in to add to watched history!', 1000);
@@ -92,11 +98,15 @@ class FeaturedItem extends React.Component {
         poster_path,
         backdrop_path,
         vote_average,
+        url,
+        type,
+        rating,
       } = this.props;
 
-      const type = itemTypeDisc || itemType;
+      const itemCategory = type || itemTypeDisc || itemTypeDisc || itemType;
       const itemTitle = title || name;
-      const url = poster_path || backdrop_path;
+      const itemUrl = url || poster_path || backdrop_path;
+      const itemRating = rating || vote_average;
 
       // console.log(watchedHistory);
 
@@ -110,14 +120,14 @@ class FeaturedItem extends React.Component {
       // console.log(collectionDuplicate.id);
 
       collectionDuplicate.id
-        ? deleteUserCollectionStartAsync(id)
+        ? deleteUserCollectionStartAsync(id, email)
         : postUserCollectionStartAsync(
             id,
             email,
-            type,
+            itemCategory,
             itemTitle,
-            url,
-            vote_average
+            itemUrl,
+            itemRating
           );
     } else {
       Toast.fail('Please sign in to add to collection!', 1000);
@@ -145,13 +155,15 @@ class FeaturedItem extends React.Component {
         poster_path,
         backdrop_path,
         vote_average,
+        url,
+        type,
+        rating,
       } = this.props;
 
-      const type = itemTypeDisc || itemType;
+      const itemCategory = type || itemTypeDisc || itemTypeDisc || itemType;
       const itemTitle = title || name;
-      const url = poster_path || backdrop_path;
-
-      // console.log(watchedHistory);
+      const itemUrl = url || poster_path || backdrop_path;
+      const itemRating = rating || vote_average;
 
       const watchlistDuplicate =
         watchlist.find((item) => item.id === id.toString()) || {};
@@ -163,14 +175,14 @@ class FeaturedItem extends React.Component {
       // console.log(watchlistDuplicate.id);
 
       watchlistDuplicate.id
-        ? deleteUserWatchlistStartAsync(id)
+        ? deleteUserWatchlistStartAsync(id, email)
         : postUserWatchlistStartAsync(
             id,
             email,
-            type,
+            itemCategory,
             itemTitle,
-            url,
-            vote_average
+            itemUrl,
+            itemRating
           );
     } else {
       Toast.fail('Please sign in to add to watchlist!', 1000);
@@ -307,49 +319,22 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   // User Watched
-  postUserWatchedStartAsync: (id, email, type, itemTitle, url, vote_average) =>
-    dispatch(
-      postUserWatchedStartAsync(id, email, type, itemTitle, url, vote_average)
-    ),
-  deleteUserWatchedStartAsync: (id) =>
-    dispatch(deleteUserWatchedStartAsync(id)),
+  postUserWatchedStartAsync: (id, email, type, title, url, rating) =>
+    dispatch(postUserWatchedStartAsync(id, email, type, title, url, rating)),
+  deleteUserWatchedStartAsync: (id, email) =>
+    dispatch(deleteUserWatchedStartAsync(id, email)),
 
   // User Collection
-  postUserCollectionStartAsync: (
-    id,
-    email,
-    type,
-    itemTitle,
-    url,
-    vote_average
-  ) =>
-    dispatch(
-      postUserCollectionStartAsync(
-        id,
-        email,
-        type,
-        itemTitle,
-        url,
-        vote_average
-      )
-    ),
-  deleteUserCollectionStartAsync: (id) =>
-    dispatch(deleteUserCollectionStartAsync(id)),
+  postUserCollectionStartAsync: (id, email, type, title, url, rating) =>
+    dispatch(postUserCollectionStartAsync(id, email, type, title, url, rating)),
+  deleteUserCollectionStartAsync: (id, email) =>
+    dispatch(deleteUserCollectionStartAsync(id, email)),
 
   // User Watchlist
-  postUserWatchlistStartAsync: (
-    id,
-    email,
-    type,
-    itemTitle,
-    url,
-    vote_average
-  ) =>
-    dispatch(
-      postUserWatchlistStartAsync(id, email, type, itemTitle, url, vote_average)
-    ),
-  deleteUserWatchlistStartAsync: (id) =>
-    dispatch(deleteUserWatchlistStartAsync(id)),
+  postUserWatchlistStartAsync: (id, email, type, title, url, rating) =>
+    dispatch(postUserWatchlistStartAsync(id, email, type, title, url, rating)),
+  deleteUserWatchlistStartAsync: (id, email) =>
+    dispatch(deleteUserWatchlistStartAsync(id, email)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeaturedItem);

@@ -42,7 +42,9 @@ const FeaturedContainer = ({ title, contentType }) => {
     ? 170
     : 210;
 
-  return (
+  // console.log(contentType);
+
+  return contentType.length ? (
     <CarouselProvider
       naturalSlideWidth={146}
       naturalSlideHeight={height}
@@ -73,6 +75,19 @@ const FeaturedContainer = ({ title, contentType }) => {
         ))}
       </Slider>
     </CarouselProvider>
+  ) : (
+    <div className='featured__container'>
+      <div className='featured__container--header'>
+        <h2 className='featured__container--header--title'>{title}</h2>
+      </div>
+      <div className='featured__container--placeholder'>
+        There are no{' '}
+        <span className='featured__container--placeholder--span'>
+          {title.toLowerCase()}
+        </span>{' '}
+        items to be found!
+      </div>
+    </div>
   );
 };
 

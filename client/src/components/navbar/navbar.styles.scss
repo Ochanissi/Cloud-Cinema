@@ -143,7 +143,7 @@
       margin-top: 0.5rem;
       padding: 0.2rem;
 
-      transition: all 0.5s ease-in-out;
+      transition: all 0.5s linear;
 
       &:hover {
         background-color: $color-secondary;
@@ -170,6 +170,17 @@
       //   0% 80%,
       //   0% 20%
       // );
+    }
+
+    &--logo {
+      width: 3rem;
+
+      border: 1px solid $color-white;
+      transition: all 0.5s linear;
+
+      &:hover {
+        border: 1px solid $color-primary;
+      }
     }
   }
 
