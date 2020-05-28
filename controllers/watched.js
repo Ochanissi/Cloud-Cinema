@@ -3,7 +3,7 @@ const handlePostWatched = (req, res, db) => {
 
   // console.log(req.body);
 
-  if (!id || !email || !type || !url) {
+  if (!id || !email || !type || !url || !rating) {
     return res.status(400).json('Incorrect request!');
   }
 
@@ -29,7 +29,7 @@ const handlePostWatched = (req, res, db) => {
       })
       .then(trx.commit)
       .catch(trx.rollback);
-  }).catch((err) => res.status(400).json('Unable to submit data!'));
+  }).catch((err) => res.status(400).json('Unable to submit watched history!'));
 };
 
 const handleGetWatched = (req, res, db) => {
@@ -47,15 +47,15 @@ const handleGetWatched = (req, res, db) => {
 
       // console.log(data);
     })
-    .catch((err) => res.status(400).json('Unable to get watched!'));
+    .catch((err) => res.status(400).json('Unable to get watched history!'));
 };
 
 const handleDeleteWatched = (req, res, db) => {
-  const { id } = req.body;
+  const { id, email } = req.body;
 
-  // console.log(id);
+  // console.log(req.body);
 
-  if (!id) {
+  if (!id || !email) {
     return res.status(400).json('Incorrect request!');
   }
 
@@ -66,15 +66,16 @@ const handleDeleteWatched = (req, res, db) => {
       .returning('*')
       .then((data) => {
         return trx('watched')
-          .where('id', '!=', id)
+          .where('email', '=', email)
           .returning('*')
           .then((data) => {
+            // console.log(data);
             res.json(data);
           });
       })
       .then(trx.commit)
       .catch(trx.rollback);
-  }).catch((err) => res.status(400).json('Unable to submit data!'));
+  }).catch((err) => res.status(400).json('Unable to delete watched history!'));
 };
 
 module.exports = {

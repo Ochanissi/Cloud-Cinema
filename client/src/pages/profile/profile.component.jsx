@@ -17,6 +17,8 @@ import FeaturedContainer from '../../components/featured-container/featured-cont
 
 import FormInput from '../../components/form-input/form-input.component';
 
+import defaultLogo from '../../assets/default.png';
+
 import './profile.styles.scss';
 
 class Profile extends React.Component {
@@ -50,19 +52,11 @@ class Profile extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { name, email, age, occupation, country, about, photo } = this.state;
+    const { name, email, age, occupation, country, about } = this.state;
 
     const { updateUserDataStartAsync } = this.props;
 
-    updateUserDataStartAsync(
-      name,
-      email,
-      age,
-      occupation,
-      country,
-      about,
-      photo
-    );
+    updateUserDataStartAsync(name, email, age, occupation, country, about);
   };
 
   handleChange = (event) => {
@@ -82,7 +76,7 @@ class Profile extends React.Component {
       watchlist,
     } = this.props;
 
-    const { name, email, age, occupation, country, about, photo } = this.state;
+    const { name, email, age, occupation, country, about } = this.state;
 
     return (
       <div className='profile'>
@@ -92,9 +86,7 @@ class Profile extends React.Component {
               <img
                 className='profile__header--details--image'
                 alt='Profile User'
-                src={
-                  'https://cdn4.iconfinder.com/data/icons/user-people-2/48/6-512.png'
-                }
+                src={defaultLogo}
               />
               <div className='profile__header--details--content'>
                 <span className='profile__header--details--content--name'>
@@ -216,9 +208,7 @@ class Profile extends React.Component {
               <div className='form-input__photo'>
                 <img
                   className='form-input__photo--image'
-                  src={
-                    'https://cdn4.iconfinder.com/data/icons/user-people-2/48/6-512.png'
-                  }
+                  src={defaultLogo}
                   alt='Current User'
                 />
 
@@ -229,6 +219,7 @@ class Profile extends React.Component {
                   name='photo'
                   accept='image/*'
                   placeholder='••••••••'
+                  disabled
                 />
                 <label
                   htmlFor='files'

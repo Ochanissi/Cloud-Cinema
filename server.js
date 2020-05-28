@@ -3,6 +3,8 @@ const cors = require('cors');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const knex = require('knex');
+const multer = require('multer');
+const sharp = require('sharp');
 
 const signUp = require('./controllers/sign-up');
 const signIn = require('./controllers/sign-in');
@@ -33,16 +35,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.options('*', cors());
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-  next();
-});
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirdisplayName, 'client/build')));
 
@@ -50,6 +42,8 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirdisplayName, 'client/build', 'index.html'));
   });
 }
+
+// app.use(express.static('./public'));
 
 app.post('/sign-in', (req, res) => {
   signIn.handleSignIn(req, res, db, bcrypt);

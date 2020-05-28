@@ -46,6 +46,9 @@ export const signInStartAsync = (email, password) => {
         if (user.id) {
           dispatch(signInSuccess(user));
           Toast.success(`Welcome back ${user.name}!`, 1500);
+        } else {
+          dispatch(signInFailure(user));
+          Toast.fail(user, 1500);
         }
       })
       .catch((error) => {
@@ -88,6 +91,9 @@ export const signUpStartAsync = (name, email, password) => {
         if (user.id) {
           dispatch(signUpSuccess(user));
           Toast.success(`Welcome to Cloud Cinema, ${user.name}!`, 1500);
+        } else {
+          dispatch(signUpFailure(user));
+          Toast.fail(user, 1500);
         }
       })
       .catch((error) => {
@@ -151,8 +157,13 @@ export const postUserWatchedStartAsync = (
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(postUserWatchedSuccess(data));
-        Toast.success('Added to watched history!', 1000);
+        if (typeof data === 'string') {
+          dispatch(postUserWatchedFailure(data));
+          Toast.fail('Failed adding to watched history!', 1000);
+        } else {
+          dispatch(postUserWatchedSuccess(data));
+          Toast.success('Added to watched history!', 1000);
+        }
       })
       .catch((error) => {
         dispatch(postUserWatchedFailure(error.message));
@@ -209,7 +220,7 @@ export const deleteUserWatchedFailure = (errorMessage) => ({
   payload: errorMessage,
 });
 
-export const deleteUserWatchedStartAsync = (id) => {
+export const deleteUserWatchedStartAsync = (id, email) => {
   return (dispatch) => {
     dispatch(deleteUserWatchedStart());
     fetch('http://localhost:5000/delete-watched/', {
@@ -217,12 +228,18 @@ export const deleteUserWatchedStartAsync = (id) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
+        email,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(deleteUserWatchedSuccess(data));
-        Toast.success('Removed from watched history!', 1000);
+        if (typeof data === 'string') {
+          dispatch(deleteUserWatchedFailure(data));
+          Toast.fail('Failed removing from watched history!', 1000);
+        } else {
+          dispatch(deleteUserWatchedSuccess(data));
+          Toast.success('Removed from watched history!', 1000);
+        }
       })
       .catch((error) => {
         dispatch(deleteUserWatchedFailure(error.message));
@@ -270,8 +287,13 @@ export const postUserCollectionStartAsync = (
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(postUserCollectionSuccess(data));
-        Toast.success('Added to collection!', 1000);
+        if (typeof data === 'string') {
+          dispatch(postUserCollectionFailure(data));
+          Toast.fail('Failed adding to collection!', 1000);
+        } else {
+          dispatch(postUserCollectionSuccess(data));
+          Toast.success('Added to collection!', 1000);
+        }
       })
       .catch((error) => {
         dispatch(postUserCollectionFailure(error.message));
@@ -328,7 +350,7 @@ export const deleteUserCollectionFailure = (errorMessage) => ({
   payload: errorMessage,
 });
 
-export const deleteUserCollectionStartAsync = (id) => {
+export const deleteUserCollectionStartAsync = (id, email) => {
   return (dispatch) => {
     dispatch(deleteUserCollectionStart());
     fetch('http://localhost:5000/delete-collection/', {
@@ -336,12 +358,18 @@ export const deleteUserCollectionStartAsync = (id) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
+        email,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(deleteUserCollectionSuccess(data));
-        Toast.success('Removed from collection!', 1000);
+        if (typeof data === 'string') {
+          dispatch(deleteUserCollectionFailure(data));
+          Toast.fail('Failed removing from collection!', 1000);
+        } else {
+          dispatch(deleteUserCollectionSuccess(data));
+          Toast.success('Removed from collection!', 1000);
+        }
       })
       .catch((error) => {
         dispatch(deleteUserCollectionFailure(error.message));
@@ -389,8 +417,13 @@ export const postUserWatchlistStartAsync = (
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(postUserWatchlistSuccess(data));
-        Toast.success('Added to watchlist!', 1000);
+        if (typeof data === 'string') {
+          dispatch(postUserWatchlistFailure(data));
+          Toast.fail('Failed adding to watchlist!', 1000);
+        } else {
+          dispatch(postUserWatchlistSuccess(data));
+          Toast.success('Added to watchlist!', 1000);
+        }
       })
       .catch((error) => {
         dispatch(postUserWatchlistFailure(error.message));
@@ -447,7 +480,7 @@ export const deleteUserWatchlistFailure = (errorMessage) => ({
   payload: errorMessage,
 });
 
-export const deleteUserWatchlistStartAsync = (id) => {
+export const deleteUserWatchlistStartAsync = (id, email) => {
   return (dispatch) => {
     dispatch(deleteUserWatchlistStart());
     fetch('http://localhost:5000/delete-watchlist/', {
@@ -455,12 +488,18 @@ export const deleteUserWatchlistStartAsync = (id) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
+        email,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(deleteUserWatchlistSuccess(data));
-        Toast.success('Removed from watchlist!', 1000);
+        if (typeof data === 'string') {
+          dispatch(deleteUserWatchlistFailure(data));
+          Toast.fail('Failed removing from watchlist!', 1000);
+        } else {
+          dispatch(deleteUserWatchlistSuccess(data));
+          Toast.success('Removed from watchlist!', 1000);
+        }
       })
       .catch((error) => {
         dispatch(deleteUserWatchlistFailure(error.message));
@@ -490,8 +529,7 @@ export const updateUserDataStartAsync = (
   age,
   occupation,
   country,
-  about,
-  photo
+  about
 ) => {
   return (dispatch) => {
     dispatch(updateUserDataStart());
@@ -505,13 +543,17 @@ export const updateUserDataStartAsync = (
         occupation,
         country,
         about,
-        photo,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(updateUserDataSuccess(data));
-        Toast.success('Data successfully updated!', 1000);
+        if (typeof data === 'string') {
+          dispatch(updateUserDataFailure(data));
+          Toast.fail('Failed updating data!', 1000);
+        } else {
+          dispatch(updateUserDataSuccess(data));
+          Toast.success('Data successfully updated!', 1000);
+        }
       })
       .catch((error) => {
         dispatch(updateUserDataFailure(error.message));

@@ -3,7 +3,7 @@ const handlePostWatchlist = (req, res, db) => {
 
   // console.log(req.body);
 
-  if (!id || !email || !type || !url) {
+  if (!id || !email || !type || !url || !rating) {
     return res.status(400).json('Incorrect request!');
   }
 
@@ -29,7 +29,7 @@ const handlePostWatchlist = (req, res, db) => {
       })
       .then(trx.commit)
       .catch(trx.rollback);
-  }).catch((err) => res.status(400).json('Unable to submit data!'));
+  }).catch((err) => res.status(400).json(err));
 };
 
 const handleGetWatchlist = (req, res, db) => {
@@ -51,11 +51,11 @@ const handleGetWatchlist = (req, res, db) => {
 };
 
 const handleDeleteWatchlist = (req, res, db) => {
-  const { id } = req.body;
+  const { id, email } = req.body;
 
   // console.log(id);
 
-  if (!id) {
+  if (!id || !email) {
     return res.status(400).json('Incorrect request!');
   }
 
@@ -66,7 +66,7 @@ const handleDeleteWatchlist = (req, res, db) => {
       .returning('*')
       .then((data) => {
         return trx('watchlist')
-          .where('id', '!=', id)
+          .where('email', '=', email)
           .returning('*')
           .then((data) => {
             res.json(data);
@@ -74,7 +74,7 @@ const handleDeleteWatchlist = (req, res, db) => {
       })
       .then(trx.commit)
       .catch(trx.rollback);
-  }).catch((err) => res.status(400).json('Unable to submit data!'));
+  }).catch((err) => res.status(400).json('Unable to delete watchlist!'));
 };
 
 module.exports = {
