@@ -49,18 +49,10 @@ class FeaturedItem extends React.Component {
       const itemUrl = url || poster_path || backdrop_path;
       const itemRating = rating || vote_average;
 
-      // console.log(watchedHistory);
-
-      // console.log(this.prop);
-
       const watchedDuplicate =
         watchedHistory.find((item) => item.id === id.toString()) || {};
 
       // console.log({ id, email, type, itemTitle, url, vote_average });
-
-      // deleteUserWatchedStartAsync(id);
-
-      // console.log(watchedDuplicate.id);
 
       watchedDuplicate.id
         ? deleteUserWatchedStartAsync(id, email)
@@ -108,16 +100,10 @@ class FeaturedItem extends React.Component {
       const itemUrl = url || poster_path || backdrop_path;
       const itemRating = rating || vote_average;
 
-      // console.log(watchedHistory);
-
       const collectionDuplicate =
         collection.find((item) => item.id === id.toString()) || {};
 
       // console.log({ id, email, type, itemTitle, url, vote_average });
-
-      // deleteUserCollectionStartAsync(id);
-
-      // console.log(collectionDuplicate.id);
 
       collectionDuplicate.id
         ? deleteUserCollectionStartAsync(id, email)
@@ -169,10 +155,6 @@ class FeaturedItem extends React.Component {
         watchlist.find((item) => item.id === id.toString()) || {};
 
       // console.log({ id, email, type, itemTitle, url, vote_average });
-
-      // deleteUserWatchlistStartAsync(id);
-
-      // console.log(watchlistDuplicate.id);
 
       watchlistDuplicate.id
         ? deleteUserWatchlistStartAsync(id, email)
