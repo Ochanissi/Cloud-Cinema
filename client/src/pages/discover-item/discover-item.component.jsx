@@ -156,29 +156,43 @@ class DiscoverItem extends React.Component {
         <div className='discover-item__header'>
           {itemName.replace(/-/g, ' ')}
         </div>
-        <div className='discover-item__content'>
-          {itemContent.map((item) => {
-            if (itemType)
-              return (
-                <FeaturedItem key={item.id} {...item} itemTypeDisc={itemType} />
-              );
+        {itemContent.length ? (
+          <div className='discover-item__content'>
+            {itemContent.map((item) => {
+              if (itemType)
+                return (
+                  <FeaturedItem
+                    key={item.id}
+                    {...item}
+                    itemTypeDisc={itemType}
+                  />
+                );
 
-            if (item.media_type === 'movie')
-              return (
-                <FeaturedItem key={item.id} {...item} itemTypeDisc={'movie'} />
-              );
+              if (item.media_type === 'movie')
+                return (
+                  <FeaturedItem
+                    key={item.id}
+                    {...item}
+                    itemTypeDisc={'movie'}
+                  />
+                );
 
-            if (item.media_type === 'tv')
-              return (
-                <FeaturedItem key={item.id} {...item} itemTypeDisc={'tv'} />
-              );
+              if (item.media_type === 'tv')
+                return (
+                  <FeaturedItem key={item.id} {...item} itemTypeDisc={'tv'} />
+                );
 
-            if (item.media_type === 'person')
-              return <IDItem key={item.id} item={item} itemType={'people'} />;
+              if (item.media_type === 'person')
+                return <IDItem key={item.id} item={item} itemType={'people'} />;
 
-            return null;
-          })}
-        </div>
+              return null;
+            })}
+          </div>
+        ) : (
+          <div className='discover-item__placeholder'>
+            There are no items found!
+          </div>
+        )}
       </div>
     );
   }
