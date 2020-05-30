@@ -99,4 +99,25 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
+
+  &__placeholder {
+    margin: 10rem 0 20rem 0;
+
+    grid-row: 2 / 3;
+    grid-column: center-start / center-end;
+
+    // text-align: center;
+
+    font-size: 2rem;
+
+    // color: $color-primary;
+
+    // justify-content: center;
+    justify-self: center;
+
+    padding: 1.5rem;
+
+    background-color: $color-grey-dark-5;
+    border: 2px solid $color-grey-dark-6;
+  }
 }

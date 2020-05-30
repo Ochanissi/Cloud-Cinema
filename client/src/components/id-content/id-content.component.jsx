@@ -238,11 +238,13 @@ const IDContent = ({
         </CarouselProvider>
       ) : null}
 
-      {itemReviews.length > 0 ? (
-        <div className='id-content__reviews'>
-          <div className='id-content__header'>
-            <h2 className='id-content__header--title'>Reviews</h2>
-          </div>
+      <div className='id-content__reviews'>
+        <div className='id-content__header'>
+          <h2 className='id-content__header--title'>
+            {itemType === 'people' ? 'Comments' : 'Reviews'}
+          </h2>
+        </div>
+        {itemReviews.length > 0 ? (
           <div className='id-content__reviews--content'>
             {itemReviews.map(({ author, content, id, url }) => (
               <div className='id-content__reviews--content--review' key={id}>
@@ -265,8 +267,21 @@ const IDContent = ({
               </div>
             ))}
           </div>
-        </div>
-      ) : null}
+        ) : (
+          <div className='id-content__reviews--content'>
+            <div className='id-content__reviews--content--review'>
+              There are no {itemType === 'people' ? 'comments' : 'reviews'} for
+              this{' '}
+              {itemType === 'tv'
+                ? 'TV show'
+                : itemType === 'people'
+                ? 'person'
+                : 'movie'}
+              .
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
