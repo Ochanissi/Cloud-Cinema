@@ -1,6 +1,6 @@
 import { MovieActionTypes } from './movie.types';
 
-require('dotenv').config();
+require('dotenv').config({ path: '../../.env' });
 
 // Movies Upcoming
 export const fetchMoviesUpcomingStart = () => ({

@@ -2,6 +2,10 @@ import { UserActionTypes } from './user.types';
 
 import Toast from 'light-toast';
 
+require('dotenv').config({ path: '../../.env' });
+
+console.log(process.env.REACT_APP_BACKEND_URL);
+
 // Set Item Type
 export const setItemType = (itemType) => ({
   type: UserActionTypes.SET_ITEM_TYPE,
@@ -33,7 +37,7 @@ export const signInStartAsync = (email, password) => {
   return (dispatch) => {
     dispatch(signInStart());
 
-    fetch('http://localhost:5000/sign-in', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}sign-in`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -77,7 +81,7 @@ export const signUpStartAsync = (name, email, password) => {
   return (dispatch) => {
     dispatch(signUpStart());
 
-    fetch('http://localhost:5000/sign-up', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}sign-up`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -143,7 +147,7 @@ export const postUserWatchedStartAsync = (
 ) => {
   return (dispatch) => {
     dispatch(postUserWatchedStart());
-    fetch('http://localhost:5000/watched', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}watched`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -190,7 +194,7 @@ export const getUserWatchedFailure = (errorMessage) => ({
 export const getUserWatchedStartAsync = (email) => {
   return (dispatch) => {
     dispatch(getUserWatchedStart());
-    fetch(`http://localhost:5000/get-watched/`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}get-watched/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -223,7 +227,7 @@ export const deleteUserWatchedFailure = (errorMessage) => ({
 export const deleteUserWatchedStartAsync = (id, email) => {
   return (dispatch) => {
     dispatch(deleteUserWatchedStart());
-    fetch('http://localhost:5000/delete-watched/', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}delete-watched/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -273,7 +277,7 @@ export const postUserCollectionStartAsync = (
 ) => {
   return (dispatch) => {
     dispatch(postUserCollectionStart());
-    fetch('http://localhost:5000/collection', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}collection`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -320,7 +324,7 @@ export const getUserCollectionFailure = (errorMessage) => ({
 export const getUserCollectionStartAsync = (email) => {
   return (dispatch) => {
     dispatch(getUserCollectionStart());
-    fetch(`http://localhost:5000/get-collection/`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}get-collection/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -353,7 +357,7 @@ export const deleteUserCollectionFailure = (errorMessage) => ({
 export const deleteUserCollectionStartAsync = (id, email) => {
   return (dispatch) => {
     dispatch(deleteUserCollectionStart());
-    fetch('http://localhost:5000/delete-collection/', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}delete-collection/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -403,7 +407,7 @@ export const postUserWatchlistStartAsync = (
 ) => {
   return (dispatch) => {
     dispatch(postUserWatchlistStart());
-    fetch('http://localhost:5000/watchlist', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}watchlist`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -450,7 +454,7 @@ export const getUserWatchlistFailure = (errorMessage) => ({
 export const getUserWatchlistStartAsync = (email) => {
   return (dispatch) => {
     dispatch(getUserWatchlistStart());
-    fetch(`http://localhost:5000/get-watchlist/`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}get-watchlist/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -483,7 +487,7 @@ export const deleteUserWatchlistFailure = (errorMessage) => ({
 export const deleteUserWatchlistStartAsync = (id, email) => {
   return (dispatch) => {
     dispatch(deleteUserWatchlistStart());
-    fetch('http://localhost:5000/delete-watchlist/', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}delete-watchlist/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -533,7 +537,7 @@ export const updateUserDataStartAsync = (
 ) => {
   return (dispatch) => {
     dispatch(updateUserDataStart());
-    fetch('http://localhost:5000/profile', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}profile`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

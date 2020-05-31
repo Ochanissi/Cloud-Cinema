@@ -1,4 +1,4 @@
-@import '../../index.scss';
+@import '../../variables.scss';
 
 .navbar {
   grid-row: 1 / 2;
@@ -39,6 +39,10 @@
     color: $color-white;
     display: flex;
     justify-content: center;
+
+    @media only screen and (max-width: $bp-phone) {
+      margin-right: 7rem;
+    }
 
     &--searchbar {
       float: right;
@@ -94,8 +98,8 @@
       color: $color-white;
       text-decoration: none !important;
       font-size: 2.25rem;
-      margin-top: 0.8rem;
-      margin-right: 4rem;
+      margin-top: 1.5rem;
+      // margin-right: 4rem;
       background-color: transparent;
       border: none;
     }
