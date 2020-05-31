@@ -70,6 +70,13 @@
         color: $color-button-1;
       }
 
+      &--bool {
+        ion-icon {
+          // color: lighten($color-button-1, 20%);
+          filter: brightness(200%);
+        }
+      }
+
       &--button {
         &:hover ~ .featured-item--content--history--text {
           // display: initial;
@@ -100,6 +107,13 @@
         color: $color-button-2;
       }
 
+      &--bool {
+        ion-icon {
+          // color: lighten($color-button-2, 20%);
+          filter: brightness(200%);
+        }
+      }
+
       &--button {
         &:hover ~ .featured-item--content--collection--text {
           // display: initial;
@@ -128,6 +142,13 @@
 
       ion-icon {
         color: $color-button-3;
+      }
+
+      &--bool {
+        ion-icon {
+          // color: lighten($color-button-3, 20%);
+          filter: brightness(200%);
+        }
       }
 
       &--button {

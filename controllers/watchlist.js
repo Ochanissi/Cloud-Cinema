@@ -3,7 +3,7 @@ const handlePostWatchlist = (req, res, db) => {
 
   // console.log(req.body);
 
-  if (!id || !email || !type || !url || !rating) {
+  if (!id || !email || !type || !url) {
     return res.status(400).json('Incorrect request!');
   }
 
