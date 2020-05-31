@@ -1,6 +1,6 @@
 import { TVActionTypes } from './tv.types';
 
-require('dotenv').config();
+require('dotenv').config({ path: '../../.env' });
 
 // TV Airing Today
 export const fetchTVAiringTodayStart = () => ({

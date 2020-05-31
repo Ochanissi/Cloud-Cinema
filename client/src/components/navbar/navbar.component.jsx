@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import mainLogo from '../../assets/logo.png';
 import defaultLogo from '../../assets/default.png';
@@ -23,17 +23,21 @@ class Navbar extends React.Component {
   };
 
   handleSubmit = (e) => {
-    console.log('dasdasdsa');
-
     e.preventDefault();
 
+    this.props.history.push(`/search/${this.state.searchValue}`);
+
     this.setState({ searchValue: '' });
+
+    //   <Link
+    //   to={`/search/${this.state.searchValue}`}
+    //   className='navbar__main--btn-search'
+    // ></Link>
   };
 
   render() {
-    // console.log(this.state.searchValue);
-
     const { currentUser } = this.props;
+    const { searchValue } = this.state;
 
     return (
       <nav className='navbar'>
@@ -54,19 +58,15 @@ class Navbar extends React.Component {
             placeholder='Search...'
             autoComplete='off'
             onChange={this.handleSearch}
+            value={searchValue}
           />
-          <Link
-            to={`/search/${this.state.searchValue}`}
+          <button
             className='navbar__main--btn-search'
+            type='submit'
+            value='Submit'
           >
-            <button
-              className='navbar__main--btn-search'
-              type='submit'
-              value='Submit'
-            >
-              <ion-icon name='search'></ion-icon>
-            </button>
-          </Link>
+            <ion-icon name='search'></ion-icon>
+          </button>
         </form>
 
         <ul className='navbar__secondary'>
@@ -103,4 +103,4 @@ const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
 });
 
-export default connect(mapStateToProps)(Navbar);
+export default withRouter(connect(mapStateToProps)(Navbar));
