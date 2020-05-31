@@ -47,7 +47,7 @@ class FeaturedItem extends React.Component {
       const itemCategory = type || itemTypeDisc || itemTypeDisc || itemType;
       const itemTitle = title || name;
       const itemUrl = url || poster_path || backdrop_path;
-      const itemRating = rating || vote_average;
+      const itemRating = rating || vote_average || 0;
 
       const watchedDuplicate =
         watchedHistory.find((item) => item.id === id.toString()) || {};
@@ -98,7 +98,7 @@ class FeaturedItem extends React.Component {
       const itemCategory = type || itemTypeDisc || itemTypeDisc || itemType;
       const itemTitle = title || name;
       const itemUrl = url || poster_path || backdrop_path;
-      const itemRating = rating || vote_average;
+      const itemRating = rating || vote_average || 0;
 
       const collectionDuplicate =
         collection.find((item) => item.id === id.toString()) || {};
@@ -149,7 +149,7 @@ class FeaturedItem extends React.Component {
       const itemCategory = type || itemTypeDisc || itemTypeDisc || itemType;
       const itemTitle = title || name;
       const itemUrl = url || poster_path || backdrop_path;
-      const itemRating = rating || vote_average;
+      const itemRating = rating || vote_average || 0;
 
       const watchlistDuplicate =
         watchlist.find((item) => item.id === id.toString()) || {};
@@ -185,6 +185,12 @@ class FeaturedItem extends React.Component {
 
   render() {
     const {
+      currentUser,
+
+      watchedHistory,
+      collection,
+      watchlist,
+
       vote_average,
       poster_path,
       backdrop_path,
@@ -198,6 +204,17 @@ class FeaturedItem extends React.Component {
     } = this.props;
 
     // console.log(this.props);
+
+    let watchedHistoryBool, collectionBool, watchlistBool;
+
+    if (currentUser) {
+      watchedHistoryBool = watchedHistory.some(
+        (item) => item.id === itemId.toString()
+      );
+      collectionBool = collection.some((item) => item.id === itemId.toString());
+      watchlistBool = watchlist.some((item) => item.id === itemId.toString());
+      // console.log({ watchedHistoryBool, collectionBool, watchlistBool });
+    }
 
     return (
       <div className='featured-item'>
@@ -226,47 +243,59 @@ class FeaturedItem extends React.Component {
           <div className='featured-item--content--history'>
             <button
               onClick={this.handleWatched}
-              className='featured-item--content--history--button'
+              className={`featured-item--content--history--button ${
+                watchedHistoryBool
+                  ? 'featured-item--content--history--bool'
+                  : 'null'
+              }`}
             >
               <ion-icon name='checkmark-circle'></ion-icon>
             </button>
 
             <span className='featured-item--content--history--text'>
-              Add to watched history
+              {watchedHistoryBool ? 'Remove from' : 'Add to'} watched history
             </span>
           </div>
 
           <div className='featured-item--content--collection'>
             <button
               onClick={this.handleCollection}
-              className='featured-item--content--collection--button'
+              className={`featured-item--content--collection--button ${
+                collectionBool
+                  ? 'featured-item--content--collection--bool'
+                  : 'null'
+              }`}
             >
               <ion-icon name='file-tray-full'></ion-icon>
             </button>
 
             <span className='featured-item--content--collection--text'>
-              Add to collection
+              {collectionBool ? 'Remove from' : 'Add to'} collection
             </span>
           </div>
           <div className='featured-item--content--watchlist'>
             <button
               onClick={this.handleWatchlist}
-              className='featured-item--content--watchlist--button'
+              className={`featured-item--content--watchlist--button ${
+                watchlistBool
+                  ? 'featured-item--content--watchlist--bool'
+                  : 'null'
+              }`}
             >
               <ion-icon name='time'></ion-icon>
             </button>
 
             <span className='featured-item--content--watchlist--text'>
-              Add to watchlist
+              {watchlistBool ? 'Remove from' : 'Add to'} watchlist
             </span>
           </div>
 
           <div className='featured-item--content--like'>
             <span className='featured-item--content--rating'>
               {vote_average
-                ? `${vote_average * 10}%`
+                ? `${parseInt(vote_average * 10)}%`
                 : rating
-                ? `${rating * 10}%`
+                ? `${parseInt(rating * 10)}%`
                 : 'N/A'}
             </span>
             <div className='featured-item--content--rate'>

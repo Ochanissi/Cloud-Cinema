@@ -55,6 +55,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         watchedHistory: [],
         collection: [],
         watchlist: [],
+        errorMessage: null,
       };
 
     // User Watched
