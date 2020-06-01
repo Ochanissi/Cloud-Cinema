@@ -17,6 +17,8 @@ class HomePage extends React.Component {
   }
 
   render() {
+    // throw Error;
+
     return (
       <div className='homepage'>
         <Header />
