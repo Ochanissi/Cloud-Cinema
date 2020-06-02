@@ -59,6 +59,7 @@ class App extends React.Component {
           <Switch>
             <ErrorBoundary>
               <Suspense fallback={<Spinner />}>
+                <Route exact path='/' component={HomePage} />
                 <Route
                   exact
                   path='/profile'
@@ -99,7 +100,6 @@ class App extends React.Component {
                   component={DiscoverItem}
                 />
                 <Route exact path='/search/:id' component={DiscoverItem} />
-                <Route path='/' component={HomePage} />
               </Suspense>
             </ErrorBoundary>
           </Switch>

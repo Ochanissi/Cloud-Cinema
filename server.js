@@ -3,8 +3,9 @@ const cors = require('cors');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const knex = require('knex');
-const multer = require('multer');
-const sharp = require('sharp');
+const compression = require('compression');
+// const multer = require('multer');
+// const sharp = require('sharp');
 
 const signUp = require('./controllers/sign-up');
 const signIn = require('./controllers/sign-in');
@@ -36,6 +37,8 @@ app.use(cors());
 app.options('*', cors());
 
 if (process.env.NODE_ENV === 'production') {
+  app.use(compression());
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(express.static(path.join(__dirdisplayName, 'client/build')));
 
   app.get('*', function (req, res) {
