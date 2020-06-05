@@ -4,6 +4,7 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const knex = require('knex');
 const compression = require('compression');
+const enforce = require('express-sslify');
 // const multer = require('multer');
 // const sharp = require('sharp');
 
@@ -45,6 +46,10 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirdisplayName, 'client/build', 'index.html'));
   });
 }
+
+app.get('/service-worker.js', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
+});
 
 // app.use(express.static('./public'));
 
