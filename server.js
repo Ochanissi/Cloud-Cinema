@@ -5,6 +5,9 @@ const bcrypt = require('bcrypt');
 const knex = require('knex');
 const compression = require('compression');
 const enforce = require('express-sslify');
+const helmet = require('helmet');
+const xss = require('xss-clean');
+const morgan = require('morgan');
 // const multer = require('multer');
 // const sharp = require('sharp');
 
@@ -15,8 +18,16 @@ const watched = require('./controllers/watched');
 const collection = require('./controllers/collection');
 const watchlist = require('./controllers/watchlist');
 
-if (process.env.NODE_ENV !== 'production')
+// App initialization
+const app = express();
+const port = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config({ path: __dirname + '/.env' });
+
+  // Development logging
+  app.use(morgan('dev'));
+}
 
 const db = knex({
   client: 'pg',
@@ -28,8 +39,11 @@ const db = knex({
   },
 });
 
-const app = express();
-const port = process.env.PORT || 5000;
+// Set security HTTP headers
+app.use(helmet());
+
+// Data sanitization against XSS
+app.use(xss());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,6 +54,8 @@ app.options('*', cors());
 if (process.env.NODE_ENV === 'production') {
   app.use(compression());
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
+
+  // Serving static files
   app.use(express.static(path.join(__dirdisplayName, 'client/build')));
 
   app.get('*', function (req, res) {
