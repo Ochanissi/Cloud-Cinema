@@ -2,9 +2,11 @@ import { UserActionTypes } from './user.types';
 
 import Toast from 'light-toast';
 
-require('dotenv').config({ path: '../../.env' });
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ path: '../../.env' });
+}
 
-console.log(process.env.REACT_APP_BACKEND_URL);
+// console.log(process.env.REACT_APP_BACKEND_URL);
 
 // Set Item Type
 export const setItemType = (itemType) => ({

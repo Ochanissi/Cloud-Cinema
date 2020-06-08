@@ -1,6 +1,8 @@
 import { PeopleActionTypes } from './people.types';
 
-require('dotenv').config({ path: '../../.env' });
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ path: '../../.env' });
+}
 
 // People Details
 export const fetchPeopleDetailsStart = () => ({

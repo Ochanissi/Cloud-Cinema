@@ -1,6 +1,8 @@
 import { TVActionTypes } from './tv.types';
 
-require('dotenv').config({ path: '../../.env' });
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ path: '../../.env' });
+}
 
 // TV Airing Today
 export const fetchTVAiringTodayStart = () => ({
