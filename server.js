@@ -59,6 +59,8 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
 
   app.get('*', function (req, res) {
+    console.log(process.env.REACT_APP_TMDB_API_KEY);
+    console.log(process.env.REACT_APP_BACKEND_URL);
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
