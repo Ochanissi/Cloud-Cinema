@@ -2,6 +2,9 @@ import { MovieActionTypes } from './movie.types';
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config({ path: '../../.env' });
+} else {
+  console.log(process.env.REACT_APP_TMDB_API_KEY);
+  console.log(process.env.REACT_APP_BACKEND_URL);
 }
 
 // Movies Upcoming

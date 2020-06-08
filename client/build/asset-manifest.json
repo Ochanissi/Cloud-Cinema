@@ -1,16 +1,16 @@
 {
   "files": {
     "static/css/0.af026494.chunk.css": "/static/css/0.af026494.chunk.css",
-    "static/js/0.3d1c3757.chunk.js": "/static/js/0.3d1c3757.chunk.js",
-    "static/js/0.3d1c3757.chunk.js.map": "/static/js/0.3d1c3757.chunk.js.map",
+    "static/js/0.4cfdcf56.chunk.js": "/static/js/0.4cfdcf56.chunk.js",
+    "static/js/0.4cfdcf56.chunk.js.map": "/static/js/0.4cfdcf56.chunk.js.map",
     "static/css/1.025b6a31.chunk.css": "/static/css/1.025b6a31.chunk.css",
     "static/js/1.78e38393.chunk.js": "/static/js/1.78e38393.chunk.js",
     "static/js/1.78e38393.chunk.js.map": "/static/js/1.78e38393.chunk.js.map",
     "main.css": "/static/css/main.1c9f5438.chunk.css",
     "main.js": "/static/js/main.bbd21b3f.chunk.js",
     "main.js.map": "/static/js/main.bbd21b3f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.6b09d572.js",
-    "runtime-main.js.map": "/static/js/runtime-main.6b09d572.js.map",
+    "runtime-main.js": "/static/js/runtime-main.892aec4c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.892aec4c.js.map",
     "static/js/4.b2dfdfcf.chunk.js": "/static/js/4.b2dfdfcf.chunk.js",
     "static/js/4.b2dfdfcf.chunk.js.map": "/static/js/4.b2dfdfcf.chunk.js.map",
     "static/css/5.280636eb.chunk.css": "/static/css/5.280636eb.chunk.css",
@@ -35,7 +35,7 @@
     "static/js/11.6b078350.chunk.js": "/static/js/11.6b078350.chunk.js",
     "static/js/11.6b078350.chunk.js.map": "/static/js/11.6b078350.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.c38fe2c7ae1827c06d3e715b7a7a4d69.js": "/precache-manifest.c38fe2c7ae1827c06d3e715b7a7a4d69.js",
+    "precache-manifest.380dd3d66155773891fe2b37421c142b.js": "/precache-manifest.380dd3d66155773891fe2b37421c142b.js",
     "service-worker.js": "/service-worker.js",
     "static/css/0.af026494.chunk.css.map": "/static/css/0.af026494.chunk.css.map",
     "static/css/1.025b6a31.chunk.css.map": "/static/css/1.025b6a31.chunk.css.map",
@@ -59,7 +59,7 @@
     "static/media/tmdb-logo.12d095ee.svg": "/static/media/tmdb-logo.12d095ee.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.6b09d572.js",
+    "static/js/runtime-main.892aec4c.js",
     "static/js/4.b2dfdfcf.chunk.js",
     "static/css/main.1c9f5438.chunk.css",
     "static/js/main.bbd21b3f.chunk.js"
