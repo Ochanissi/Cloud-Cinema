@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useMediaQuery } from 'react-responsive';
+
 import castLogo from '../../assets/default-cast.png';
 import creditLogo from '../../assets/default-credit.png';
 import peopleBackground from '../../assets/default-people.png';
@@ -37,6 +39,10 @@ const IDHeader = ({ itemDetails }) => {
 
   let date = release_date || last_air_date;
 
+  const mediaLarge = useMediaQuery({ maxDeviceWidth: 1300 });
+
+  const imageSize = mediaLarge ? 'w780' : 'w1280';
+
   return (
     <div className='id-header'>
       <div className='id-header__image-container'>
@@ -45,7 +51,7 @@ const IDHeader = ({ itemDetails }) => {
           alt='Header Background'
           src={
             backdrop_path || poster_path
-              ? `https://image.tmdb.org/t/p/original${
+              ? `https://image.tmdb.org/t/p/${imageSize}${
                   backdrop_path || poster_path
                 }`
               : peopleBackground

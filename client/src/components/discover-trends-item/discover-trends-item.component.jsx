@@ -23,10 +23,16 @@ const DiscoverTrendsItem = ({
   itemContent,
   popular,
 }) => {
+  const mediaLarge = useMediaQuery({ maxDeviceWidth: 1300 });
+  // const MediaMedium = useMediaQuery({ maxDeviceWidth: 800 });
+
   const mediaSmall = useMediaQuery({ maxDeviceWidth: 600 });
   const mediaPhone = useMediaQuery({ maxDeviceWidth: 500 });
 
   // let descriptionLength = mediaSmall ? 50 : mediaSmall ? 75 : 100;
+
+  // const imageSize = MediaMedium ? 'w780' : mediaLarge ? 'w1280' : 'original';
+  const imageSize = mediaLarge ? 'w780' : 'w1280';
 
   return (
     <CarouselProvider
@@ -42,7 +48,7 @@ const DiscoverTrendsItem = ({
             <img
               className='discover__trends--item--image'
               alt='Discover Background'
-              src={`https://image.tmdb.org/t/p/original${
+              src={`https://image.tmdb.org/t/p/${imageSize}${
                 item.backdrop_path || item.poster_path
               }`}
             />
