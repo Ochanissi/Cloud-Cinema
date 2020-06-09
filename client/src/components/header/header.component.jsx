@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import MediaQuery from 'react-responsive';
+
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 
@@ -57,6 +60,22 @@ class Header extends React.Component {
     return backgroundItem;
   };
 
+  // handleImageSize = () => {
+  //   const mediaLarge = useMediaQuery({ maxDeviceWidth: 1300 });
+  //   const MediaMedium = useMediaQuery({ maxDeviceWidth: 800 });
+  //   const mediaSmall = useMediaQuery({ maxDeviceWidth: 500 });
+
+  //   const imageSize = mediaLarge
+  //     ? 'w1280'
+  //     : MediaMedium
+  //     ? 'w780'
+  //     : mediaSmall
+  //     ? 'w300'
+  //     : 'original';
+
+  //   return imageSize;
+  // };
+
   render() {
     const backgroundItem = this.handleBackgroundItem();
     const { itemType } = this.props;
@@ -80,13 +99,42 @@ class Header extends React.Component {
                   to={`/details/${itemType.toLowerCase()}/${item.id}`}
                   className='header__image-container'
                 >
-                  <img
-                    className='header__image-container--image'
-                    alt='Header Background'
-                    src={`https://image.tmdb.org/t/p/original${
-                      item.backdrop_path || item.poster_path
-                    }`}
-                  />
+                  <MediaQuery minDeviceWidth={1301}>
+                    <img
+                      className='header__image-container--image'
+                      alt='Header Background'
+                      src={`https://image.tmdb.org/t/p/w1280${
+                        item.backdrop_path || item.poster_path
+                      }`}
+                    />
+                  </MediaQuery>
+                  <MediaQuery maxDeviceWidth={1300}>
+                    <img
+                      className='header__image-container--image'
+                      alt='Header Background'
+                      src={`https://image.tmdb.org/t/p/w780${
+                        item.backdrop_path || item.poster_path
+                      }`}
+                    />
+                  </MediaQuery>
+                  {/* <MediaQuery maxDeviceWidth={800}>
+                    <img
+                      className='header__image-container--image'
+                      alt='Header Background'
+                      src={`https://image.tmdb.org/t/p/w780${
+                        item.backdrop_path || item.poster_path
+                      }`}
+                    />
+                  </MediaQuery> */}
+                  {/* <MediaQuery maxDeviceWidth={500}>
+                    <img
+                      className='header__image-container--image'
+                      alt='Header Background'
+                      src={`https://image.tmdb.org/t/p/w300${
+                        item.backdrop_path || item.poster_path
+                      }`}
+                    />
+                  </MediaQuery> */}
                   <div className='header__text'>
                     <span className='header__text--type'>Playing now</span>
                     <span className='header__text--title'>
