@@ -2,8 +2,11 @@ import { UserActionTypes } from './user.types';
 
 import Toast from 'light-toast';
 
+// import Kek from '../../.env';
+
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config({ path: '../../.env' });
+  console.log('lelelle');
 }
 
 // console.log(process.env.REACT_APP_BACKEND_URL);
