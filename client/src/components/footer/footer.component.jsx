@@ -44,7 +44,13 @@ const Footer = () => (
       <Link to='/' label='Home'>
         <img src={mainLogo} alt='App Logo' className='footer__col-2--logo' />
       </Link>
-      <TMDBLogo />
+      <a
+        href='https://developers.themoviedb.org/3'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        <TMDBLogo className='footer__col-2--logo' />
+      </a>
     </div>
 
     <div className='footer__links'>
