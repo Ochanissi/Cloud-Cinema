@@ -66,7 +66,7 @@ const Footer = () => (
         <ion-icon name='logo-github'></ion-icon>
       </a>
       <a
-        href='https://github.com/Ochanissi/'
+        href='https://edabit.com/user/zTZtM9jRsu8eXie6s'
         target='_blank'
         rel='noopener noreferrer'
         className='btn btn__contact'
@@ -74,7 +74,7 @@ const Footer = () => (
         <ion-icon name='logo-codepen'></ion-icon>
       </a>
       <a
-        href='https://github.com/Ochanissi/'
+        href='https://www.linkedin.com/in/mirel-alex-2a74b217b/'
         target='_blank'
         rel='noopener noreferrer'
         className='btn btn__contact'
