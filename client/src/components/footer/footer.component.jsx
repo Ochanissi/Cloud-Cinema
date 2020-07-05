@@ -74,7 +74,7 @@ const Footer = () => (
         <ion-icon name='logo-codepen'></ion-icon>
       </a>
       <a
-        href='https://www.linkedin.com/in/mirel-alex-2a74b217b/'
+        href='https://www.linkedin.com/in/mirel-bițoi-2a74b217b'
         target='_blank'
         rel='noopener noreferrer'
         className='btn btn__contact'
