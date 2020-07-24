@@ -1,6 +1,6 @@
 # Cloud Cinema
 
-**Cloud Cinema** is a React application that keeps track of TV shows and movies you watch. Find where to watch TV & movies and discover what's hot.
+**Cloud Cinema** is a React application that keeps track of the TV shows and movies you watch. Find where to watch TV & movies and discover what's hot.
 
 ## Getting Started
 
