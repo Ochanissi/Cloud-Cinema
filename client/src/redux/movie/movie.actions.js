@@ -24,7 +24,7 @@ export const fetchMoviesUpcomingStartAsync = () => {
     dispatch(fetchMoviesUpcomingStart());
 
     fetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMoviesUpcomingSuccess(data.results)))
@@ -52,7 +52,7 @@ export const fetchMoviesPopularStartAsync = () => {
     dispatch(fetchMoviesPopularStart());
 
     fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMoviesPopularSuccess(data.results)))
@@ -80,7 +80,7 @@ export const fetchMoviesNowPlayingStartAsync = () => {
     dispatch(fetchMoviesNowPlayingStart());
 
     fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMoviesNowPlayingSuccess(data.results)))
@@ -108,7 +108,7 @@ export const fetchMoviesTopRatedStartAsync = () => {
     dispatch(fetchMoviesTopRatedStart());
 
     fetch(
-      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMoviesTopRatedSuccess(data.results)))
@@ -136,7 +136,7 @@ export const fetchMoviesGenreStartAsync = () => {
     dispatch(fetchMoviesGenreStart());
 
     fetch(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMoviesGenreSuccess(data.genres)))
@@ -164,7 +164,7 @@ export const fetchMovieDetailsStartAsync = (movieId) => {
     dispatch(fetchMovieDetailsStart());
 
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMovieDetailsSuccess(data)))
@@ -192,7 +192,7 @@ export const fetchMovieCreditsStartAsync = (movieId) => {
     dispatch(fetchMovieCreditsStart());
 
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMovieCreditsSuccess(data.cast)))
@@ -220,7 +220,7 @@ export const fetchMovieTrailersStartAsync = (movieId) => {
     dispatch(fetchMovieTrailersStart());
 
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMovieTrailersSuccess(data.results)))
@@ -248,7 +248,7 @@ export const fetchMovieReviewsStartAsync = (movieId) => {
     dispatch(fetchMovieReviewsStart());
 
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMovieReviewsSuccess(data.results)))
@@ -276,7 +276,7 @@ export const fetchMoviesTrendingStartAsync = () => {
     dispatch(fetchMoviesTrendingStart());
 
     fetch(
-      `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMoviesTrendingSuccess(data.results)))
@@ -304,7 +304,7 @@ export const fetchMultiSearchStartAsync = (query) => {
     dispatch(fetchMultiSearchStart());
 
     fetch(
-      `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
+      `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchMultiSearchSuccess(data.results)))
