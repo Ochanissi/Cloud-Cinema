@@ -24,7 +24,7 @@ export const fetchPeopleDetailsStartAsync = (peopleId) => {
     dispatch(fetchPeopleDetailsStart());
 
     fetch(
-      `https://api.themoviedb.org/3/person/${peopleId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/person/${peopleId}?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => dispatch(fetchPeopleDetailsSuccess(data)))
@@ -52,7 +52,7 @@ export const fetchPeopleMovieCreditsStartAsync = (peopleId) => {
     dispatch(fetchPeopleMovieCreditsStart());
 
     fetch(
-      `https://api.themoviedb.org/3/person/${peopleId}/movie_credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/person/${peopleId}/movie_credits?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) =>
@@ -84,7 +84,7 @@ export const fetchPeopleTVCreditsStartAsync = (peopleId) => {
     dispatch(fetchPeopleTVCreditsStart());
 
     fetch(
-      `https://api.themoviedb.org/3/person/${peopleId}/tv_credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/person/${peopleId}/tv_credits?api_key=${process.env.REACT_APP_CLOUD_CINEMA_TMDB_API_KEY}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) =>

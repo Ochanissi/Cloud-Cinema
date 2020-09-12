@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config({ path: '../../.env' });
 }
 
-// console.log(process.env.REACT_APP_BACKEND_URL);
+// console.log(process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL);
 
 // Set Item Type
 export const setItemType = (itemType) => ({
@@ -39,7 +39,7 @@ export const signInStartAsync = (email, password) => {
   return (dispatch) => {
     dispatch(signInStart());
 
-    fetch(`${process.env.REACT_APP_BACKEND_URL}sign-in`, {
+    fetch(`${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}sign-in`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -83,7 +83,7 @@ export const signUpStartAsync = (name, email, password) => {
   return (dispatch) => {
     dispatch(signUpStart());
 
-    fetch(`${process.env.REACT_APP_BACKEND_URL}sign-up`, {
+    fetch(`${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}sign-up`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -149,7 +149,7 @@ export const postUserWatchedStartAsync = (
 ) => {
   return (dispatch) => {
     dispatch(postUserWatchedStart());
-    fetch(`${process.env.REACT_APP_BACKEND_URL}watched`, {
+    fetch(`${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}watched`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -196,7 +196,7 @@ export const getUserWatchedFailure = (errorMessage) => ({
 export const getUserWatchedStartAsync = (email) => {
   return (dispatch) => {
     dispatch(getUserWatchedStart());
-    fetch(`${process.env.REACT_APP_BACKEND_URL}get-watched/`, {
+    fetch(`${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}get-watched/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -229,7 +229,7 @@ export const deleteUserWatchedFailure = (errorMessage) => ({
 export const deleteUserWatchedStartAsync = (id, email) => {
   return (dispatch) => {
     dispatch(deleteUserWatchedStart());
-    fetch(`${process.env.REACT_APP_BACKEND_URL}delete-watched/`, {
+    fetch(`${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}delete-watched/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -279,7 +279,7 @@ export const postUserCollectionStartAsync = (
 ) => {
   return (dispatch) => {
     dispatch(postUserCollectionStart());
-    fetch(`${process.env.REACT_APP_BACKEND_URL}collection`, {
+    fetch(`${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}collection`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -326,7 +326,7 @@ export const getUserCollectionFailure = (errorMessage) => ({
 export const getUserCollectionStartAsync = (email) => {
   return (dispatch) => {
     dispatch(getUserCollectionStart());
-    fetch(`${process.env.REACT_APP_BACKEND_URL}get-collection/`, {
+    fetch(`${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}get-collection/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -359,14 +359,17 @@ export const deleteUserCollectionFailure = (errorMessage) => ({
 export const deleteUserCollectionStartAsync = (id, email) => {
   return (dispatch) => {
     dispatch(deleteUserCollectionStart());
-    fetch(`${process.env.REACT_APP_BACKEND_URL}delete-collection/`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id,
-        email,
-      }),
-    })
+    fetch(
+      `${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}delete-collection/`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id,
+          email,
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         if (typeof data === 'string') {
@@ -409,7 +412,7 @@ export const postUserWatchlistStartAsync = (
 ) => {
   return (dispatch) => {
     dispatch(postUserWatchlistStart());
-    fetch(`${process.env.REACT_APP_BACKEND_URL}watchlist`, {
+    fetch(`${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}watchlist`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -456,7 +459,7 @@ export const getUserWatchlistFailure = (errorMessage) => ({
 export const getUserWatchlistStartAsync = (email) => {
   return (dispatch) => {
     dispatch(getUserWatchlistStart());
-    fetch(`${process.env.REACT_APP_BACKEND_URL}get-watchlist/`, {
+    fetch(`${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}get-watchlist/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -489,14 +492,17 @@ export const deleteUserWatchlistFailure = (errorMessage) => ({
 export const deleteUserWatchlistStartAsync = (id, email) => {
   return (dispatch) => {
     dispatch(deleteUserWatchlistStart());
-    fetch(`${process.env.REACT_APP_BACKEND_URL}delete-watchlist/`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id,
-        email,
-      }),
-    })
+    fetch(
+      `${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}delete-watchlist/`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id,
+          email,
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         if (typeof data === 'string') {
@@ -539,7 +545,7 @@ export const updateUserDataStartAsync = (
 ) => {
   return (dispatch) => {
     dispatch(updateUserDataStart());
-    fetch(`${process.env.REACT_APP_BACKEND_URL}profile`, {
+    fetch(`${process.env.REACT_APP_CLOUD_CINEMA_BACKEND_URL}profile`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
